@@ -52,12 +52,12 @@ layer; the outer boundary is `Q` arcs. Correct, not a bug.
 ## Usage
 
 ```bash
-node celtic-knot-soundhole.js                       # report only
-OUT=trefoil.svg node celtic-knot-soundhole.js       # Q=3 default
-Q=5 OUT=cinquefoil.svg node celtic-knot-soundhole.js
-Q=7 OUT=septafoil.svg  node celtic-knot-soundhole.js
-SELFTEST=1 node celtic-knot-soundhole.js            # check the hash, exit
-DIAG=1 node celtic-knot-soundhole.js                # per-region dump
+node celtic-knot-soundhole.js                            # report only
+OUT=trefoil-r30.svg node celtic-knot-soundhole.js        # Q=3 default
+Q=5 OUT=cinquefoil-r30.svg node celtic-knot-soundhole.js
+Q=7 OUT=septafoil-r30.svg node celtic-knot-soundhole.js
+SELFTEST=1 node celtic-knot-soundhole.js                 # check the hash, exit
+DIAG=1 node celtic-knot-soundhole.js                     # per-region dump
 ```
 
 | Var | Default | Meaning |
