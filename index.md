@@ -24,9 +24,9 @@ knot. Asking the knot generator for an even `Q` is refused with an error.
 
 ## Why there are two, and why they are named that way
 
-Both generators trace the same family of curve — the **(2, n) torus link**, two strands
-winding around a ring with `n` crossings between them. What changes with `n` is how many
-separate pieces of ribbon you end up with, and that is `gcd(2, n)`:
+Both generators trace the same family of curve — **two strands winding around a ring**
+with `n` crossings between them. What changes with `n` is how many separate pieces of
+ribbon you end up with, and that is `gcd(2, n)`:
 
 | `n` crossings | components | it is a… | generator |
 |---|---|---|---|
