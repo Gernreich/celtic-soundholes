@@ -2,7 +2,9 @@
 
 Generator: `celtic-plait-soundhole.js`
 
-Companion (odd crossings): [`celtic-knot-soundhole.md`](celtic-knot-soundhole.md)
+Companions: [`celtic-knot-soundhole.md`](celtic-knot-soundhole.md) (odd
+crossings) · [`celtic-knot-coprime-soundhole.md`](celtic-knot-coprime-soundhole.md)
+(any coprime leads × bights)
 
 Produces a cut-ready SVG of a circular Celtic plait sized for an instrument
 sound hole. Two identical sinusoidal ribbons weave around a ring; ribbon B is

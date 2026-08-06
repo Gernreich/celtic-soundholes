@@ -1,17 +1,19 @@
 # Celtic Sound Holes
 
-Two Node generators that produce cut-ready SVG rosettes for an instrument sound hole.
+Three Node generators that produce cut-ready SVG rosettes for an instrument sound hole.
 Output is millimetre-true — `1 user unit = 1 mm`, with a physical `width`/`height` — so it
 prints and cuts at real size.
 
 **[Read the writeups](https://gernreich.github.io/celtic-soundholes/)** · plait:
 [`celtic-plait-soundhole.md`](celtic-plait-soundhole.md) · knot:
-[`celtic-knot-soundhole.md`](celtic-knot-soundhole.md)
+[`celtic-knot-soundhole.md`](celtic-knot-soundhole.md) · coprime:
+[`celtic-knot-coprime-soundhole.md`](celtic-knot-coprime-soundhole.md)
 
 ## Which generator?
 
-They differ in how many times the ribbon crosses itself, and neither can produce the
-other's counts. An alternating over/under interlace has to close up when you return to
+The first two differ in how many times the ribbon crosses itself, and neither can
+produce the other's counts. The third generalises both — see
+[its writeup](celtic-knot-coprime-soundhole.md) for leads and bights. An alternating over/under interlace has to close up when you return to
 your start, and that decides the curve.
 
 | | even crossings | odd crossings |
@@ -60,7 +62,8 @@ Delete the `preview` layer before sending to a cutter. The designs are very open
 |---|---|
 | `celtic-plait-soundhole.js` · `.md` | even-crossing plait generator and its writeup |
 | `celtic-knot-soundhole.js` · `.md` | odd-crossing knot generator and its writeup |
-| `celtic-*-radius30mm.svg` | cut-ready samples at `R_HOLE = 30`, a 60 mm hole |
+| `celtic-knot-coprime-soundhole.js` · `.md` | any coprime leads × bights, generalising the knot |
+| `celtic-*-radius30mm.svg` | samples at `R_HOLE = 30`, a 60 mm hole |
 | `index.md` · `*.html` | the published pages; the markdown is the source |
 
 Requires Node. No dependencies. Released under [CC0 1.0](LICENSE).

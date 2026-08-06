@@ -2,7 +2,10 @@
 
 Generator: `celtic-knot-soundhole.js`
 
-Companion (even crossings): [`celtic-plait-soundhole.md`](celtic-plait-soundhole.md)
+Companions: [`celtic-plait-soundhole.md`](celtic-plait-soundhole.md) (even
+crossings) · [`celtic-knot-coprime-soundhole.md`](celtic-knot-coprime-soundhole.md)
+(this curve generalised to any coprime leads × bights — set `LEADS=2` there and you
+are back here)
 
 Produces a cut-ready SVG of a trefoil / cinquefoil / septafoil rosette sized
 for an instrument sound hole. Unlike the two-ribbon plait, this is **one
