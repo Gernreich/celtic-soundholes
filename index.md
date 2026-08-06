@@ -76,9 +76,9 @@ The geometry is cut-ready; the layers still need the two minutes described above
 
 - [`10-crossing_plait_radius30mm.svg`](10-crossing_plait_radius30mm.svg) — 10 crossings, `N = 5`
 - [`8-crossing_plait_radius30mm.svg`](8-crossing_plait_radius30mm.svg) — 8 crossings, `N = 4`
-- [`2-lead_3-bight_knot_radius30mm.svg`](2-lead_3-bight_knot_radius30mm.svg) — `Q = 3`
-- [`2-lead_5-bight_knot_radius30mm.svg`](2-lead_5-bight_knot_radius30mm.svg) — `Q = 5`
-- [`2-lead_7-bight_knot_radius30mm.svg`](2-lead_7-bight_knot_radius30mm.svg) — `Q = 7`
+- [`2-lead_3-bight_knot_radius30mm.svg`](2-lead_3-bight_knot_radius30mm.svg) — 2 leads × 3 bights
+- [`2-lead_5-bight_knot_radius30mm.svg`](2-lead_5-bight_knot_radius30mm.svg) — 2 leads × 5 bights
+- [`2-lead_7-bight_knot_radius30mm.svg`](2-lead_7-bight_knot_radius30mm.svg) — 2 leads × 7 bights
 - [`3-lead_4-bight_knot_radius30mm.svg`](3-lead_4-bight_knot_radius30mm.svg) — 3 leads × 4 bights
 - [`3-lead_5-bight_knot_radius30mm.svg`](3-lead_5-bight_knot_radius30mm.svg) — 3 leads × 5 bights
 

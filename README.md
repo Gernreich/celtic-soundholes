@@ -26,8 +26,8 @@ your start, and that decides the curve.
 
 In the plait each strand meets every crossing once, so the count is even by
 construction. A self-crossing strand visits each crossing twice, which is why a
-3-crossing trefoil is a valid alternating knot. Asking the odd generator for an even `Q`
-is refused with an error.
+3-crossing trefoil is a valid alternating knot. Asking the knot generator for a
+leads/bights pair that is not coprime is refused with an error.
 
 ## Quick start
 

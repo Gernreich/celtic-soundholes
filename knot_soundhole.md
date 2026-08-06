@@ -18,8 +18,9 @@ before it closes, and shows `B` scallops at the rim. Millimetre-true output,
 r(theta) = R_MID + AMP*cos(B*theta/L),   theta in [0, 2*pi*L)
 ```
 
-It generalises the two-lead generator it replaced: `BIGHTS` odd is exactly that
-one's rule that `Q` must be odd, because odd `B` is what makes `gcd(2, B) = 1`.
+It generalises the two-lead generator it replaced. That one had a single parameter,
+`Q`, for its bight count, and required it to be odd — which is exactly `gcd(2, B) = 1`,
+this rule at two leads.
 
 ## Leads and bights, and why they must be coprime
 
@@ -137,8 +138,9 @@ rim anchors   == B
 engrave lines == 2*B*(L-1)   (two edges of the over pass per crossing)
 ```
 
-Both companions are the `L = 2` case: the knot at `(2, Q)` gives `2Q + 1` regions,
-and the plait at `(2, 2N)` gives `4N + 1`. **The generator checks the crossing and
+Two leads is the special case both older generators occupied: the retired one at
+`(2, B)` with `B` odd gives `2B + 1` regions, and the plait at `(2, 2N)` gives
+`4N + 1`. **The generator checks the crossing and
 region counts on every run and prints whether they match.**
 
 ## The tested envelope, and where it stops
