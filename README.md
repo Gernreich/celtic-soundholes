@@ -4,7 +4,7 @@ Two Node generators that produce cut-ready SVG rosettes for an instrument sound 
 Output is millimetre-true — `1 user unit = 1 mm`, with a physical `width`/`height` — so it
 prints and cuts at real size.
 
-**[Read the writeups](https://gernreich.github.io/-soundholes/)** · plait:
+**[Read the writeups](https://gernreich.github.io/knotwork-soundholes/)** · plait:
 [`plait_soundhole.md`](plait_soundhole.md) · knot:
 [`knot_soundhole.md`](knot_soundhole.md)
 
