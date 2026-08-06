@@ -420,12 +420,38 @@ for (const sign of [1, -1]) {
   }
 }
 
+// ------------------------------------------- rim continuations (engrave)
+// Where a ribbon overruns the rim it fuses into the soundboard, and the cut layer
+// stops dead at R_HOLE — past the rim there is nothing to cut. That leaves every
+// anchor reading as a flat pad and the rosette looking sliced off by a circle.
+// The ribbon edges do carry on out there, as far as R_HOLE + BITE, so engrave them:
+// the outline continues across the anchor and the eye reads the ribbon as passing
+// into the board. Both ribbons get it, A directly and B by the same rotation the
+// weave uses.
+//
+// Purely decorative, and kept apart from the interlace lines above, whose count is
+// tied to the crossings. Reported separately so the two are never confused.
+const rimLines = [];
+for (const sign of [1, -1]) {
+  const base = offsetCurve(sign);
+  for (const curve of [base, base.map(p => rot(p, 1))]) {
+    let run = [];
+    for (const p of curve) {
+      const r = Math.hypot(p[0], p[1]);
+      const keep = r >= R_HOLE - 0.05 && r <= R_HOLE + BITE + HW;
+      if (keep) run.push(p);
+      else { if (run.length > 2) rimLines.push(rdp(run, 0.01)); run = []; }
+    }
+    if (run.length > 2) rimLines.push(rdp(run, 0.01));
+  }
+}
+
 // ------------------------------------------------------------- output
 const f2 = n => (Math.round(n * 1000) / 1000).toString();
 const dOf = p => 'M' + p.map(q => f2(q[0]) + ' ' + f2(q[1])).join('L') + 'Z';
 const dOpen = p => 'M' + p.map(q => f2(q[0]) + ' ' + f2(q[1])).join('L');
 const cutD = simp.map(dOf).join('');
-const engD = engrave.map(dOpen).join('');
+const engD = engrave.concat(rimLines).map(dOpen).join('');
 
 const OUT = process.env.OUT;
 const PAD  = 0.5;                        // breathing room for the 0.1mm stroke
@@ -492,6 +518,7 @@ console.log('plain 60mm disc     :', discArea.toFixed(2));
 console.log('open fraction       :', (openArea / discArea * 100).toFixed(1) + '%');
 console.log('equiv. round hole dia (mm):', (2 * Math.sqrt(openArea / Math.PI)).toFixed(2));
 console.log('engrave polylines   :', engrave.length);
+console.log('rim continuations   :', rimLines.length, ' (decorative; the ribbons crossing their anchors)');
 console.log('ribbon width (mm)   :', 2 * HW);
 console.log('rim anchors         :', 2 * N);
 console.log('cut path bytes      :', cutD.length);
