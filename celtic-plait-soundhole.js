@@ -391,7 +391,7 @@ const R    = f2(R_HOLE);
 const rimCircle = `M${R} 0A${R} ${R} 0 1 0 -${R} 0A${R} ${R} 0 1 0 ${R} 0Z`;
 const svg = `<svg xmlns="http://www.w3.org/2000/svg"
      width="${SIZE}mm" height="${SIZE}mm" viewBox="${ORG} ${ORG} ${SIZE} ${SIZE}">
-  <title>Celtic knot sound hole - ${R_HOLE} mm radius</title>
+  <title>Celtic plait sound hole - ${2 * N} crossings, ${R_HOLE} mm radius</title>
   <!-- 1 user unit = 1 mm, so this prints/cuts at true size.
        Sound hole radius ${R_HOLE}mm (${2 * R_HOLE}mm diameter).
        Two interwoven ribbons ${2 * HW}mm wide, ${2 * N} crossings.

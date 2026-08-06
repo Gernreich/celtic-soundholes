@@ -69,8 +69,8 @@ Delete the `preview` layer before sending anything to a cutter.
 Cut-ready output at `R_HOLE = 30` (a 60 mm hole), committed so you can look before you run
 anything:
 
-- [`celtic-plait-soundhole-radius30mm.svg`](celtic-plait-soundhole-radius30mm.svg) — 10 crossings, `N = 5`
-- [`celtic-plait-soundhole-radius30mm-8x.svg`](celtic-plait-soundhole-radius30mm-8x.svg) — 8 crossings, `N = 4`
+- [`celtic-plait-soundhole-10crossings-radius30mm.svg`](celtic-plait-soundhole-10crossings-radius30mm.svg) — 10 crossings, `N = 5`
+- [`celtic-plait-soundhole-8crossings-radius30mm.svg`](celtic-plait-soundhole-8crossings-radius30mm.svg) — 8 crossings, `N = 4`
 - [`celtic-trefoil-soundhole-radius30mm.svg`](celtic-trefoil-soundhole-radius30mm.svg) — `Q = 3`
 - [`celtic-cinquefoil-soundhole-radius30mm.svg`](celtic-cinquefoil-soundhole-radius30mm.svg) — `Q = 5`
 - [`celtic-septafoil-soundhole-radius30mm.svg`](celtic-septafoil-soundhole-radius30mm.svg) — `Q = 7`

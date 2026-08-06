@@ -142,5 +142,5 @@ re-derive rather than trust it.
 
 ## Generated files
 
-- `celtic-plait-soundhole-radius30mm.svg` — 10 crossings (N=5, default)
-- `celtic-plait-soundhole-radius30mm-8x.svg` — 8 crossings (N=4)
+- `celtic-plait-soundhole-10crossings-radius30mm.svg` — 10 crossings (N=5, default)
+- `celtic-plait-soundhole-8crossings-radius30mm.svg` — 8 crossings (N=4)
