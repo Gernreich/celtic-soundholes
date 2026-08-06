@@ -81,15 +81,64 @@
 const fs = require('fs');
 
 // ---------------------------------------------------------------- params
+// Every knob, in one place: --help prints this list and the defaults below are
+// read from it, so the two cannot drift apart. Add a parameter here and it is
+// documented by construction.
+const PARAMS = [
+  ['LEADS',       3,    'times round before the strand closes'],
+  ['BIGHTS',      5,    'scallops at the rim; must be coprime to LEADS'],
+  ['R_HOLE',      30,   'sound hole radius, mm'],
+  ['AMP',         7.5,  'radial swing of the weave'],
+  ['HW',          2.0,  'ribbon half-width -> ribbon is 2*HW mm wide'],
+  ['BITE',        1.5,  'rim overrun; this is what anchors the rosette'],
+  ['NG',          1400, 'sampling grid resolution'],
+  ['MIN_FEATURE', 0.25, 'gaps narrower than this are welded to solid material'],
+];
+const FLAGS = [
+  ['OUT',      'output path -- NOTHING IS WRITTEN unless this is set'],
+  ['SELFTEST', 'verify the spatial hash against brute force, then exit'],
+  ['DIAG',     'verbose per-region report'],
+];
+
+if (process.argv.slice(2).some(a => a === '--help' || a === '-h')) {
+  const D = {};
+  PARAMS.forEach(p => { D[p[0]] = p[1]; });
+  console.log(`
+knot_soundhole.js -- one continuous strand, any coprime leads x bights
+
+  Settings are environment variables, not flags:
+
+    LEADS=3 BIGHTS=5 OUT=3-lead_5-bight_knot_radius30mm.svg node knot_soundhole.js
+
+  Numbers (default):
+`);
+  PARAMS.forEach(p => console.log(`    ${p[0].padEnd(13)} ${String(p[1]).padEnd(6)} ${p[2]}`));
+  console.log('\n  Switches (unset by default), any non-empty value turns them on:\n');
+  FLAGS.forEach(f => console.log(`    ${f[0].padEnd(13)}        ${f[1]}`));
+  console.log(`
+  LEADS and BIGHTS must be coprime -- gcd(L,B) is the number of separate strands,
+  so anything but 1 gives several loops rather than one knot.
+
+  AMP and HW do not scale with R_HOLE. Roughly AMP ~ 0.25*R_HOLE and
+  HW ~ 0.067*R_HOLE at two or three leads; above that the ribbon must thin,
+  roughly AMP ~ LEADS*HW, and the panel has to grow or the rim gaps weld shut.
+
+  Full documentation: knot_soundhole.md
+`);
+  process.exit(0);
+}
+
 const num = (k, d) => process.env[k] ? Number(process.env[k]) : d;
-const R_HOLE = num('R_HOLE', 30);   // sound-hole radius (mm)
-const L      = num('LEADS', 3);     // leads: times round before closing
-const B      = num('BIGHTS', 5);    // bights: scallops at the rim
-const AMP    = num('AMP', 7.5);     // radial swing of the weave
-const HW     = num('HW', 2.0);      // ribbon half-width -> 4 mm ribbon
-const BITE   = num('BITE', 1.5);    // how far ribbon peak overruns the rim
-const NG     = num('NG', 1400);
-const MIN_FEATURE = num('MIN_FEATURE', 0.25);
+const DEF = {};
+PARAMS.forEach(p => { DEF[p[0]] = p[1]; });
+const R_HOLE = num('R_HOLE', DEF.R_HOLE);   // sound-hole radius (mm)
+const L      = num('LEADS', DEF.LEADS);     // leads: times round before closing
+const B      = num('BIGHTS', DEF.BIGHTS);   // bights: scallops at the rim
+const AMP    = num('AMP', DEF.AMP);         // radial swing of the weave
+const HW     = num('HW', DEF.HW);           // ribbon half-width
+const BITE   = num('BITE', DEF.BITE);       // how far ribbon peak overruns the rim
+const NG     = num('NG', DEF.NG);
+const MIN_FEATURE = num('MIN_FEATURE', DEF.MIN_FEATURE);
 
 const gcd = (a, b) => b ? gcd(b, a % b) : a;
 

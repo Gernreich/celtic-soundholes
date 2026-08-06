@@ -50,6 +50,7 @@ That is correct; adding a full circle drops the rosette on the floor.
 ## Usage
 
 ```bash
+node knot_soundhole.js --help                   # every setting and its default
 node knot_soundhole.js                          # report only, writes nothing
 LEADS=3 BIGHTS=5 OUT=3-lead_5-bight_knot_radius30mm.svg node knot_soundhole.js
 LEADS=3 BIGHTS=4 OUT=3-lead_4-bight_knot_radius30mm.svg node knot_soundhole.js
@@ -62,6 +63,8 @@ DIAG=1 node knot_soundhole.js                   # per-region dump
 carries three layers and only one of them is a cut. See
 [Output layers](#output-layers) before you send it: delete `preview`, and give the
 blue `engrave` lines anything other than a cut.
+
+`--help` prints this same table, so you do not need the document to hand.
 
 | Var | Default | Meaning |
 |---|---|---|

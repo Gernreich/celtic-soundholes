@@ -47,12 +47,15 @@ even number. **For odd crossings use the companion generator.**
 ## Usage
 
 ```bash
+node plait_soundhole.js --help                               # every setting and its default
 node plait_soundhole.js                                      # report only, writes nothing
 OUT=10-crossing_plait_radius30mm.svg node plait_soundhole.js # N=5, the default
 N=4 OUT=8-crossing_plait_radius30mm.svg node plait_soundhole.js
 R_HOLE=50 AMP=10.8 HW=3.3 BITE=2.5 OUT=10-crossing_plait_radius50mm.svg node plait_soundhole.js
 DIAG=1 node plait_soundhole.js                               # per-region dump
 ```
+
+`--help` prints this same table, so you do not need the document to hand.
 
 | Var | Default | Meaning |
 |---|---|---|

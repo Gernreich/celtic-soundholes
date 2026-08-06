@@ -76,16 +76,61 @@
 const fs = require('fs');
 
 // ---------------------------------------------------------------- params
+// Every knob, in one place: --help prints this list and the defaults below are
+// read from it, so the two cannot drift apart. NG and MIN_FEATURE are declared
+// further down, where the sampling and welding code needs them.
+const PARAMS = [
+  ['N',           5,    'lobes per ribbon -> 2N crossings and 2N rim anchors'],
+  ['R_HOLE',      30,   'sound hole radius, mm'],
+  ['AMP',         6.5,  'radial swing of the weave'],
+  ['HW',          2.0,  'ribbon half-width -> ribbon is 2*HW mm wide'],
+  ['BITE',        1.5,  'rim overrun; this is what anchors the rosette'],
+  ['NG',          1400, 'sampling grid resolution'],
+  ['MIN_FEATURE', 0.25, 'gaps narrower than this are welded to solid material'],
+];
+const FLAGS = [
+  ['OUT',  'output path -- NOTHING IS WRITTEN unless this is set'],
+  ['DIAG', 'verbose per-region report'],
+];
+
+if (process.argv.slice(2).some(a => a === '--help' || a === '-h')) {
+  console.log(`
+plait_soundhole.js -- two woven ribbons, always an even crossing count
+
+  Settings are environment variables, not flags:
+
+    N=4 OUT=8-crossing_plait_radius30mm.svg node plait_soundhole.js
+
+  Numbers (default):
+`);
+  PARAMS.forEach(p => console.log(`    ${p[0].padEnd(13)} ${String(p[1]).padEnd(6)} ${p[2]}`));
+  console.log('\n  Switches (unset by default), any non-empty value turns them on:\n');
+  FLAGS.forEach(f => console.log(`    ${f[0].padEnd(13)}        ${f[1]}`));
+  console.log(`
+  The crossing count is 2N and is always even -- no parameter changes that. For an
+  odd count, or any coprime leads x bights, use knot_soundhole.js.
+
+  AMP and HW do not scale with R_HOLE. Roughly AMP ~ 0.217*R_HOLE and
+  HW ~ 0.067*R_HOLE reproduces the shipped proportions; a guard refuses geometry
+  that cannot close and suggests values.
+
+  Full documentation: plait_soundhole.md
+`);
+  process.exit(0);
+}
+
 const num = (k, d) => process.env[k] ? Number(process.env[k]) : d;
-const R_HOLE = num('R_HOLE', 30);   // sound-hole radius (mm)
-const AMP    = num('AMP', 6.5);     // radial swing of the weave
-const HW     = num('HW', 2.0);      // ribbon half-width -> 4 mm ribbon
-const N      = num('N', 5);         // lobes per ribbon -> 2N crossings
-const BITE   = num('BITE', 1.5);    // how far ribbon peak overruns the rim
+const DEF = {};
+PARAMS.forEach(p => { DEF[p[0]] = p[1]; });
+const R_HOLE = num('R_HOLE', DEF.R_HOLE);   // sound-hole radius (mm)
+const AMP    = num('AMP', DEF.AMP);         // radial swing of the weave
+const HW     = num('HW', DEF.HW);           // ribbon half-width -> 4 mm ribbon
+const N      = num('N', DEF.N);             // lobes per ribbon -> 2N crossings
+const BITE   = num('BITE', DEF.BITE);    // how far ribbon peak overruns the rim
 // anchor the ribbon INTO the soundboard: peak outer edge = R_HOLE + BITE
 const R_MID  = R_HOLE + BITE - AMP - HW;
 const PHI    = Math.PI / N;         // rotation mapping ribbon A onto ribbon B
-const NG     = num('NG', 1400);
+const NG     = num('NG', DEF.NG);
 
 // The weave has to fit inside the hole: the ribbon troughs dip to
 // R_MID - AMP - HW, and that has to leave a real opening in the middle.
@@ -101,7 +146,7 @@ if (R_CENTRE < 1) {
 }
 // smallest hole any cutter can actually make; anything narrower
 // must become solid material, not a micron-wide sliver
-const MIN_FEATURE = num('MIN_FEATURE', 0.25);
+const MIN_FEATURE = num('MIN_FEATURE', DEF.MIN_FEATURE);
 
 // Centreline curvature at the inner trough. If this drops near HW the ribbon
 // self-fills its own notch and leaves unmanufacturable slivers.
