@@ -34,7 +34,7 @@ is refused with an error.
 ```
 node plait_soundhole.js                          # report only, writes nothing
 OUT=10-crossing_plait_radius30mm.svg node plait_soundhole.js  # 10-crossing plait, 60mm hole
-LEADS=2 BIGHTS=5 OUT=cinquefoil-radius30mm.svg node knot_soundhole.js
+LEADS=2 BIGHTS=5 OUT=2-lead_5-bight_knot_radius30mm.svg node knot_soundhole.js
 ```
 
 **Nothing is written unless you set `OUT`.** A bare run prints the validation report and

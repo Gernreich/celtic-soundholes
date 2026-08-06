@@ -14,7 +14,7 @@
 //   so they can only meet where rA = rB; that difference is 2*AMP*sin(N*theta),
 //   which has exactly 2N zeros per turn. For an ODD number of crossings you
 //   need a single self-crossing strand instead -- see the companion generator
-//   knot_soundhole.js (trefoil, cinquefoil, septafoil, ...).
+//   knot_soundhole.js -- any coprime LEADS x BIGHTS.
 //
 // THE CONSTRAINT THAT DRIVES THE DESIGN
 //   This is a CUT-OUT, so the removed material is the open area and the knot
@@ -37,11 +37,11 @@
 //   field(x,y) > 0 means "cut away (air)", < 0 means "material".
 //
 // USAGE   (all knobs are env vars; nothing is written unless OUT is set)
-//   node plait_soundhole.js                      report only, no file
-//   OUT=knot.svg node plait_soundhole.js         the 30mm default design
-//   R_HOLE=50 AMP=10.8 HW=3.3 BITE=2.5 OUT=k.svg node plait_soundhole.js
-//   N=4 OUT=k8.svg node plait_soundhole.js       8-crossing variant
-//   DIAG=1 node plait_soundhole.js               per-region dump
+//   node plait_soundhole.js                       report only, no file
+//   OUT=10-crossing_plait_radius30mm.svg node plait_soundhole.js
+//   N=4 OUT=8-crossing_plait_radius30mm.svg node plait_soundhole.js
+//   R_HOLE=50 AMP=10.8 HW=3.3 BITE=2.5 OUT=10-crossing_plait_radius50mm.svg
+//   DIAG=1 node plait_soundhole.js                per-region dump
 //
 //   R_HOLE  sound hole radius mm      AMP   radial swing of the weave
 //   HW      ribbon half-width         N     lobes per ribbon -> 2N crossings
