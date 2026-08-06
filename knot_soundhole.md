@@ -238,7 +238,31 @@ assigns operations by colour rather than by group name.
 |---|---|---|
 | `preview` | none — filled `#d8c9a8` | material fill, even-odd. **Delete before sending to a cutter.** |
 | `cut` | **red `#ff0000`** | every closed path is waste that drops out |
-| `engrave` | **blue `#0000ff`** | optional over/under interlace hints (`2*B*(L-1)` polylines) |
+| `engrave` | **blue `#0000ff`** | over/under interlace hints (`2*B*(L-1)` lines) **and** rim continuations |
+
+### Rim continuations
+
+The engrave layer carries a second, purely decorative set of lines. Where the ribbon
+overruns the rim it fuses into the soundboard, and the cut layer stops dead at
+`R_HOLE` — beyond the rim there is nothing to cut. That leaves each anchor reading as
+a flat pad, and the rosette looking sliced off by a circle.
+
+The ribbon's own edges do carry on out there, as far as `R_HOLE + BITE`. These lines
+put that outline back across the anchor, so the eye reads the ribbon as passing into
+the board rather than being truncated. On the trefoil they occupy radii **30.0 to
+31.5mm** — exactly the overrun band — while the interlace lines sit at 19.7 to
+24.2mm.
+
+They are reported separately, as `rim continuations`, and deliberately not folded
+into the `2*B*(L-1)` count: that number is derived from crossings and is a
+topological check, and mixing a decorative addition into it would spoil a line that
+does real work. Their own count is not an invariant — roughly one or two per anchor,
+depending on where each run happens to break.
+
+**Adding them changed no cut geometry at all.** Verified by regenerating and
+comparing: the `cut` group is byte-identical before and after. Raising `BITE` gives
+more overlap and a stronger effect, but `BITE` also sets how firmly the rosette is
+anchored, so it is not free.
 
 **The blue lines must not be cut.** Give them a score or engrave operation, or
 delete the layer. They run straight across the ribbon at every crossing, so cutting

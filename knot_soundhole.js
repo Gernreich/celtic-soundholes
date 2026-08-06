@@ -557,11 +557,41 @@ if (weaveOK) {
   }
 }
 
+// ------------------------------------------- rim continuations (engrave)
+// Where the ribbon overruns the rim it fuses into the soundboard, and the cut
+// layer stops dead at R_HOLE — which leaves the anchors reading as flat pads and
+// the whole rosette looking chopped at the edge. The ribbon's own edges do carry
+// on out there, as far as R_HOLE + BITE; the cut simply cannot show them, because
+// beyond the rim there is nothing to cut. Engraving them puts the ribbon's outline
+// back across the anchor, so the eye reads it as passing into the board rather than
+// being sliced off by a circle.
+//
+// Purely decorative, and deliberately kept apart from the interlace lines above:
+// those are derived from crossings and their count is a topological check. These
+// are counted and reported separately so the two are never confused.
+const rimLines = [];
+for (const sign of [1, -1]) {
+  let run = [];
+  for (let s0 = 0; s0 < M; s0++) {
+    const i = (s0 + scan0) % M;
+    const a = (i - 1 + M) % M, b2 = (i + 1) % M;
+    let tx = cx[b2] - cx[a], ty = cy[b2] - cy[a];
+    const seg = Math.hypot(tx, ty); tx /= seg; ty /= seg;
+    const px = cx[i] + sign * HW * -ty, py = cy[i] + sign * HW * tx;
+    // outside the rim, and outside only because of the overrun — never the bore
+    const r = Math.hypot(px, py);
+    const keep = r >= R_HOLE - 0.05 && r <= R_HOLE + BITE + HW;
+    if (keep) run.push([px, py]);
+    else { if (run.length > 2) rimLines.push(rdp(run, 0.01)); run = []; }
+  }
+  if (run.length > 2) rimLines.push(rdp(run, 0.01));
+}
+
 const f2 = n => (Math.round(n * 1000) / 1000).toString();
 const dOf = p => 'M' + p.map(q => f2(q[0]) + ' ' + f2(q[1])).join('L') + 'Z';
 const dOpen = p => 'M' + p.map(q => f2(q[0]) + ' ' + f2(q[1])).join('L');
 const cutD = simp.map(dOf).join('');
-const engD = engrave.map(dOpen).join('');
+const engD = engrave.concat(rimLines).map(dOpen).join('');
 
 const NAME = `${L}-lead ${B}-bight knot`;
 const OUT  = process.env.OUT;
@@ -637,6 +667,7 @@ console.log('weave alternates    :', weaveOK ? 'OK - every crossing has one over
 if (unpaired) console.log('unpaired events     :', unpaired, '<- crossing detection is off');
 console.log('engrave polylines   :', engrave.length, ' expected 2*B*(L-1) =', 2 * B * (L - 1),
             engrave.length === 2 * B * (L - 1) ? 'OK' : 'CHECK');
+console.log('rim continuations   :', rimLines.length, ' (decorative; the ribbon crossing its anchors)');
 console.log('ribbon width (mm)   :', 2 * HW);
 console.log('rim anchors         :', B);
 console.log('cut path bytes      :', cutD.length);
