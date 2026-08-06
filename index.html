@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Celtic Sound Holes</title>
+<style>
+:root{--bg:#fbfbfa;--fg:#1a1c1e;--mut:#5b6067;--line:#e2e4e7;--card:#fff;--accent:#1d4ed8;
+--codebg:#f4f5f7;--thbg:#f0f1f3;--mark:#fff8c4}
+@media (prefers-color-scheme:dark){:root{--bg:#15171a;--fg:#e6e8ea;--mut:#9aa1a9;--line:#2b2f34;
+--card:#1b1e22;--accent:#7aa2f7;--codebg:#22262b;--thbg:#23272c;--mark:#4a411c}}
+:root[data-theme=dark]{--bg:#15171a;--fg:#e6e8ea;--mut:#9aa1a9;--line:#2b2f34;--card:#1b1e22;
+--accent:#7aa2f7;--codebg:#22262b;--thbg:#23272c;--mark:#4a411c}
+:root[data-theme=light]{--bg:#fbfbfa;--fg:#1a1c1e;--mut:#5b6067;--line:#e2e4e7;--card:#fff;
+--accent:#1d4ed8;--codebg:#f4f5f7;--thbg:#f0f1f3;--mark:#fff8c4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+-webkit-text-size-adjust:100%}
+.wrap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:44px;max-width:1180px;
+margin:0 auto;padding:40px 28px 96px}
+nav{position:sticky;top:28px;align-self:start;max-height:calc(100vh - 56px);overflow:auto;
+border-right:1px solid var(--line);padding-right:16px;font-size:13.5px;line-height:1.45}
+nav b{display:block;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut);
+margin:0 0 12px}
+nav a{display:block;color:var(--mut);text-decoration:none;padding:3px 0;border-radius:4px}
+nav a:hover{color:var(--accent)}
+nav a.l1{color:var(--fg);font-weight:640;margin-top:11px}
+nav a.l2{padding-left:12px}
+main{min-width:0}
+h1{font-size:1.62rem;line-height:1.25;letter-spacing:-.015em;margin:2.4em 0 .5em;
+padding-bottom:.32em;border-bottom:2px solid var(--line)}
+main>h1:first-child{margin-top:0;border-bottom:none;font-size:1.95rem}
+h2{font-size:1.16rem;margin:2em 0 .5em;letter-spacing:-.01em}
+h3{font-size:1.02rem;font-weight:650;margin:1.7em 0 .45em}
+p{margin:.85em 0}
+ul,ol{margin:.85em 0;padding-left:1.35em}
+li{margin:.3em 0}
+hr{border:0;border-top:1px solid var(--line);margin:2.6em 0}
+figure{margin:1.6em 0}
+figure svg,figure img{display:block;width:100%;max-width:100%;height:auto;
+border:1px solid var(--line);border-radius:10px}
+a{color:var(--accent)}
+code{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+background:var(--codebg);padding:.1em .32em;border-radius:4px;
+border:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+pre{background:var(--codebg);border:1px solid var(--line);border-radius:9px;
+padding:14px 16px;overflow-x:auto;margin:1.1em 0}
+pre code{background:none;border:0;padding:0;font-size:12.8px;line-height:1.62;white-space:pre}
+.tw{overflow-x:auto;margin:1.15em 0;border:1px solid var(--line);border-radius:9px;
+background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:8px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--thbg);font-weight:630;white-space:nowrap;font-size:13px;
+letter-spacing:.01em}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:color-mix(in srgb,var(--thbg) 45%,transparent)}
+td code,th code{white-space:nowrap}
+.tog{position:fixed;top:14px;right:14px;z-index:9;background:var(--card);color:var(--mut);
+border:1px solid var(--line);border-radius:7px;padding:6px 11px;font-size:12.5px;cursor:pointer}
+.tog:hover{color:var(--accent)}
+@media (max-width:900px){.wrap{grid-template-columns:1fr;gap:20px;padding:26px 18px 72px}
+nav{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--line);
+padding:0 0 16px;columns:2;column-gap:20px}}
+@media print{nav,.tog{display:none}.wrap{display:block;max-width:none;padding:0}
+pre,.tw{break-inside:avoid}h1{break-after:avoid}}
+</style>
+</head>
+<body>
+<button class="tog" type="button">theme</button>
+<div class="wrap">
+<nav><b>Contents</b><a class="l1" href="#celtic-sound-holes">Celtic Sound Holes</a><a class="l2" href="#which-one-do-i-want">Which one do I want?</a><a class="l2" href="#before-you-cut">Before you cut</a><a class="l2" href="#sample-files">Sample files</a></nav>
+<main>
+<h1 id="celtic-sound-holes">Celtic Sound Holes</h1>
+<p>Two generators that produce cut-ready SVG rosettes for an instrument sound hole, millimetre-true at <code>1 user unit = 1 mm</code>. Both emit a validation report on every run, and that report — not the picture — is the point of the tools.</p>
+<p>They differ in one thing, and it is not cosmetic: <strong>how many times the ribbon crosses itself.</strong> An alternating over/under interlace has to close up when you return to your start, and that constraint decides which curve you need.</p>
+<div class='tw'><table><thead><tr><th></th><th><a href="celtic-knot-soundhole.html">Even crossings</a></th><th><a href="celtic-torus-knot-soundhole.html">Odd crossings</a></th></tr></thead><tbody><tr><td>Look</td><td>two-ribbon plait, braided</td><td>one continuous self-crossing strand</td></tr><tr><td>Crossings</td><td><code>2N</code> — always even, for any parameters</td><td><code>Q</code> — any odd integer ≥ 3</td></tr><tr><td>Named forms</td><td>6, 8, <strong>10</strong>, 12 crossings</td><td><strong>trefoil</strong>, cinquefoil, septafoil, nonafoil</td></tr><tr><td>Generator</td><td><code>celtic-knot-soundhole.js</code></td><td><code>celtic-torus-knot-soundhole.js</code></td></tr><tr><td>Open area at r30</td><td>52.4% at the default <code>N = 5</code></td><td>63.3% at the default <code>Q = 3</code></td></tr><tr><td>Rim anchors</td><td><code>2N</code></td><td><code>Q</code></td></tr></tbody></table></div>
+<p>Neither generator can produce the other's crossing counts. In the plait each strand meets every crossing once, so the count is even by construction; a self-crossing strand visits each crossing twice, which is why a 3-crossing trefoil is a valid alternating knot. Asking the odd generator for an even <code>Q</code> is refused with an error.</p>
+<h2 id="which-one-do-i-want">Which one do I want?</h2>
+<ul><li><strong>"A woven rosette, braided look, 12 crossings"</strong> → even. <a href="celtic-knot-soundhole.html">Read the plait writeup</a>.</li><li><strong>"A trefoil sound hole"</strong>, or one continuous ribbon you can trace with a finger → odd. <a href="celtic-torus-knot-soundhole.html">Read the torus-knot writeup</a>.</li><li><strong>"N crossings"</strong> where you named the number → odd count routes to the torus knot, even to the plait.</li></ul>
+<h2 id="before-you-cut">Before you cut</h2>
+<p>These are <strong>cut-outs</strong>: the removed material is the open area and the ribbon is what stays. A ribbon ring floating inside a round hole would drop out when the last cut closes, so the ribbon peaks deliberately overrun the rim and fuse the rosette into the soundboard. <strong>There is no continuous rim circle in the cut layer</strong> — the outer boundary is a series of arcs between anchors. That is correct. Do not "fix" it by adding a full circle, or the rosette falls on the floor.</p>
+<p>Both designs are very open — 52% to 63% of the disc removed. Three anchors are enough to fix a trefoil's plane, but that is a kinematic statement, not a stiffness one. Nothing here has been validated against real cut stock.</p>
+<p>Delete the <code>preview</code> layer before sending anything to a cutter.</p>
+<h2 id="sample-files">Sample files</h2>
+<p>Cut-ready output at <code>R_HOLE = 30</code> (a 60 mm hole), committed so you can look before you run anything:</p>
+<ul><li><a href="celtic-knot-soundhole-r30.svg"><code>celtic-knot-soundhole-r30.svg</code></a> — 10 crossings, <code>N = 5</code></li><li><a href="celtic-knot-soundhole-r30-8x.svg"><code>celtic-knot-soundhole-r30-8x.svg</code></a> — 8 crossings, <code>N = 4</code></li><li><a href="celtic-trefoil-soundhole-r30.svg"><code>celtic-trefoil-soundhole-r30.svg</code></a> — <code>Q = 3</code></li><li><a href="celtic-cinquefoil-soundhole-r30.svg"><code>celtic-cinquefoil-soundhole-r30.svg</code></a> — <code>Q = 5</code></li><li><a href="celtic-septafoil-soundhole-r30.svg"><code>celtic-septafoil-soundhole-r30.svg</code></a> — <code>Q = 7</code></li></ul>
+<p>Requires Node. Neither generator writes anything unless you set <code>OUT</code>.</p>
+<p>Released under CC0 1.0.</p>
+</main>
+</div>
+<script>
+var r=document.documentElement,b=document.querySelector('.tog');
+function set(t){r.setAttribute('data-theme',t);try{localStorage.setItem('ctg-theme',t)}catch(e){}
+b.textContent=t==='dark'?'\u2600 light':'\u263e dark';}
+var saved=null;try{saved=localStorage.getItem('ctg-theme')}catch(e){}
+set(saved||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+b.addEventListener('click',function(){set(r.getAttribute('data-theme')==='dark'?'light':'dark')});
+</script>
+</body>
+</html>
