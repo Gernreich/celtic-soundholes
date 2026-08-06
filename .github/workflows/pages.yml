@@ -15,8 +15,15 @@ permissions:
   pages: write
   id-token: write
 
+# One group per commit, not one for the whole site. A single shared group means a
+# run that wedges holds the lock and every later push queues behind it forever:
+# on 2026-08-06 a stuck run blocked the queue for half an hour, two deploys were
+# superseded and dropped without ever running, and neither cancel nor force-cancel
+# would release it. Keyed on the sha, a stuck run can only ever block a re-run of
+# its own commit. Deploys of different commits may now overlap, which on a
+# single-author repository is a smaller risk than deadlock.
 concurrency:
-  group: pages
+  group: pages-${{ github.sha }}
   cancel-in-progress: false
 
 jobs:
