@@ -83,6 +83,8 @@ The geometry is cut-ready; the layers still need the two minutes described above
   held on only two rim anchors
 - [`3-lead_4-bight_knot_radius30mm.svg`](3-lead_4-bight_knot_radius30mm.svg) — 3 leads × 4 bights
 - [`3-lead_5-bight_knot_radius30mm.svg`](3-lead_5-bight_knot_radius30mm.svg) — 3 leads × 5 bights
+- [`4-lead_3-bight_knot_radius39mm.svg`](4-lead_3-bight_knot_radius39mm.svg) — 4 leads × 3 bights
+  at radius 39mm, the one sample not at 30mm and not at default tuning
 
 And one that is **not** a sound hole, committed as a demonstration:
 

@@ -127,6 +127,24 @@ sampling becomes the limit, `MIN_FEATURE` does. See the envelope below.
 `4 × 3` is included as a warning as much as an option: it satisfies every invariant,
 but a 0.66mm narrowest cut is delicate against a kerf of 0.1–0.2mm.
 
+**A bigger panel alone does not fix that** — and this is the trap the rules of thumb
+exist to prevent. The same `4 × 3` at `R_HOLE = 39` with default tuning gives 0.67mm,
+essentially unchanged, because the ribbon did not grow with the panel and the weave
+got relatively tighter. Scale `AMP` and `HW` with the radius and the same knot at the
+same size gives **1.27mm**, near enough double. That is what the shipped
+`4-lead_3-bight_knot_radius39mm.svg` uses.
+
+| `R_HOLE` | `AMP` · `HW` | Narrowest | Open |
+|---|---|---|---|
+| 30 | 7.5 · 2.0 | 0.66mm | 39.4% |
+| 39 | 7.5 · 2.0 | 0.67mm | 49.4% |
+| **39** | **9.75 · 2.6** | **1.27mm** | **38.6%** |
+| 39 | 11 · 1.8 | 1.64mm | 55.4% |
+
+All four satisfy every invariant. The last is the most open and cuts widest, on a
+3.6mm ribbon — thinner material spanning more air. The shipped file takes the middle,
+as the sturdiest of them.
+
 More leads means less open area, because more ribbon is packed into the same ring.
 
 ## Invariants — these pin the topology
@@ -300,6 +318,8 @@ believing the OK lines.
 - `3-lead_2-bight_knot_radius30mm.svg` — 3 leads × 2 bights
 - `3-lead_4-bight_knot_radius30mm.svg` — 3 leads × 4 bights
 - `3-lead_5-bight_knot_radius30mm.svg` — 3 leads × 5 bights
+- `4-lead_3-bight_knot_radius39mm.svg` — 4 leads × 3 bights at `R_HOLE = 39`,
+  `AMP=9.75 HW=2.6` — the only sample not at 30mm, and not at default tuning
 
 - `2-lead_3-bight_knot_radius30mm.svg` — 2 leads × 3 bights
 - `2-lead_5-bight_knot_radius30mm.svg` — 2 leads × 5 bights
