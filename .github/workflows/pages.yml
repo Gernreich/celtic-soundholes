@@ -41,9 +41,12 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
 
-# A stuck run blocks more than its own deploy. On 2026-08-06 three runs sat in
-# "waiting" for six hours, and while they did, pushes stopped creating runs at all —
-# the events were recorded, no workflow fired, and nothing appeared to have failed.
-# If a push does not produce a run, look for older runs still waiting and cancel them:
+# If a push produces no run at all, check GitHub's status before the config. On
+# 2026-08-06 pushes stopped creating runs entirely — the events were recorded,
+# nothing fired, nothing failed — during an Actions major outage. Runs stuck in
+# "waiting" for hours were a symptom of the same outage, not the cause; clearing
+# them did not restore triggering. To list them anyway:
 #   gh api "repos/OWNER/REPO/actions/runs?per_page=40" \
 #     --jq '.workflow_runs[] | select(.status!="completed") | .id'
+# And to deploy by hand meanwhile:
+#   gh workflow run "Deploy to Pages" --ref main
