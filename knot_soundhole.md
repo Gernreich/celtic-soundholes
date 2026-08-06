@@ -297,12 +297,18 @@ believing the OK lines.
 
 ## Generated files
 
+- `3-lead_2-bight_knot_radius30mm.svg` — 3 leads × 2 bights
 - `3-lead_4-bight_knot_radius30mm.svg` — 3 leads × 4 bights
 - `3-lead_5-bight_knot_radius30mm.svg` — 3 leads × 5 bights
 
 - `2-lead_3-bight_knot_radius30mm.svg` — 2 leads × 3 bights
 - `2-lead_5-bight_knot_radius30mm.svg` — 2 leads × 5 bights
 - `2-lead_7-bight_knot_radius30mm.svg` — 2 leads × 7 bights
+
+`3 × 2` has only **two rim anchors**, the fewest any of these designs can have. It
+removes half the disc and holds the result on two 4mm tabs. Three anchors are
+described above as a kinematic minimum rather than a stiffness one; two is below
+that, so treat it as the most fragile thing here that still passes every invariant.
 
 Two-lead knots also carry folk names, which you will meet in knot literature even
 though the generator does not use them: **trefoil** at 3 bights, **cinquefoil** at

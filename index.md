@@ -79,6 +79,8 @@ The geometry is cut-ready; the layers still need the two minutes described above
 - [`2-lead_3-bight_knot_radius30mm.svg`](2-lead_3-bight_knot_radius30mm.svg) — 2 leads × 3 bights
 - [`2-lead_5-bight_knot_radius30mm.svg`](2-lead_5-bight_knot_radius30mm.svg) — 2 leads × 5 bights
 - [`2-lead_7-bight_knot_radius30mm.svg`](2-lead_7-bight_knot_radius30mm.svg) — 2 leads × 7 bights
+- [`3-lead_2-bight_knot_radius30mm.svg`](3-lead_2-bight_knot_radius30mm.svg) — 3 leads × 2 bights,
+  held on only two rim anchors
 - [`3-lead_4-bight_knot_radius30mm.svg`](3-lead_4-bight_knot_radius30mm.svg) — 3 leads × 4 bights
 - [`3-lead_5-bight_knot_radius30mm.svg`](3-lead_5-bight_knot_radius30mm.svg) — 3 leads × 5 bights
 
