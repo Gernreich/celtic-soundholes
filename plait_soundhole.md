@@ -85,10 +85,19 @@ a guard refuses geometry that cannot close and suggests values.
 | 6 | 12 | 25 | 48.9% | 41.96mm | 2.70mm | 0 |
 
 Regions are always `4N + 1` — one centre star, plus a lens and a rim opening for
-each of the `2N` crossings. (The count keys on crossings, not lobes: the
-companion's rule is `2Q + 1` for its `Q` crossings, which is the same rule.)
+each of the `2N` crossings. (The count keys on
+crossings, not lobes. It is the companion's `L*B + 1` rule seen at two leads: a
+plait is 2 leads by `2N` bights, and `2 * 2N + 1` is `4N + 1`.)
 Fewer crossings = bolder, more open weave. More crossings = finer and more
 lace-like, with less open area.
+
+**Above the table.** `4N + 1` keeps holding — checked at `N` = 7, 8, 10 and 12, all
+exact. Unlike the companion, this design does not lose regions as it gets busier,
+because two ribbons stay a fixed `2*HW` apart however many lobes they have. What
+does move is the narrowest cut: **2.34mm** at `N=7`, 2.03 at 8, 1.49 at 10 and
+**1.06mm** at `N=12`. That is the number to watch rather than the region count —
+compare it against your kerf, and remember it is the *drawn* width, before the beam
+takes its share.
 
 ## Output layers
 
@@ -139,7 +148,7 @@ than the cutter can make — filled back to solid material before the contours a
 traced.
 
 **Its value is an artifact of where the sampling grid falls**, not a property of
-the design. The companion's trefoil, geometry untouched, reports 8 slivers at
+the design. The companion at 2 leads × 3 bights, geometry untouched, reports 8 slivers at
 `NG=700`, 6 at 1000, 4 at 1400 and 8 at 2000, while its contour count, open
 fraction and area hold steady throughout. It is not normally `0`, it does not
 converge, and chasing it to zero is chasing the grid.
