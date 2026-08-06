@@ -8,25 +8,46 @@ They differ in one thing, and it is not cosmetic: **how many times the ribbon cr
 itself.** An alternating over/under interlace has to close up when you return to your
 start, and that constraint decides which curve you need.
 
-| | [Even crossings](celtic-knot-soundhole.md) | [Odd crossings](celtic-torus-soundhole.md) |
+| | [Even crossings](celtic-plait-soundhole.md) | [Odd crossings](celtic-knot-soundhole.md) |
 |---|---|---|
 | Look | two-ribbon plait, braided | one continuous self-crossing strand |
 | Crossings | `2N` — always even, for any parameters | `Q` — any odd integer ≥ 3 |
 | Named forms | 6, 8, **10**, 12 crossings | **trefoil**, cinquefoil, septafoil, nonafoil |
-| Generator | `celtic-knot-soundhole.js` | `celtic-torus-soundhole.js` |
+| Generator | `celtic-plait-soundhole.js` | `celtic-knot-soundhole.js` |
 | Open area at r30 | 52.4% at the default `N = 5` | 63.3% at the default `Q = 3` |
 | Rim anchors | `2N` | `Q` |
 
 Neither generator can produce the other's crossing counts. In the plait each strand
 meets every crossing once, so the count is even by construction; a self-crossing strand
 visits each crossing twice, which is why a 3-crossing trefoil is a valid alternating
-knot. Asking the odd generator for an even `Q` is refused with an error.
+knot. Asking the knot generator for an even `Q` is refused with an error.
+
+## Why there are two, and why they are named that way
+
+Both generators trace the same family of curve — the **(2, n) torus link**, two strands
+winding around a ring with `n` crossings between them. What changes with `n` is how many
+separate pieces of ribbon you end up with, and that is `gcd(2, n)`:
+
+| `n` crossings | components | it is a… | generator |
+|---|---|---|---|
+| **even** | 2 — two closed ribbons woven together | **link** | plait |
+| **odd** | 1 — one strand crossing itself | **knot** | knot |
+
+A knot is a *single* closed curve. Two woven ribbons are two curves, so the even design
+has never been a knot in the strict sense, whatever the decorative tradition calls it —
+it is a plait, and the odd design is the one that earns the word. That is the whole
+reason for the split, and it is why no parameter will make one produce the other's
+crossing counts.
+
+This naming is a reading of the mathematics against the writeups' own descriptions, not
+something measured out of the emitted geometry. The `gcd` argument is the load-bearing
+part, and each writeup derives it independently.
 
 ## Which one do I want?
 
-- **"A woven rosette, braided look, 12 crossings"** → even. [Read the plait writeup](celtic-knot-soundhole.md).
-- **"A trefoil sound hole"**, or one continuous ribbon you can trace with a finger → odd. [Read the torus-knot writeup](celtic-torus-soundhole.md).
-- **"N crossings"** where you named the number → odd count routes to the torus knot, even to the plait.
+- **"A woven rosette, braided look, 12 crossings"** → even. [Read the plait writeup](celtic-plait-soundhole.md).
+- **"A trefoil sound hole"**, or one continuous ribbon you can trace with a finger → odd. [Read the knot writeup](celtic-knot-soundhole.md).
+- **"N crossings"** where you named the number → odd count routes to the knot, even to the plait.
 
 ## Before you cut
 
@@ -48,8 +69,8 @@ Delete the `preview` layer before sending anything to a cutter.
 Cut-ready output at `R_HOLE = 30` (a 60 mm hole), committed so you can look before you run
 anything:
 
-- [`celtic-knot-soundhole-r30.svg`](celtic-knot-soundhole-r30.svg) — 10 crossings, `N = 5`
-- [`celtic-knot-soundhole-r30-8x.svg`](celtic-knot-soundhole-r30-8x.svg) — 8 crossings, `N = 4`
+- [`celtic-plait-soundhole-r30.svg`](celtic-plait-soundhole-r30.svg) — 10 crossings, `N = 5`
+- [`celtic-plait-soundhole-r30-8x.svg`](celtic-plait-soundhole-r30-8x.svg) — 8 crossings, `N = 4`
 - [`celtic-trefoil-soundhole-r30.svg`](celtic-trefoil-soundhole-r30.svg) — `Q = 3`
 - [`celtic-cinquefoil-soundhole-r30.svg`](celtic-cinquefoil-soundhole-r30.svg) — `Q = 5`
 - [`celtic-septafoil-soundhole-r30.svg`](celtic-septafoil-soundhole-r30.svg) — `Q = 7`

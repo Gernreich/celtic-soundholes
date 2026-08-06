@@ -1,155 +1,224 @@
 'use strict';
 //
-// Celtic knot sound hole -> cut-ready SVG
-// =======================================
+// Celtic knot sound hole -> cut-ready SVG   (ODD crossing counts)
+// =====================================================================
 //
-// WHAT IT MAKES
-//   A circular Celtic plait sized for an instrument sound hole. Two identical
-//   sinusoidal ribbons (B is A rotated by pi/N) weave around a ring and cross
-//   2N times. Output is an SVG in millimetres, 1 user unit = 1 mm, so it
-//   prints and cuts at true size.
+// Companion to celtic-plait-soundhole.js. That one weaves TWO ribbons and can
+// only ever produce an EVEN number of crossings (2N): both ribbons are polar
+// graphs r(theta), a plane point has a unique (r,theta), so they meet exactly
+// where rA = rB, and that difference is 2*AMP*sin(N*theta) -- 2N zeros a turn.
 //
-//   CROSSING COUNT IS ALWAYS EVEN HERE, and no parameter changes that. Both
-//   ribbons are polar graphs r(theta) and a plane point has a unique (r,theta),
-//   so they can only meet where rA = rB; that difference is 2*AMP*sin(N*theta),
-//   which has exactly 2N zeros per turn. For an ODD number of crossings you
-//   need a single self-crossing strand instead -- see the companion generator
-//   celtic-torus-soundhole.js (trefoil, cinquefoil, septafoil, ...).
+// This one makes ODD crossing counts using a SINGLE self-crossing strand:
 //
-// THE CONSTRAINT THAT DRIVES THE DESIGN
-//   This is a CUT-OUT, so the removed material is the open area and the knot
-//   ribbon is what stays. A ribbon ring floating inside a round hole would
-//   simply drop out when the last cut closes. So the ribbon peaks are made to
-//   overrun the rim by BITE mm (R_MID is derived, not chosen, to guarantee
-//   this), fusing the rosette into the soundboard at 2N anchor points. There
-//   is therefore NO continuous rim circle in the cut layer -- the outer
-//   boundary is 2N separate arcs between anchors. That is correct, not a bug.
+//     r(theta) = R_MID + AMP*cos(Q*theta/2),   theta in [0, 4*pi)
 //
-//   Because it is a single sheet cut through, the over/under of a real knot
-//   cannot exist in the material: at a crossing both ribbons are material and
-//   simply merge. The interlace is suggested instead by the ENGRAVE layer.
+// It winds twice before closing (closes iff gcd(2,Q)=1, i.e. Q odd) and has
+// exactly Q self-crossings. Q=3 trefoil, Q=5 cinquefoil, Q=7 septafoil, ...
 //
-// HOW IT WORKS
-//   signed distance field  ->  sample on a grid  ->  flood fill regions  ->
-//   weld unmanufacturable slivers shut  ->  marching squares  ->  chain
-//   segments into loops  ->  RDP simplify  ->  emit SVG
+// WHY A SINGLE STRAND ESCAPES THE PARITY TRAP
+//   Alternating over/under has to close up when you return to your start. In
+//   the two-ribbon design each strand meets every crossing exactly once, so
+//   the crossing count must be even. A self-crossing strand visits every
+//   crossing TWICE, so it always sees an even number of crossing events no
+//   matter how many crossings exist -- which is why a 3-crossing trefoil is a
+//   perfectly good alternating knot.
 //
-//   field(x,y) > 0 means "cut away (air)", < 0 means "material".
+//   Concretely: crossing events sit at t = pi*(2m+1)/Q for m = 0..2Q-1, and
+//   the two visits to one crossing are m and m+Q. Assigning "over if m is
+//   even" gives them opposite parity exactly when Q is ODD. That is the whole
+//   reason this construction needs odd Q, and it is asserted below.
 //
-// USAGE   (all knobs are env vars; nothing is written unless OUT is set)
-//   node celtic-knot-soundhole.js                      report only, no file
-//   OUT=knot.svg node celtic-knot-soundhole.js         the 30mm default design
-//   R_HOLE=50 AMP=10.8 HW=3.3 BITE=2.5 OUT=k.svg node celtic-knot-soundhole.js
-//   N=4 OUT=k8.svg node celtic-knot-soundhole.js       8-crossing variant
-//   DIAG=1 node celtic-knot-soundhole.js               per-region dump
+// THE STRUCTURAL CONSTRAINT (same as the sibling generator)
+//   This is a cut-out: removed material is the open area, the ribbon stays.
+//   A ribbon floating in a round hole would drop out, so the ribbon peaks
+//   overrun the rim by BITE mm, fusing the rosette into the soundboard at Q
+//   anchor points (an ODD number of anchors here). So there is no continuous
+//   rim circle in the cut layer -- the outer boundary is Q arcs. Correct.
 //
-//   R_HOLE  sound hole radius mm      AMP   radial swing of the weave
-//   HW      ribbon half-width         N     lobes per ribbon -> 2N crossings
-//   BITE    rim overrun (anchoring)   NG    sampling grid resolution
-//   MIN_FEATURE  narrowest cuttable gap; anything thinner is welded solid
-//   OUT     output path               DIAG  verbose per-region report
+// WHAT CHANGED vs THE SIBLING, AND WHY
+//   The sibling's distance function exploits the polar-graph property: one
+//   radius per angle, so it searches centreline samples in a window around the
+//   query point's own theta. This curve has TWO radii per angle, so that
+//   shortcut is invalid. Distance here goes through a uniform spatial hash
+//   with an expanding-ring search and an exact stopping bound. Everything
+//   downstream (field -> flood fill -> marching squares -> chain -> RDP) is
+//   topology-agnostic and is carried over unchanged.
 //
-//   AMP and HW do NOT auto-scale with R_HOLE. Roughly AMP ~ 0.217*R_HOLE and
-//   HW ~ 0.067*R_HOLE reproduces the shipped proportions; the guard below
-//   refuses geometry that cannot close and suggests values.
+// USAGE   (nothing is written unless OUT is set)
+//   node celtic-knot-soundhole.js                  report only
+//   OUT=trefoil.svg node celtic-knot-soundhole.js  Q=3 default
+//   Q=5 OUT=cinquefoil.svg node celtic-knot-soundhole.js
+//   Q=7 OUT=septafoil.svg  node celtic-knot-soundhole.js
+//   SELFTEST=1 node celtic-knot-soundhole.js       check the hash, exit
+//   DIAG=1 node celtic-knot-soundhole.js           per-region dump
 //
-// OUTPUT LAYERS
-//   preview   material fill, even-odd. DELETE before sending to a cutter.
-//   cut       every closed path is waste that drops out.
-//   engrave   optional; the over/under interlace hints.
+//   Q must be an odd integer >= 3. Even Q does not close into one strand.
+//   R_HOLE AMP HW BITE NG MIN_FEATURE OUT DIAG SELFTEST
 //
-// THE VALIDATION REPORT -- read it, it is the point
-//   closed contours vs flood regions   must match, else loops were lost
-//   unclosed chains                    must be 0, else a contour leaked
-//   loose islands (CW)                 must be 0. A clockwise contour means a
-//                                      piece of material is fully surrounded
-//                                      by air and will FALL OUT when cut.
-//   contour area vs flood area         two independent area measurements;
-//                                      a delta above ~0.1% means the polygons
-//                                      do not describe the same shape as the
-//                                      field they came from.
+//   NOTE the AMP default here is 7.5, vs 6.5 in the sibling. That is
+//   deliberate, not drift: these knots are much sparser than a plait and want
+//   a wider radial swing to fill the ring. AMP and HW do NOT auto-scale with
+//   R_HOLE; roughly AMP ~ 0.25*R_HOLE, HW ~ 0.067*R_HOLE.
 //
-// Two bugs this harness caught, both silent, both worth not reintroducing:
-// chaining loops on rounded float coordinates (shared cell edges disagree in
-// the last bits), and running plain RDP on a closed loop (see rdpClosed).
+// OUTPUT LAYERS   preview (delete before cutting) / cut / engrave
+//
+// RUN SELFTEST IF YOU TOUCH THE DISTANCE CODE
+//   The expanding-ring search in distCurve has an exact stopping bound. If
+//   that bound is wrong it fails SILENTLY -- it just returns distances that
+//   are too large, which reads as phantom extra "cut" area and quietly
+//   changes the shape. SELFTEST=1 compares 4000 random points against brute
+//   force and should report max error exactly 0.
+//
+// INVARIANTS -- cheap to check, and they pin the topology
+//   cut regions    == 2Q + 1   (one centre + Q lens + Q rim openings)
+//   engrave lines  == 2Q       (Q crossings, 2 edges of the over pass each)
+//   rim anchors    == Q        (odd -- the whole point of this generator)
+//   Verified at Q = 3, 5, 7, 9, 11. If a change breaks these, the topology
+//   moved even if the picture still looks plausible.
+//
+// THE VALIDATION REPORT -- read it
+//   closed contours vs flood regions  must match, else loops were lost
+//   unclosed chains                   must be 0, else a contour leaked
+//   loose islands (CW)                must be 0, else material falls out
+//   contour area vs flood area        two independent measurements; >~0.1%
+//                                     means the polygons and the field they
+//                                     came from are not the same shape
+//
+// A TRAP ALREADY SPRUNG HERE
+//   Crossings sit at ODD multiples of M/(4Q). The engrave scan therefore must
+//   not start at M/(4Q) -- that is exactly ON a crossing and splits its run,
+//   yielding 2Q+2 lines instead of 2Q. See the comment at the scan start.
 //
 const fs = require('fs');
 
 // ---------------------------------------------------------------- params
 const num = (k, d) => process.env[k] ? Number(process.env[k]) : d;
 const R_HOLE = num('R_HOLE', 30);   // sound-hole radius (mm)
-const AMP    = num('AMP', 6.5);     // radial swing of the weave
+const Q      = num('Q', 3);         // crossings; odd. 3=trefoil 5=cinquefoil
+const AMP    = num('AMP', 7.5);     // radial swing of the weave
 const HW     = num('HW', 2.0);      // ribbon half-width -> 4 mm ribbon
-const N      = num('N', 5);         // lobes per ribbon -> 2N crossings
 const BITE   = num('BITE', 1.5);    // how far ribbon peak overruns the rim
-// anchor the ribbon INTO the soundboard: peak outer edge = R_HOLE + BITE
-const R_MID  = R_HOLE + BITE - AMP - HW;
-const PHI    = Math.PI / N;         // rotation mapping ribbon A onto ribbon B
 const NG     = num('NG', 1400);
+const MIN_FEATURE = num('MIN_FEATURE', 0.25);
 
-// The weave has to fit inside the hole: the ribbon troughs dip to
-// R_MID - AMP - HW, and that has to leave a real opening in the middle.
+if (!Number.isInteger(Q) || Q < 3 || Q % 2 === 0) {
+  console.error(`Q must be an odd integer >= 3 (got ${Q}).\n` +
+    `  Even Q makes gcd(2,Q)=2, so r = R_MID + AMP*cos(Q*theta/2) closes after\n` +
+    `  ONE turn into a single loop with NO self-crossings -- sampling two turns\n` +
+    `  just retraces it -- so there is no interlace for over/under to alternate\n` +
+    `  over. For even crossing counts use the two-ribbon generator\n` +
+    `  celtic-plait-soundhole.js instead.`);
+  process.exit(1);
+}
+
+// anchor the ribbon INTO the soundboard: peak outer edge = R_HOLE + BITE
+const R_MID    = R_HOLE + BITE - AMP - HW;
 const R_CENTRE = R_MID - AMP - HW;
 if (R_CENTRE < 1) {
   console.error(
     `Geometry does not close: centre opening would be ${R_CENTRE.toFixed(2)}mm.\n` +
     `  R_HOLE=${R_HOLE} BITE=${BITE} AMP=${AMP} HW=${HW} -> R_MID=${R_MID.toFixed(2)}\n` +
-    `  The weave needs AMP + HW well under R_HOLE + BITE. For a hole this\n` +
-    `  size try AMP=${(R_HOLE * 0.217).toFixed(1)} HW=${(R_HOLE * 0.067).toFixed(1)} ` +
-    `(the shipped 30mm proportions scaled).`);
+    `  Try AMP=${(R_HOLE * 0.25).toFixed(1)} HW=${(R_HOLE * 0.067).toFixed(1)}.`);
   process.exit(1);
 }
-// smallest hole any cutter can actually make; anything narrower
-// must become solid material, not a micron-wide sliver
-const MIN_FEATURE = num('MIN_FEATURE', 0.25);
 
-// Centreline curvature at the inner trough. If this drops near HW the ribbon
-// self-fills its own notch and leaves unmanufacturable slivers.
-const rT = R_MID - AMP, rppT = AMP * N * N;
-const RHO_TROUGH = rT * rT / Math.abs(rT - rppT);
-
-// ------------------------------------------------- ribbon A centreline
-const M = 4096;
+// ------------------------------------------- centreline: ONE strand, 2 turns
+// M must be EVEN so that i + M/2 is exactly the same theta one turn later,
+// which is how the "other pass" at a crossing is located. Distance is measured
+// to these SAMPLES, not to the true curve, so it overestimates by up to half
+// the sample spacing. That spacing grows with Q (arc length carries the
+// AMP*Q/2 radial derivative): at M=20000 over ~2 turns it is ~0.015mm at Q=3
+// and ~0.023mm at Q=11, so worst-case error ~0.011mm -- still an order of
+// magnitude below the 0.25mm manufacturability floor, but with roughly half
+// the margin at the top of the tested Q range as at the bottom.
+const M = 20000;
 const cx = new Float64Array(M), cy = new Float64Array(M);
 for (let i = 0; i < M; i++) {
-  const t = 2 * Math.PI * i / M;
-  const r = R_MID + AMP * Math.sin(N * t);
+  const t = 4 * Math.PI * i / M;
+  const r = R_MID + AMP * Math.cos(Q * t / 2);
   cx[i] = r * Math.cos(t);
   cy[i] = r * Math.sin(t);
 }
-// distA searches only a window of centreline samples around the query point's
-// own angle, which is what makes the field cheap. The window must be a full
-// half-period: at the tight inner troughs the nearest centreline point can sit
-// a long way off in theta, and too small a window silently overestimates the
-// distance (reported as extra "cut"), which shows up as phantom slivers.
-const WIN = Math.ceil(M / (2 * N)) + 60;
 
-function distA(x, y) {
-  let th = Math.atan2(y, x);
-  if (th < 0) th += 2 * Math.PI;
-  const i0 = Math.round(th / (2 * Math.PI) * M);
-  let best = Infinity;
-  for (let d = -WIN; d <= WIN; d++) {
-    let i = (i0 + d) % M; if (i < 0) i += M;
-    const dx = x - cx[i], dy = y - cy[i];
-    const s = dx * dx + dy * dy;
-    if (s < best) best = s;
+// --------------------------------------------------- spatial hash for dist
+// Two radii per angle here, so no angular-window shortcut. Bucket the
+// centreline samples into a uniform grid and do an expanding-ring search.
+const EXT  = R_HOLE + 2;
+// CELL trades bucket count against points-per-bucket. Correctness does not
+// depend on it -- the ring search is exact for any positive CELL -- only speed
+// does. ~1.5mm keeps buckets to a handful of samples while the typical query
+// still terminates within a ring or two.
+const CELL = 1.5;
+const NCX  = Math.ceil((2 * EXT) / CELL);
+const cellOf = v => Math.max(0, Math.min(NCX - 1, Math.floor((v + EXT) / CELL)));
+const buckets = new Array(NCX * NCX);
+for (let i = 0; i < M; i++) {
+  const k = cellOf(cy[i]) * NCX + cellOf(cx[i]);
+  (buckets[k] || (buckets[k] = [])).push(i);
+}
+
+function distCurve(x, y) {
+  const ci = cellOf(x), cj = cellOf(y);
+  let best = Infinity;                              // squared
+  for (let ring = 0; ring < NCX; ring++) {
+    for (let dj = -ring; dj <= ring; dj++) {
+      const b = cj + dj;
+      if (b < 0 || b >= NCX) continue;
+      const edge = (Math.abs(dj) === ring);
+      for (let di = -ring; di <= ring; di++) {
+        // only the shell at Chebyshev distance == ring
+        if (!edge && Math.abs(di) !== ring) continue;
+        const a = ci + di;
+        if (a < 0 || a >= NCX) continue;
+        const arr = buckets[b * NCX + a];
+        if (!arr) continue;
+        for (let n = 0; n < arr.length; n++) {
+          const i = arr[n], dx = x - cx[i], dy = y - cy[i];
+          const s = dx * dx + dy * dy;
+          if (s < best) best = s;
+        }
+      }
+    }
+    // A point in an unvisited cell (Chebyshev ring >= ring+1) is at least
+    // ring*CELL away, so once best beats that no further ring can improve it.
+    const bound = ring * CELL;
+    if (best <= bound * bound) break;
   }
   return Math.sqrt(best);
 }
-const CP = Math.cos(PHI), SP = Math.sin(PHI);
-const distB = (x, y) => distA(x * CP + y * SP, -x * SP + y * CP);
+
+// SELFTEST=1 checks the hash against brute force. The expanding-ring stopping
+// bound is the one thing here that fails SILENTLY if it is wrong -- it would
+// just return distances that are too large, i.e. phantom extra "cut" area.
+if (process.env.SELFTEST) {
+  const brute = (x, y) => {
+    let b = Infinity;
+    for (let i = 0; i < M; i++) {
+      const dx = x - cx[i], dy = y - cy[i];
+      const s = dx * dx + dy * dy;
+      if (s < b) b = s;
+    }
+    return Math.sqrt(b);
+  };
+  let worst = 0, n = 0;
+  for (let k = 0; k < 4000; k++) {
+    const x = (Math.random() * 2 - 1) * EXT, y = (Math.random() * 2 - 1) * EXT;
+    const e = Math.abs(distCurve(x, y) - brute(x, y));
+    if (e > worst) worst = e;
+    n++;
+  }
+  console.log(`SELFTEST spatial hash vs brute force: ${n} points, ` +
+              `max error ${worst.toExponential(3)}mm ` +
+              `${worst < 1e-9 ? 'OK' : '*** HASH IS WRONG ***'}`);
+  process.exit(worst < 1e-9 ? 0 : 1);
+}
 
 // signed field: >0 = cut away (air), <0 = material
 function field(x, y) {
-  const d = Math.hypot(x, y);
-  return Math.min(R_HOLE - d, Math.min(distA(x, y), distB(x, y)) - HW);
+  return Math.min(R_HOLE - Math.hypot(x, y), distCurve(x, y) - HW);
 }
 
 // ------------------------------------------------------------- sample
-// Domain just has to extend past the rim so the border is all material;
-// nothing is ever cut beyond r = R_HOLE.
-const EXT = R_HOLE + 2;
 const step = (2 * EXT) / NG;
 const gx = i => -EXT + i * step;
 const F = new Float64Array((NG + 1) * (NG + 1));
@@ -159,8 +228,8 @@ for (let j = 0; j <= NG; j++)
     F[j * (NG + 1) + i] = field(gx(i), gx(j));
 
 // ------------------------------ region analysis + manufacturability filter
-// Flood fill the cut regions FIRST so sub-cutter-width slivers can be welded
-// shut before contouring; otherwise they emit unmanufacturable micro-loops.
+// Flood fill FIRST so sub-cutter-width slivers can be welded shut before
+// contouring; otherwise they emit unmanufacturable micro-loops.
 function floodRegions() {
   const lab = new Int32Array((NG + 1) * (NG + 1)).fill(-1);
   const regs = [];
@@ -185,12 +254,11 @@ function floodRegions() {
   }
   return { lab, regs };
 }
-
 let { regs } = floodRegions();
 let welded = 0;
 for (const r of regs) {
-  if (r.inr >= MIN_FEATURE) continue;       // keep: physically cuttable
-  for (const id of r.cells) F[id] = -1e-9;  // weld shut: becomes material
+  if (r.inr >= MIN_FEATURE) continue;
+  for (const id of r.cells) F[id] = -1e-9;
   welded++;
 }
 const after = floodRegions();
@@ -204,28 +272,23 @@ const floodArea = cutCells * step * step;
 // --------------------------------------------------- marching squares
 // corners bl,br,tr,tl = bits 1,2,4,8 ; edges 0=bottom 1=right 2=top 3=left
 //
-// INVARIANT: every segment is emitted [from, to] oriented so that the INSIDE
-// (F > 0, air) lies on its LEFT. Two things depend on this and break silently
-// if an entry is reversed:
-//   - chaining works by matching one segment's end to the next one's start,
-//     so a reversed entry dead-ends the walk (shows up as "unclosed chains");
-//   - consistent orientation makes every cut contour come out counter-
-//     clockwise, which is what lets a clockwise contour be detected as a
-//     loose island of material that would fall out.
-// Cases 5 and 10 are the ambiguous saddles and are resolved by the cell-centre
-// value; the center-inside branch of case 5 is the one that was wrong first
-// time round, so re-derive rather than trust it if you touch this.
+// INVARIANT: every segment is emitted [from, to] oriented so the INSIDE
+// (F > 0, air) lies on its LEFT. Chaining matches one segment's end to the
+// next one's start, so a reversed entry dead-ends the walk; and consistent
+// orientation is what makes every cut contour counter-clockwise, which is how
+// a clockwise contour is detected as a loose island that would fall out.
 const TABLE = {
   1: [[0, 3]], 2: [[1, 0]], 4: [[2, 1]], 8: [[3, 2]],
   3: [[1, 3]], 6: [[2, 0]], 12: [[3, 1]], 9: [[0, 2]],
   7: [[2, 3]], 14: [[3, 0]], 13: [[0, 1]], 11: [[1, 2]],
 };
-// Every contour vertex lies on a grid edge. Identify it by an integer edge
-// id and compute its point ONCE from the canonical corner order, so both
-// cells sharing an edge get a bit-identical vertex and chaining is exact.
+// Every contour vertex lies on a grid edge. Identify it by an integer edge id
+// and compute its point ONCE from the canonical corner order, so both cells
+// sharing an edge get a bit-identical vertex and chaining is exact. (Keying
+// on rounded float coordinates silently fragments loops.)
 const NH = (NG + 1) * (NG + 1);
-const hId = (i, j) => j * (NG + 1) + i;            // horizontal edge (i,j)-(i+1,j)
-const vId = (i, j) => NH + j * (NG + 1) + i;       // vertical   edge (i,j)-(i,j+1)
+const hId = (i, j) => j * (NG + 1) + i;
+const vId = (i, j) => NH + j * (NG + 1) + i;
 const ptCache = new Map();
 function edgePoint(id) {
   let p = ptCache.get(id);
@@ -242,7 +305,6 @@ function edgePoint(id) {
   ptCache.set(id, p);
   return p;
 }
-// cell-local edge index -> global edge id
 const gid = (e, i, j) => e === 0 ? hId(i, j) : e === 1 ? vId(i + 1, j)
                        : e === 2 ? hId(i, j + 1) : vId(i, j);
 
@@ -307,11 +369,11 @@ function rdp(pts, eps) {
   }
   return [pts[0], pts[pts.length - 1]];
 }
-// RDP on a CLOSED loop must not use pts[0]..pts[last] as the baseline: they
-// are the same point, every perpendicular distance is 0, and the whole loop
+// RDP on a CLOSED loop must not use pts[0]..pts[last] as its baseline: they
+// are the same point, every perpendicular distance is 0, and the loop
 // collapses to two points. Split at the antipode and simplify each half.
 function rdpClosed(pts, eps) {
-  const n = pts.length - 1;              // pts[n] === pts[0]
+  const n = pts.length - 1;
   if (n < 4) return pts;
   const k = n >> 1;
   const a = rdp(pts.slice(0, k + 1), eps);
@@ -330,49 +392,46 @@ const shoe = p => {
 const openArea = simp.reduce((s, p) => s + Math.abs(shoe(p)), 0);
 
 // ------------------------------------------- interlace engrave lines
-// Start the scan a quarter-period away from a crossing so no engrave run
-// straddles the array seam and gets split into two polylines.
-const SEAM = Math.round(M / (4 * N));
-function offsetCurve(sign) {
-  const out = [];
+// Crossing events sit at t = pi*(2m+1)/Q, m = 0..2Q-1, and the two visits to
+// one crossing are m and m+Q -- opposite parity exactly because Q is odd. So
+// "over if m is even" is a consistent alternating assignment. At a crossing we
+// engrave the OVER pass's two edges across the under pass's body.
+const HALF = M / 2;                       // exactly one turn in samples
+const WIN  = Math.ceil(M / (2 * Q));      // one crossing spacing, in samples
+function distOtherPass(x, y, i) {
+  let best = Infinity;
+  for (let d = -WIN; d <= WIN; d++) {
+    let k = (i + HALF + d) % M; if (k < 0) k += M;
+    const dx = x - cx[k], dy = y - cy[k];
+    const s = dx * dx + dy * dy;
+    if (s < best) best = s;
+  }
+  return Math.sqrt(best);
+}
+const mOf = i => {
+  const t = 4 * Math.PI * i / M;
+  let m = Math.round((t * Q / Math.PI - 1) / 2) % (2 * Q);
+  return m < 0 ? m + 2 * Q : m;
+};
+const engrave = [];
+for (const sign of [1, -1]) {
+  let run = [];
   for (let s0 = 0; s0 < M; s0++) {
-    const i = (s0 + SEAM) % M;
+    // Crossings sit at ODD multiples of M/(4Q), so starting the scan at
+    // M/(4Q) would begin exactly ON one and split its run in two. M/(2Q) is
+    // the midpoint between adjacent crossings, which is what we want.
+    const i = (s0 + Math.round(M / (2 * Q))) % M;
     const a = (i - 1 + M) % M, b = (i + 1) % M;
     let tx = cx[b] - cx[a], ty = cy[b] - cy[a];
     const L = Math.hypot(tx, ty); tx /= L; ty /= L;
-    out.push([cx[i] + sign * HW * -ty, cy[i] + sign * HW * tx]);
+    const px = cx[i] + sign * HW * -ty, py = cy[i] + sign * HW * tx;
+    const over = (mOf(i) % 2 === 0);
+    const keep = over && distOtherPass(px, py, i) < HW &&
+                 Math.hypot(px, py) < R_HOLE - 0.05;
+    if (keep) run.push([px, py]);
+    else { if (run.length > 4) engrave.push(rdp(run, 0.01)); run = []; }
   }
-  return out;
-}
-const rot = (p, s) => [p[0] * Math.cos(s * PHI) - p[1] * Math.sin(s * PHI),
-                       p[0] * Math.sin(s * PHI) + p[1] * Math.cos(s * PHI)];
-const crossIdx = p => {
-  let th = Math.atan2(p[1], p[0]); if (th < 0) th += 2 * Math.PI;
-  return Math.round(th / (Math.PI / N)) % (2 * N);
-};
-// Interlace convention: at a crossing you engrave the OVER strand's two edges
-// continuing across the under strand's body, which reads as the under strand
-// passing beneath. Crossing k sits at theta = k*pi/N; strand A is over at even
-// k, B at odd k. Alternating like this is only consistent because a strand
-// meets an even number of crossings (2N) on its way round, so it always
-// arrives back where it started with the same over/under parity.
-const engrave = [];
-for (const sign of [1, -1]) {
-  const base = offsetCurve(sign);
-  // ribbon A edges, engraved where they cross ribbon B and A is "over"
-  for (const [curve, other, wantEven] of
-       [[base, distB, true], [base.map(p => rot(p, 1)), distA, false]]) {
-    let run = [];
-    for (const p of curve) {
-      const inOther = other(p[0], p[1]) < HW;
-      const k = crossIdx(p);
-      const over = (k % 2 === 0) === wantEven;
-      const keep = inOther && over && Math.hypot(p[0], p[1]) < R_HOLE - 0.05;
-      if (keep) run.push(p);
-      else { if (run.length > 4) engrave.push(rdp(run, 0.01)); run = []; }
-    }
-    if (run.length > 4) engrave.push(rdp(run, 0.01));
-  }
+  if (run.length > 4) engrave.push(rdp(run, 0.01));
 }
 
 // ------------------------------------------------------------- output
@@ -382,20 +441,23 @@ const dOpen = p => 'M' + p.map(q => f2(q[0]) + ' ' + f2(q[1])).join('L');
 const cutD = simp.map(dOf).join('');
 const engD = engrave.map(dOpen).join('');
 
-const OUT = process.env.OUT;
-const PAD  = 0.5;                        // breathing room for the 0.1mm stroke
+const NAME = { 3: 'trefoil', 5: 'cinquefoil', 7: 'septafoil', 9: 'nonafoil' }[Q]
+           || `${Q}-crossing knot`;
+const OUT  = process.env.OUT;
+const PAD  = 0.5;
 const SIZE = f2(2 * (R_HOLE + PAD));
 const ORG  = f2(-(R_HOLE + PAD));
 const R    = f2(R_HOLE);
-// full rim circle, used only as the even-odd outer boundary of the preview
 const rimCircle = `M${R} 0A${R} ${R} 0 1 0 -${R} 0A${R} ${R} 0 1 0 ${R} 0Z`;
 const svg = `<svg xmlns="http://www.w3.org/2000/svg"
      width="${SIZE}mm" height="${SIZE}mm" viewBox="${ORG} ${ORG} ${SIZE} ${SIZE}">
-  <title>Celtic knot sound hole - ${R_HOLE} mm radius</title>
+  <title>Celtic ${NAME} sound hole - ${R_HOLE} mm radius</title>
   <!-- 1 user unit = 1 mm, so this prints/cuts at true size.
        Sound hole radius ${R_HOLE}mm (${2 * R_HOLE}mm diameter).
-       Two interwoven ribbons ${2 * HW}mm wide, ${2 * N} crossings.
-       The ribbon overruns the rim by ${BITE}mm at ${2 * N} points, fusing it
+       ${NAME}: ONE self-crossing ribbon ${2 * HW}mm wide, ${Q} crossings.
+       Single strand r = ${R_MID.toFixed(2)} + ${AMP}*cos(${Q}*theta/2), theta in [0,4pi),
+       winding twice before it closes.
+       The ribbon overruns the rim by ${BITE}mm at ${Q} points, fusing it
        into the soundboard, so the rosette cannot drop out when cut.
        Open area ${openArea.toFixed(0)}mm2 = ${(100 * openArea / (Math.PI * R_HOLE * R_HOLE)).toFixed(0)}% of a plain ${2 * R_HOLE}mm hole
        (acoustically equivalent to a plain round hole of
@@ -413,7 +475,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg"
     <path d="${cutD}"/>
   </g>
 
-  <!-- ENGRAVE (optional): over/under interlace breaks -->
+  <!-- ENGRAVE (optional): over/under interlace hints -->
   <g id="engrave" fill="none" stroke="#0000ff" stroke-width="0.1"
      stroke-linecap="round">
     <path d="${engD}"/>
@@ -437,18 +499,18 @@ console.log('contour area        :', openArea.toFixed(2),
             ' flood area:', floodArea.toFixed(2),
             ' delta:', (100 * Math.abs(openArea - floodArea) / floodArea).toFixed(2) + '%');
 console.log('-- geometry --');
-console.log('N,AMP,HW,R_MID     :', N, AMP, HW, R_MID.toFixed(2));
-console.log('trough curv. radius:', RHO_TROUGH.toFixed(3), 'mm  (HW =', HW, ') ratio',
-            (RHO_TROUGH / HW).toFixed(2));
+console.log('knot                :', NAME, ' Q =', Q, '(odd)  crossings =', Q);
+console.log('Q,AMP,HW,R_MID      :', Q, AMP, HW, R_MID.toFixed(2));
+console.log('centre opening (mm) :', R_CENTRE.toFixed(2));
 console.log('tightest region inradius (mm):', Math.min(...inrad).toFixed(3));
 console.log('largest  region inradius (mm):', Math.max(...inrad).toFixed(3));
 console.log('open area (mm^2)    :', openArea.toFixed(2));
-console.log('plain 60mm disc     :', discArea.toFixed(2));
+console.log('plain hole area     :', discArea.toFixed(2));
 console.log('open fraction       :', (openArea / discArea * 100).toFixed(1) + '%');
 console.log('equiv. round hole dia (mm):', (2 * Math.sqrt(openArea / Math.PI)).toFixed(2));
 console.log('engrave polylines   :', engrave.length);
 console.log('ribbon width (mm)   :', 2 * HW);
-console.log('rim anchors         :', 2 * N);
+console.log('rim anchors         :', Q, '(odd)');
 console.log('cut path bytes      :', cutD.length);
 
 if (process.env.DIAG) {
@@ -468,6 +530,4 @@ if (process.env.DIAG) {
   })).sort((a, b) => a.inr - b.inr).forEach(o => console.log(
     `reg${String(o.k).padStart(2)} inr=${o.inr.toFixed(4)}mm area=${o.area.toFixed(3)}mm2 ` +
     `centroid r=${o.r.toFixed(2)} th=${o.th.toFixed(1)}`));
-  console.log('\ncontour areas:', simp.map(p => Math.abs(shoe(p)).toFixed(3))
-    .sort((a, b) => a - b).join(' '));
 }

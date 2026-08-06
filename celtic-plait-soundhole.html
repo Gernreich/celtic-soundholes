@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Celtic Plait Sound Hole — even crossings (two woven ribbons)</title>
+<style>
+:root{--bg:#fbfbfa;--fg:#1a1c1e;--mut:#5b6067;--line:#e2e4e7;--card:#fff;--accent:#1d4ed8;
+--codebg:#f4f5f7;--thbg:#f0f1f3;--mark:#fff8c4}
+@media (prefers-color-scheme:dark){:root{--bg:#15171a;--fg:#e6e8ea;--mut:#9aa1a9;--line:#2b2f34;
+--card:#1b1e22;--accent:#7aa2f7;--codebg:#22262b;--thbg:#23272c;--mark:#4a411c}}
+:root[data-theme=dark]{--bg:#15171a;--fg:#e6e8ea;--mut:#9aa1a9;--line:#2b2f34;--card:#1b1e22;
+--accent:#7aa2f7;--codebg:#22262b;--thbg:#23272c;--mark:#4a411c}
+:root[data-theme=light]{--bg:#fbfbfa;--fg:#1a1c1e;--mut:#5b6067;--line:#e2e4e7;--card:#fff;
+--accent:#1d4ed8;--codebg:#f4f5f7;--thbg:#f0f1f3;--mark:#fff8c4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+font:16px/1.62 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+-webkit-text-size-adjust:100%}
+.wrap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:44px;max-width:1180px;
+margin:0 auto;padding:40px 28px 96px}
+nav{position:sticky;top:28px;align-self:start;max-height:calc(100vh - 56px);overflow:auto;
+border-right:1px solid var(--line);padding-right:16px;font-size:13.5px;line-height:1.45}
+nav b{display:block;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut);
+margin:0 0 12px}
+nav a{display:block;color:var(--mut);text-decoration:none;padding:3px 0;border-radius:4px}
+nav a:hover{color:var(--accent)}
+nav a.l1{color:var(--fg);font-weight:640;margin-top:11px}
+nav a.l2{padding-left:12px}
+main{min-width:0}
+h1{font-size:1.62rem;line-height:1.25;letter-spacing:-.015em;margin:2.4em 0 .5em;
+padding-bottom:.32em;border-bottom:2px solid var(--line)}
+main>h1:first-child{margin-top:0;border-bottom:none;font-size:1.95rem}
+h2{font-size:1.16rem;margin:2em 0 .5em;letter-spacing:-.01em}
+h3{font-size:1.02rem;font-weight:650;margin:1.7em 0 .45em}
+p{margin:.85em 0}
+ul,ol{margin:.85em 0;padding-left:1.35em}
+li{margin:.3em 0}
+hr{border:0;border-top:1px solid var(--line);margin:2.6em 0}
+figure{margin:1.6em 0}
+figure svg,figure img{display:block;width:100%;max-width:100%;height:auto;
+border:1px solid var(--line);border-radius:10px}
+a{color:var(--accent)}
+code{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+background:var(--codebg);padding:.1em .32em;border-radius:4px;
+border:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+pre{background:var(--codebg);border:1px solid var(--line);border-radius:9px;
+padding:14px 16px;overflow-x:auto;margin:1.1em 0}
+pre code{background:none;border:0;padding:0;font-size:12.8px;line-height:1.62;white-space:pre}
+.tw{overflow-x:auto;margin:1.15em 0;border:1px solid var(--line);border-radius:9px;
+background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:8px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--thbg);font-weight:630;white-space:nowrap;font-size:13px;
+letter-spacing:.01em}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:color-mix(in srgb,var(--thbg) 45%,transparent)}
+td code,th code{white-space:nowrap}
+.tog{position:fixed;top:14px;right:14px;z-index:9;background:var(--card);color:var(--mut);
+border:1px solid var(--line);border-radius:7px;padding:6px 11px;font-size:12.5px;cursor:pointer}
+.tog:hover{color:var(--accent)}
+@media (max-width:900px){.wrap{grid-template-columns:1fr;gap:20px;padding:26px 18px 72px}
+nav{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--line);
+padding:0 0 16px;columns:2;column-gap:20px}}
+@media print{nav,.tog{display:none}.wrap{display:block;max-width:none;padding:0}
+pre,.tw{break-inside:avoid}h1{break-after:avoid}}
+</style>
+</head>
+<body>
+<button class="tog" type="button">theme</button>
+<div class="wrap">
+<nav><b>Contents</b><a class="l1" href="#celtic-plait-sound-hole--even-crossings-two-woven-ribbons">Celtic Plait Sound Hole — even crossings (two woven ribbons)</a><a class="l2" href="#the-constraint-that-shapes-the-design">The constraint that shapes the design</a><a class="l2" href="#why-the-crossing-count-is-always-even">Why the crossing count is always even</a><a class="l2" href="#usage">Usage</a><a class="l2" href="#variants-at-rhole30-60mm-hole">Variants at R_HOLE=30 (60mm hole)</a><a class="l2" href="#output-layers">Output layers</a><a class="l2" href="#how-it-works">How it works</a><a class="l2" href="#read-the-validation-report">Read the validation report</a><a class="l2" href="#traps-already-sprung-here">Traps already sprung here</a><a class="l2" href="#caveats">Caveats</a><a class="l2" href="#generated-files">Generated files</a></nav>
+<main>
+<h1 id="celtic-plait-sound-hole--even-crossings-two-woven-ribbons">Celtic Plait Sound Hole — even crossings (two woven ribbons)</h1>
+<p>Generator: <code>celtic-plait-soundhole.js</code> Companion (odd crossings): <a href="celtic-knot-soundhole.html"><code>celtic-knot-soundhole.md</code></a></p>
+<p>Produces a cut-ready SVG of a circular Celtic plait sized for an instrument sound hole. Two identical sinusoidal ribbons weave around a ring; ribbon B is ribbon A rotated by <code>pi/N</code>.</p>
+<p>Output is millimetre-true: <code>1 user unit = 1 mm</code>, with a physical <code>width</code>/ <code>height</code> in mm, so it prints and cuts at real size.</p>
+<h2 id="the-constraint-that-shapes-the-design">The constraint that shapes the design</h2>
+<p>This is a <strong>cut-out</strong>. The removed material is the open area; the woven ribbon is what stays. A ribbon ring floating inside a round hole would simply drop out when the last cut closes.</p>
+<p>So the ribbon peaks deliberately <strong>overrun the rim by <code>BITE</code> mm</strong>, fusing the rosette into the soundboard at <code>2N</code> anchor points. <code>R_MID</code> is <em>derived</em>, not chosen, to guarantee this:</p>
+<pre><code>R_MID = R_HOLE + BITE - AMP - HW</code></pre>
+<p>Consequence: <strong>there is no continuous rim circle in the cut layer.</strong> The outer boundary is <code>2N</code> separate arcs between anchors. That is correct — do not "fix" it by adding a full circle, or the rosette falls on the floor.</p>
+<p>Because it is a single sheet cut through, true over/under cannot exist in the material — at a crossing both ribbons are material and merge. The interlace is suggested by the <strong>engrave</strong> layer instead.</p>
+<h2 id="why-the-crossing-count-is-always-even">Why the crossing count is always even</h2>
+<p>Both ribbons are polar graphs <code>r(theta)</code>, and a point in the plane has a unique <code>(r, theta)</code>, so they can only meet where <code>rA(theta) = rB(theta)</code>. That difference is <code>2*AMP*sin(N*theta)</code> — exactly <code>2N</code> zeros per turn.</p>
+<p>No parameter changes this. There is also a topological reason: each strand meets every crossing once, and alternating over/under only closes up over an even number. <strong>For odd crossings use the companion generator.</strong></p>
+<h2 id="usage">Usage</h2>
+<pre><code>node celtic-plait-soundhole.js                 # report only, writes nothing
+OUT=plait.svg node celtic-plait-soundhole.js   # default 30mm design
+N=4 OUT=p8.svg node celtic-plait-soundhole.js  # 8-crossing variant
+R_HOLE=50 AMP=10.8 HW=3.3 BITE=2.5 OUT=p.svg node celtic-plait-soundhole.js
+DIAG=1 node celtic-plait-soundhole.js          # per-region dump</code></pre>
+<div class='tw'><table><thead><tr><th>Var</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>R_HOLE</code></td><td><code>30</code></td><td>sound hole radius, mm</td></tr><tr><td><code>N</code></td><td><code>5</code></td><td>lobes per ribbon → <code>2N</code> crossings and <code>2N</code> rim anchors</td></tr><tr><td><code>AMP</code></td><td><code>6.5</code></td><td>radial swing of the weave</td></tr><tr><td><code>HW</code></td><td><code>2.0</code></td><td>ribbon half-width → ribbon is <code>2*HW</code> mm wide</td></tr><tr><td><code>BITE</code></td><td><code>1.5</code></td><td>rim overrun; this is what anchors the rosette</td></tr><tr><td><code>NG</code></td><td><code>1400</code></td><td>sampling grid resolution</td></tr><tr><td><code>MIN_FEATURE</code></td><td><code>0.25</code></td><td>gaps narrower than this are welded to solid material</td></tr><tr><td><code>OUT</code></td><td>unset</td><td>output path — <strong>nothing is written unless set</strong></td></tr><tr><td><code>DIAG</code></td><td>unset</td><td>verbose per-region report</td></tr></tbody></table></div>
+<p><code>AMP</code> and <code>HW</code> do <strong>not</strong> auto-scale with <code>R_HOLE</code>. Roughly <code>AMP ≈ 0.217*R_HOLE</code> and <code>HW ≈ 0.067*R_HOLE</code> reproduces these proportions; a guard refuses geometry that cannot close and suggests values.</p>
+<h2 id="variants-at-rhole30-60mm-hole">Variants at R_HOLE=30 (60mm hole)</h2>
+<div class='tw'><table><thead><tr><th><code>N</code></th><th>Crossings</th><th>Regions</th><th>Open area</th><th>Equiv. plain hole</th><th>Narrowest cut</th><th>Slivers welded</th></tr></thead><tbody><tr><td>3</td><td>6</td><td>13</td><td>59.0%</td><td>46.10mm</td><td>4.03mm</td><td>4</td></tr><tr><td>4</td><td>8</td><td>17</td><td>55.9%</td><td>44.85mm</td><td>3.54mm</td><td>12</td></tr><tr><td><strong>5</strong></td><td><strong>10</strong></td><td><strong>21</strong></td><td><strong>52.4%</strong></td><td><strong>43.45mm</strong></td><td><strong>3.10mm</strong></td><td><strong>0</strong></td></tr><tr><td>6</td><td>12</td><td>25</td><td>48.9%</td><td>41.96mm</td><td>2.70mm</td><td>0</td></tr></tbody></table></div>
+<p>Regions are always <code>2N + 1</code> (one centre star + <code>N</code> lens + <code>N</code> rim openings). Fewer crossings = bolder, more open weave. More crossings = finer and more lace-like, with less open area.</p>
+<h2 id="output-layers">Output layers</h2>
+<div class='tw'><table><thead><tr><th>Group</th><th>Purpose</th></tr></thead><tbody><tr><td><code>preview</code></td><td>material fill, even-odd. <strong>Delete before sending to a cutter.</strong></td></tr><tr><td><code>cut</code></td><td>every closed path is waste that drops out</td></tr><tr><td><code>engrave</code></td><td>optional over/under interlace hints (<code>2N</code> polylines)</td></tr></tbody></table></div>
+<h2 id="how-it-works">How it works</h2>
+<pre><code>signed distance field -&gt; grid sample -&gt; flood fill regions -&gt;
+weld unmanufacturable slivers -&gt; marching squares -&gt; chain segments -&gt;
+RDP simplify -&gt; emit SVG</code></pre>
+<p><code>field(x,y) &gt; 0</code> means "cut away (air)", <code>&lt; 0</code> means "material".</p>
+<h2 id="read-the-validation-report">Read the validation report</h2>
+<p>Printed on every run. This is the point of the tool, not decoration.</p>
+<div class='tw'><table><thead><tr><th>Line</th><th>Must be</th></tr></thead><tbody><tr><td>closed contours vs flood regions</td><td>equal, else loops were lost</td></tr><tr><td>unclosed chains</td><td><code>0</code>, else a contour leaked</td></tr><tr><td>loose islands (CW)</td><td><code>0</code> — a clockwise contour means material fully surrounded by air, which <strong>falls out when cut</strong></td></tr><tr><td>contour area vs flood area</td><td>delta ≤ ~0.1%; two independent measurements of the same shape</td></tr></tbody></table></div>
+<p><code>slivers welded shut</code> is informational: grazing tangencies too narrow to cut, turned into solid material. The count is resolution-dependent and harmless.</p>
+<h2 id="traps-already-sprung-here">Traps already sprung here</h2>
+<p>Both were <strong>silent</strong> — they produced plausible-looking output:</p>
+<ul><li><strong>Chaining on rounded float coordinates.</strong> Shared cell edges compute to slightly different values from each neighbouring cell, so loops fragment. Contours are keyed on integer grid-edge IDs instead.</li><li><strong>Plain RDP on a closed loop.</strong> <code>pts[0] == pts[last]</code> makes the baseline zero-length, every perpendicular distance zero, and the entire loop collapses to two points. See <code>rdpClosed</code>.</li></ul>
+<p>The marching-squares table also has a load-bearing invariant: segments are oriented <strong>inside-on-left</strong>. Chaining depends on it, and so does the loose-island check. Case 5's centre-inside branch was wrong first time round — re-derive rather than trust it.</p>
+<h2 id="caveats">Caveats</h2>
+<ul><li>Polylines only — no arc/bezier fitting, no kerf/tool-offset compensation, no DXF export.</li><li><code>MIN_FEATURE</code> guards minimum <strong>air</strong> width, not material width. Ribbon thickness is uniform <code>2*HW</code> by construction so it is fine in practice, but nothing verifies a thin material neck.</li><li>Open area is large (≈52% at defaults). For a real soundboard consider what that removes structurally.</li><li>Ribbon width has not been validated against actual cut stock.</li></ul>
+<h2 id="generated-files">Generated files</h2>
+<ul><li><code>celtic-plait-soundhole-r30.svg</code> — 10 crossings (N=5, default)</li><li><code>celtic-plait-soundhole-r30-8x.svg</code> — 8 crossings (N=4)</li></ul>
+</main>
+</div>
+<script>
+var r=document.documentElement,b=document.querySelector('.tog');
+function set(t){r.setAttribute('data-theme',t);try{localStorage.setItem('ctg-theme',t)}catch(e){}
+b.textContent=t==='dark'?'\u2600 light':'\u263e dark';}
+var saved=null;try{saved=localStorage.getItem('ctg-theme')}catch(e){}
+set(saved||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+b.addEventListener('click',function(){set(r.getAttribute('data-theme')==='dark'?'light':'dark')});
+</script>
+</body>
+</html>
