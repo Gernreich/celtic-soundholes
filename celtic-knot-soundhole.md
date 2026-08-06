@@ -148,11 +148,25 @@ silently. That filter, not the parity argument, is what sets the tested ceiling.
 
 ## Output layers
 
-| Group | Purpose |
-|---|---|
-| `preview` | material fill, even-odd. **Delete before sending to a cutter.** |
-| `cut` | every closed path is waste that drops out |
-| `engrave` | optional over/under interlace hints (`2Q` polylines) |
+Three groups, told apart by **stroke colour** as well as by `id`. Colour is the one that
+survives the trip: many SVG importers flatten groups, and most laser software assigns
+operations by colour rather than by group name.
+
+| Group | Stroke | Purpose |
+|---|---|---|
+| `preview` | none — filled `#d8c9a8` | material fill, even-odd. **Delete before sending to a cutter.** |
+| `cut` | **red `#ff0000`** | every closed path is waste that drops out |
+| `engrave` | **blue `#0000ff`** | optional over/under interlace hints (`2Q` polylines — two per crossing) |
+
+**The blue lines must not be cut.** Give them a score or engrave operation, or delete the
+layer. They run straight across the ribbon — at defaults they span radii 19.7 to 24.2mm
+against a ribbon band of 20 to 24mm — so cutting them severs the single strand at all `Q`
+crossings, through exactly the material that holds the rosette together. It comes apart as
+it leaves the machine.
+
+Give every colour you keep an explicit operation. A per-colour job **silently skips any
+colour you leave unmapped**: leave `cut` unmapped and you get an engraved picture of a
+sound hole and no hole.
 
 ## What differs from the companion internally
 

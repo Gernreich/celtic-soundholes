@@ -62,7 +62,11 @@ Both designs are very open — 52% to 63% of the disc removed. Three anchors are
 fix a trefoil's plane, but that is a kinematic statement, not a stiffness one. Nothing
 here has been validated against real cut stock.
 
-Delete the `preview` layer before sending anything to a cutter.
+**Two layers are not cuts.** Delete the `preview` layer before sending anything to a
+cutter, and give the blue `#0000ff` `engrave` lines a score or engrave operation rather
+than a cut — they run across the ribbon at every crossing, so cutting them takes the
+rosette apart. Only the red `#ff0000` `cut` layer is meant to go through the material.
+Each writeup has the full table.
 
 ## Sample files
 
