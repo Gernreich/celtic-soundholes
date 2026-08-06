@@ -14,7 +14,7 @@ start, and that constraint decides which curve you need.
 | Crossings | `2N` — always even, for any parameters | `Q` — any odd integer ≥ 3 |
 | Named forms | 6, 8, **10**, 12 crossings | **trefoil**, cinquefoil, septafoil, nonafoil |
 | Generator | `celtic-plait-soundhole.js` | `celtic-knot-soundhole.js` |
-| Open area at r30 | 52.4% at the default `N = 5` | 63.3% at the default `Q = 3` |
+| Open area at radius 30mm | 52.4% at the default `N = 5` | 63.3% at the default `Q = 3` |
 | Rim anchors | `2N` | `Q` |
 
 Neither generator can produce the other's crossing counts. In the plait each strand
@@ -69,11 +69,11 @@ Delete the `preview` layer before sending anything to a cutter.
 Cut-ready output at `R_HOLE = 30` (a 60 mm hole), committed so you can look before you run
 anything:
 
-- [`celtic-plait-soundhole-r30.svg`](celtic-plait-soundhole-r30.svg) — 10 crossings, `N = 5`
-- [`celtic-plait-soundhole-r30-8x.svg`](celtic-plait-soundhole-r30-8x.svg) — 8 crossings, `N = 4`
-- [`celtic-trefoil-soundhole-r30.svg`](celtic-trefoil-soundhole-r30.svg) — `Q = 3`
-- [`celtic-cinquefoil-soundhole-r30.svg`](celtic-cinquefoil-soundhole-r30.svg) — `Q = 5`
-- [`celtic-septafoil-soundhole-r30.svg`](celtic-septafoil-soundhole-r30.svg) — `Q = 7`
+- [`celtic-plait-soundhole-radius30mm.svg`](celtic-plait-soundhole-radius30mm.svg) — 10 crossings, `N = 5`
+- [`celtic-plait-soundhole-radius30mm-8x.svg`](celtic-plait-soundhole-radius30mm-8x.svg) — 8 crossings, `N = 4`
+- [`celtic-trefoil-soundhole-radius30mm.svg`](celtic-trefoil-soundhole-radius30mm.svg) — `Q = 3`
+- [`celtic-cinquefoil-soundhole-radius30mm.svg`](celtic-cinquefoil-soundhole-radius30mm.svg) — `Q = 5`
+- [`celtic-septafoil-soundhole-radius30mm.svg`](celtic-septafoil-soundhole-radius30mm.svg) — `Q = 7`
 
 Requires Node. Neither generator writes anything unless you set `OUT`.
 

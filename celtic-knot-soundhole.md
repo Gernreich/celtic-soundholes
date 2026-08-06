@@ -52,12 +52,12 @@ layer; the outer boundary is `Q` arcs. Correct, not a bug.
 ## Usage
 
 ```bash
-node celtic-knot-soundhole.js                            # report only
-OUT=trefoil-r30.svg node celtic-knot-soundhole.js        # Q=3 default
-Q=5 OUT=cinquefoil-r30.svg node celtic-knot-soundhole.js
-Q=7 OUT=septafoil-r30.svg node celtic-knot-soundhole.js
-SELFTEST=1 node celtic-knot-soundhole.js                 # check the hash, exit
-DIAG=1 node celtic-knot-soundhole.js                     # per-region dump
+node celtic-knot-soundhole.js                                   # report only
+OUT=trefoil-radius30mm.svg node celtic-knot-soundhole.js        # Q=3 default
+Q=5 OUT=cinquefoil-radius30mm.svg node celtic-knot-soundhole.js
+Q=7 OUT=septafoil-radius30mm.svg node celtic-knot-soundhole.js
+SELFTEST=1 node celtic-knot-soundhole.js                        # check the hash, exit
+DIAG=1 node celtic-knot-soundhole.js                            # per-region dump
 ```
 
 | Var | Default | Meaning |
@@ -213,6 +213,6 @@ sample — do not read a small error as rounding. It is `0` at Q = 3, 5, 7, 9.
 
 ## Generated files
 
-- `celtic-trefoil-soundhole-r30.svg` (Q=3)
-- `celtic-cinquefoil-soundhole-r30.svg` (Q=5)
-- `celtic-septafoil-soundhole-r30.svg` (Q=7)
+- `celtic-trefoil-soundhole-radius30mm.svg` (Q=3)
+- `celtic-cinquefoil-soundhole-radius30mm.svg` (Q=5)
+- `celtic-septafoil-soundhole-radius30mm.svg` (Q=7)

@@ -85,11 +85,11 @@ pre,.tw{break-inside:avoid}h1{break-after:avoid}}
 <p>Both ribbons are polar graphs <code>r(theta)</code>, and a point in the plane has a unique <code>(r, theta)</code>, so they can only meet where <code>rA(theta) = rB(theta)</code>. That difference is <code>2*AMP*sin(N*theta)</code> — exactly <code>2N</code> zeros per turn.</p>
 <p>No parameter changes this. There is also a topological reason: each strand meets every crossing once, and alternating over/under only closes up over an even number. <strong>For odd crossings use the companion generator.</strong></p>
 <h2 id="usage">Usage</h2>
-<pre><code>node celtic-plait-soundhole.js                         # report only, writes nothing
-OUT=plait10-r30.svg node celtic-plait-soundhole.js     # N=5 default, 10 crossings
-N=4 OUT=plait8-r30.svg node celtic-plait-soundhole.js  # 8-crossing variant
-R_HOLE=50 AMP=10.8 HW=3.3 BITE=2.5 OUT=plait10-r50.svg node celtic-plait-soundhole.js
-DIAG=1 node celtic-plait-soundhole.js                  # per-region dump</code></pre>
+<pre><code>node celtic-plait-soundhole.js                                # report only, writes nothing
+OUT=plait10-radius30mm.svg node celtic-plait-soundhole.js     # N=5 default, 10 crossings
+N=4 OUT=plait8-radius30mm.svg node celtic-plait-soundhole.js  # 8-crossing variant
+R_HOLE=50 AMP=10.8 HW=3.3 BITE=2.5 OUT=plait10-radius50mm.svg node celtic-plait-soundhole.js
+DIAG=1 node celtic-plait-soundhole.js                         # per-region dump</code></pre>
 <div class='tw'><table><thead><tr><th>Var</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>R_HOLE</code></td><td><code>30</code></td><td>sound hole radius, mm</td></tr><tr><td><code>N</code></td><td><code>5</code></td><td>lobes per ribbon → <code>2N</code> crossings and <code>2N</code> rim anchors</td></tr><tr><td><code>AMP</code></td><td><code>6.5</code></td><td>radial swing of the weave</td></tr><tr><td><code>HW</code></td><td><code>2.0</code></td><td>ribbon half-width → ribbon is <code>2*HW</code> mm wide</td></tr><tr><td><code>BITE</code></td><td><code>1.5</code></td><td>rim overrun; this is what anchors the rosette</td></tr><tr><td><code>NG</code></td><td><code>1400</code></td><td>sampling grid resolution</td></tr><tr><td><code>MIN_FEATURE</code></td><td><code>0.25</code></td><td>gaps narrower than this are welded to solid material</td></tr><tr><td><code>OUT</code></td><td>unset</td><td>output path — <strong>nothing is written unless set</strong></td></tr><tr><td><code>DIAG</code></td><td>unset</td><td>verbose per-region report</td></tr></tbody></table></div>
 <p><code>AMP</code> and <code>HW</code> do <strong>not</strong> auto-scale with <code>R_HOLE</code>. Roughly <code>AMP ≈ 0.217*R_HOLE</code> and <code>HW ≈ 0.067*R_HOLE</code> reproduces these proportions; a guard refuses geometry that cannot close and suggests values.</p>
 <h2 id="variants-at-rhole30-60mm-hole">Variants at R_HOLE=30 (60mm hole)</h2>
@@ -113,7 +113,7 @@ RDP simplify -&gt; emit SVG</code></pre>
 <h2 id="caveats">Caveats</h2>
 <ul><li>Polylines only — no arc/bezier fitting, no kerf/tool-offset compensation, no DXF export.</li><li><code>MIN_FEATURE</code> guards minimum <strong>air</strong> width, not material width. Ribbon thickness is uniform <code>2*HW</code> by construction so it is fine in practice, but nothing verifies a thin material neck.</li><li>Open area is large (≈52% at defaults). For a real soundboard consider what that removes structurally.</li><li>Ribbon width has not been validated against actual cut stock.</li></ul>
 <h2 id="generated-files">Generated files</h2>
-<ul><li><code>celtic-plait-soundhole-r30.svg</code> — 10 crossings (N=5, default)</li><li><code>celtic-plait-soundhole-r30-8x.svg</code> — 8 crossings (N=4)</li></ul>
+<ul><li><code>celtic-plait-soundhole-radius30mm.svg</code> — 10 crossings (N=5, default)</li><li><code>celtic-plait-soundhole-radius30mm-8x.svg</code> — 8 crossings (N=4)</li></ul>
 </main>
 </div>
 <script>

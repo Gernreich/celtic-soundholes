@@ -20,7 +20,7 @@ your start, and that decides the curve.
 | Crossings | `2N` — always even | `Q` — any odd integer ≥ 3 |
 | Named forms | 6, 8, **10**, 12 | **trefoil**, cinquefoil, septafoil, nonafoil |
 | Script | `celtic-plait-soundhole.js` | `celtic-knot-soundhole.js` |
-| Open area at r30 | 52.4% (default `N = 5`) | 63.3% (default `Q = 3`) |
+| Open area at radius 30mm | 52.4% (default `N = 5`) | 63.3% (default `Q = 3`) |
 | Rim anchors | `2N` | `Q` |
 
 In the plait each strand meets every crossing once, so the count is even by
@@ -32,8 +32,8 @@ is refused with an error.
 
 ```
 node celtic-plait-soundhole.js                          # report only, writes nothing
-OUT=plait10-r30.svg node celtic-plait-soundhole.js       # 10-crossing plait, 60mm hole
-Q=5 OUT=cinquefoil-r30.svg node celtic-knot-soundhole.js
+OUT=plait10-radius30mm.svg node celtic-plait-soundhole.js  # 10-crossing plait, 60mm hole
+Q=5 OUT=cinquefoil-radius30mm.svg node celtic-knot-soundhole.js
 ```
 
 **Nothing is written unless you set `OUT`.** A bare run prints the validation report and
@@ -60,7 +60,7 @@ Delete the `preview` layer before sending to a cutter. The designs are very open
 |---|---|
 | `celtic-plait-soundhole.js` · `.md` | even-crossing plait generator and its writeup |
 | `celtic-knot-soundhole.js` · `.md` | odd-crossing knot generator and its writeup |
-| `celtic-*-r30.svg` | cut-ready samples at `R_HOLE = 30`, a 60 mm hole |
+| `celtic-*-radius30mm.svg` | cut-ready samples at `R_HOLE = 30`, a 60 mm hole |
 | `index.md` · `*.html` | the published pages; the markdown is the source |
 
 Requires Node. No dependencies. Released under [CC0 1.0](LICENSE).

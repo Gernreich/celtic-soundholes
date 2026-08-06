@@ -85,12 +85,12 @@ pre,.tw{break-inside:avoid}h1{break-after:avoid}}
 <h2 id="the-structural-constraint">The structural constraint</h2>
 <p>Same as the companion. This is a cut-out, so the ribbon peaks overrun the rim by <code>BITE</code> mm and fuse the rosette into the soundboard — here at an <strong>odd</strong> number of anchor points (<code>Q</code>). There is no continuous rim circle in the cut layer; the outer boundary is <code>Q</code> arcs. Correct, not a bug.</p>
 <h2 id="usage">Usage</h2>
-<pre><code>node celtic-knot-soundhole.js                            # report only
-OUT=trefoil-r30.svg node celtic-knot-soundhole.js        # Q=3 default
-Q=5 OUT=cinquefoil-r30.svg node celtic-knot-soundhole.js
-Q=7 OUT=septafoil-r30.svg node celtic-knot-soundhole.js
-SELFTEST=1 node celtic-knot-soundhole.js                 # check the hash, exit
-DIAG=1 node celtic-knot-soundhole.js                     # per-region dump</code></pre>
+<pre><code>node celtic-knot-soundhole.js                                   # report only
+OUT=trefoil-radius30mm.svg node celtic-knot-soundhole.js        # Q=3 default
+Q=5 OUT=cinquefoil-radius30mm.svg node celtic-knot-soundhole.js
+Q=7 OUT=septafoil-radius30mm.svg node celtic-knot-soundhole.js
+SELFTEST=1 node celtic-knot-soundhole.js                        # check the hash, exit
+DIAG=1 node celtic-knot-soundhole.js                            # per-region dump</code></pre>
 <div class='tw'><table><thead><tr><th>Var</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>R_HOLE</code></td><td><code>30</code></td><td>sound hole radius, mm</td></tr><tr><td><code>Q</code></td><td><code>3</code></td><td>crossings — <strong>odd integer ≥ 3</strong>; also the rim anchor count</td></tr><tr><td><code>AMP</code></td><td><code>7.5</code></td><td>radial swing of the weave</td></tr><tr><td><code>HW</code></td><td><code>2.0</code></td><td>ribbon half-width → ribbon is <code>2*HW</code> mm wide</td></tr><tr><td><code>BITE</code></td><td><code>1.5</code></td><td>rim overrun; this is what anchors the rosette</td></tr><tr><td><code>NG</code></td><td><code>1400</code></td><td>sampling grid resolution</td></tr><tr><td><code>MIN_FEATURE</code></td><td><code>0.25</code></td><td>gaps narrower than this are welded to solid material</td></tr><tr><td><code>OUT</code></td><td>unset</td><td>output path — <strong>nothing is written unless set</strong></td></tr><tr><td><code>SELFTEST</code></td><td>unset</td><td>verify spatial hash against brute force, then exit</td></tr><tr><td><code>DIAG</code></td><td>unset</td><td>verbose per-region report</td></tr></tbody></table></div>
 <p><code>AMP</code> defaults to <strong>7.5 here vs 6.5 in the companion</strong> — deliberate, not drift. These knots are far sparser than a plait and want a wider radial swing to fill the ring. Neither <code>AMP</code> nor <code>HW</code> auto-scales with <code>R_HOLE</code>; roughly <code>AMP ≈ 0.25*R_HOLE</code>, <code>HW ≈ 0.067*R_HOLE</code>.</p>
 <h3 id="the-centre-opening-is-derived-and-it-can-abort-the-run">The centre opening is derived, and it can abort the run</h3>
@@ -127,7 +127,7 @@ rim anchors   == Q          (odd — the whole point of this generator)</code></
 <h2 id="caveats">Caveats</h2>
 <ul><li>Polylines only — no arc/bezier fitting, no kerf compensation, no DXF.</li><li><code>MIN_FEATURE</code> guards minimum <strong>air</strong> width, not material width.</li><li>Very open designs; the trefoil especially. Consider soundboard bracing.</li><li>Ribbon width has not been validated against actual cut stock.</li></ul>
 <h2 id="generated-files">Generated files</h2>
-<ul><li><code>celtic-trefoil-soundhole-r30.svg</code> (Q=3)</li><li><code>celtic-cinquefoil-soundhole-r30.svg</code> (Q=5)</li><li><code>celtic-septafoil-soundhole-r30.svg</code> (Q=7)</li></ul>
+<ul><li><code>celtic-trefoil-soundhole-radius30mm.svg</code> (Q=3)</li><li><code>celtic-cinquefoil-soundhole-radius30mm.svg</code> (Q=5)</li><li><code>celtic-septafoil-soundhole-radius30mm.svg</code> (Q=7)</li></ul>
 </main>
 </div>
 <script>

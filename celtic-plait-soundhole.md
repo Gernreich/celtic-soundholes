@@ -45,11 +45,11 @@ even number. **For odd crossings use the companion generator.**
 ## Usage
 
 ```bash
-node celtic-plait-soundhole.js                         # report only, writes nothing
-OUT=plait10-r30.svg node celtic-plait-soundhole.js     # N=5 default, 10 crossings
-N=4 OUT=plait8-r30.svg node celtic-plait-soundhole.js  # 8-crossing variant
-R_HOLE=50 AMP=10.8 HW=3.3 BITE=2.5 OUT=plait10-r50.svg node celtic-plait-soundhole.js
-DIAG=1 node celtic-plait-soundhole.js                  # per-region dump
+node celtic-plait-soundhole.js                                # report only, writes nothing
+OUT=plait10-radius30mm.svg node celtic-plait-soundhole.js     # N=5 default, 10 crossings
+N=4 OUT=plait8-radius30mm.svg node celtic-plait-soundhole.js  # 8-crossing variant
+R_HOLE=50 AMP=10.8 HW=3.3 BITE=2.5 OUT=plait10-radius50mm.svg node celtic-plait-soundhole.js
+DIAG=1 node celtic-plait-soundhole.js                         # per-region dump
 ```
 
 | Var | Default | Meaning |
@@ -142,5 +142,5 @@ re-derive rather than trust it.
 
 ## Generated files
 
-- `celtic-plait-soundhole-r30.svg` — 10 crossings (N=5, default)
-- `celtic-plait-soundhole-r30-8x.svg` — 8 crossings (N=4)
+- `celtic-plait-soundhole-radius30mm.svg` — 10 crossings (N=5, default)
+- `celtic-plait-soundhole-radius30mm-8x.svg` — 8 crossings (N=4)
