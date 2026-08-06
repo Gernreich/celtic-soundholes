@@ -208,9 +208,32 @@ sample — do not read a small error as rounding. It is `0` at Q = 3, 5, 7, 9.
 |---|---|
 | closed contours vs flood regions | equal, else loops were lost |
 | unclosed chains | `0`, else a contour leaked |
-| slivers welded shut | normally `0`; nonzero means `MIN_FEATURE` rewrote the field and the shape you get is not the shape the curve describes |
+| slivers welded shut | informational only — not a pass/fail, and not normally `0`. See below |
 | loose islands (CW) | `0` — else material falls out when cut |
 | contour area vs flood area | delta ≤ ~0.1% |
+
+### What `slivers welded shut` is, and why you should not read it
+
+A sliver is a whole air region whose inradius falls under `MIN_FEATURE` — narrower
+than the cutter can make — filled back to solid material before the contours are
+traced. The count reports how many were filled.
+
+**Its value is an artifact of where the sampling grid happens to fall.** The same
+trefoil, geometry untouched, reports 8 slivers at `NG=700`, 6 at 1000, 4 at 1400,
+8 at 2000 and 6 at 2600. It is not normally `0` and it does not converge. Reading
+it as a quality number, or chasing it to zero, is chasing the grid.
+
+**The region count is the check that means something.** Across all five of those
+runs the contour count stayed 7, the open fraction 63.3% and the open area within
+0.008%. So the welding removed grazing tangencies and left the shape alone —
+which is the common case, and the reason a nonzero count here is not a problem.
+
+Where welding *does* change the shape, the region count says so and stays saying
+so. A five-lead knot with three bights reports 13 regions against the `2Q + 1`
+pattern's 16, and it still reports 13 at `NG` 2400 and 3600 — more grid will not
+bring back a lens that is genuinely below the cutting floor. So: compare the
+region count against what the topology predicts. That number is stable and
+truthful; the sliver count is neither.
 
 ## Traps already sprung here
 

@@ -132,8 +132,22 @@ Printed on every run. This is the point of the tool, not decoration.
 | loose islands (CW) | `0` — a clockwise contour means material fully surrounded by air, which **falls out when cut** |
 | contour area vs flood area | delta ≤ ~0.1%; two independent measurements of the same shape |
 
-`slivers welded shut` is informational: grazing tangencies too narrow to cut,
-turned into solid material. The count is resolution-dependent and harmless.
+`slivers welded shut` is informational, and its exact value means nothing. A
+sliver is a whole air region whose inradius falls under `MIN_FEATURE` — narrower
+than the cutter can make — filled back to solid material before the contours are
+traced.
+
+**Its value is an artifact of where the sampling grid falls**, not a property of
+the design. The companion's trefoil, geometry untouched, reports 8 slivers at
+`NG=700`, 6 at 1000, 4 at 1400 and 8 at 2000, while its contour count, open
+fraction and area hold steady throughout. It is not normally `0`, it does not
+converge, and chasing it to zero is chasing the grid.
+
+**The region count is the check that means something.** `4N + 1` above is stable
+across resolutions and tells you whether the shape you get is the shape the curve
+describes. If it matches, the welding only removed grazing tangencies. If it falls
+short, real regions were under the cutting floor and are gone — and more grid will
+not bring them back.
 
 ## Traps already sprung here
 

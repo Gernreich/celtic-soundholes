@@ -59,16 +59,20 @@
 //
 //   It degrades above that, and the limit is manufacturability rather than
 //   topology. As L rises the lens regions between passes shrink below
-//   MIN_FEATURE and get welded shut, so they never become separate cut
-//   regions: slivers run 4 at (2,3), 12 at (3,5), 29 at (4,5), 46 at (5,3).
-//   At (4,5) the region count falls short of L*B+1 by exactly the welded
-//   lenses; by (5,3) the crossing detector loses them too and undercounts.
-//   Reducing AMP and HW does not rescue it -- the passes are close because
-//   there are five of them in one annulus, not because the ribbon is fat.
+//   MIN_FEATURE and are welded shut, so they never become separate cut
+//   regions. At (4,5) the region count falls short of L*B+1 by exactly the
+//   welded lenses; by (5,3) the crossing detector loses them too. Reducing
+//   AMP and HW does not rescue it -- the passes are close because there are
+//   five of them in one annulus, not because the ribbon is fat.
 //
-//   So: trust (L,B) with L <= 4 and a low sliver count. Above that the file
-//   still cuts, but the shape is no longer the shape the curve describes, and
-//   the report will say so.
+//   JUDGE BY THE REGION COUNT, NOT THE SLIVER COUNT. Slivers is an artifact
+//   of where the sampling grid falls: the trefoil reports 8 of them at NG=700
+//   and 4 at NG=1400 with identical geometry, contours and area. The region
+//   count is stable across resolutions and tells the truth -- (5,3) reports
+//   13 against a predicted 16 at NG 1400, 2400 and 3600 alike, because those
+//   three lenses really are below the cutting floor. So: trust an (L,B) whose
+//   region count matches L*B+1 and whose crossing count matches B*(L-1).
+//   Both are printed and checked.
 //
 // OUTPUT LAYERS   preview (delete before cutting) / cut / engrave
 //   Only the red #ff0000 cut layer goes through the material. The blue
