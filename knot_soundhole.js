@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 // =====================================================================
-// Celtic coprime Turk's head sound hole -> cut-ready SVG
+// coprime lead-and-bight knot sound hole -> cut-ready SVG
 // =====================================================================
 //
-// Replaces celtic-knot-soundhole.js, generalising it from 2 leads to any. A Turk's
-// head is described as L leads by B bights: the strand travels L times around
-// before closing, and shows B scallops at the rim.
+// Replaces an earlier two-lead-only generator, generalising it to any number of
+// leads. A knot of this family is described as L leads by B bights: the strand
+// travels L times around before closing, and shows B scallops at the rim.
 //
 //     r(theta) = R_MID + AMP*cos(B*theta/L),   theta in [0, 2*pi*L)
 //
@@ -38,9 +38,9 @@
 //   cut layer -- the outer boundary is B arcs. Correct, not a bug.
 //
 // USAGE   (nothing is written unless OUT is set)
-//   node celtic-knot-coprime-soundhole.js                    report only
-//   LEADS=3 BIGHTS=5 OUT=turk-3x5-radius30mm.svg node celtic-knot-coprime-soundhole.js
-//   LEADS=2 BIGHTS=3 node celtic-knot-coprime-soundhole.js    the trefoil again
+//   node knot_soundhole.js                    report only
+//   LEADS=3 BIGHTS=5 OUT=3-lead_5-bight_knot_radius30mm.svg node knot_soundhole.js
+//   LEADS=2 BIGHTS=3 node knot_soundhole.js    the trefoil again
 //   SELFTEST=1 node ...     check the spatial hash, exit
 //   DIAG=1 node ...         per-region dump
 //
@@ -54,7 +54,7 @@
 //   Verified against every invariant at (L,B) = (2,3) (2,5) (2,9) (3,2) (3,4)
 //   (3,5) and (4,3): regions, crossings, engrave lines and anchors all as
 //   predicted, weave alternating, no loose islands. (2,3) reproduces
-//   the retired celtic-knot-soundhole.js exactly -- identical validation block,
+//   the retired two-lead generator exactly -- identical validation block,
 //   areas and sliver count -- the check that the generalisation is faithful.
 //
 //   It degrades above that, and the limit is manufacturability rather than
@@ -99,9 +99,9 @@ const gcd = (a, b) => b ? gcd(b, a % b) : a;
 if (process.env.Q !== undefined) {
   console.error(
     `Q is not a setting here (got Q=${process.env.Q}).\n` +
-    `  It was the bight count of celtic-knot-soundhole.js, which this generator\n` +
-    `  replaced. That one was always 2 leads, so the same shape is:\n` +
-    `    LEADS=2 BIGHTS=${process.env.Q} node celtic-knot-coprime-soundhole.js`);
+    `  It was the bight count of the two-lead generator this replaced.\n` +
+    `  That one was always 2 leads, so the same shape is:\n` +
+    `    LEADS=2 BIGHTS=${process.env.Q} node knot_soundhole.js`);
   process.exit(1);
 }
 
@@ -121,7 +121,7 @@ if (gcd(L, B) !== 1) {
     `  into ${g} pieces, not one, so there is no single ribbon to trace and no\n` +
     `  interlace to alternate over. Nearby coprime bight counts for ${L} leads:\n` +
     `  ${[...Array(16).keys()].map(i => i + 2).filter(b => gcd(L, b) === 1 && b !== L).join(' ')}\n` +
-    `  For an even count of crossings on two leads use celtic-plait-soundhole.js.`);
+    `  For an even count of crossings on two leads use plait_soundhole.js.`);
   process.exit(1);
 }
 
@@ -514,8 +514,7 @@ const dOpen = p => 'M' + p.map(q => f2(q[0]) + ' ' + f2(q[1])).join('L');
 const cutD = simp.map(dOf).join('');
 const engD = engrave.map(dOpen).join('');
 
-const NAME = (L === 2 ? { 3: 'trefoil', 5: 'cinquefoil', 7: 'septafoil', 9: 'nonafoil' }[B] : null)
-           || `${L}-lead x ${B}-bight Turk's head`;
+const NAME = `${L}-lead ${B}-bight knot`;
 const OUT  = process.env.OUT;
 const PAD  = 0.5;
 const SIZE = f2(2 * (R_HOLE + PAD));
@@ -524,7 +523,7 @@ const R    = f2(R_HOLE);
 const rimCircle = `M${R} 0A${R} ${R} 0 1 0 -${R} 0A${R} ${R} 0 1 0 ${R} 0Z`;
 const svg = `<svg xmlns="http://www.w3.org/2000/svg"
      width="${SIZE}mm" height="${SIZE}mm" viewBox="${ORG} ${ORG} ${SIZE} ${SIZE}">
-  <title>Celtic ${NAME} sound hole - ${R_HOLE} mm radius</title>
+  <title>${NAME} sound hole - ${R_HOLE} mm radius</title>
   <!-- 1 user unit = 1 mm, so this prints/cuts at true size.
        Sound hole radius ${R_HOLE}mm (${2 * R_HOLE}mm diameter).
        ${NAME}: ONE self-crossing ribbon ${2 * HW}mm wide, ${B * (L - 1)} crossings.

@@ -1,13 +1,13 @@
-# Celtic Coprime Turk's Head Sound Hole — any leads × bights
+# Knot Sound Hole — any coprime leads × bights
 
-Generator: `celtic-knot-coprime-soundhole.js`
+Generator: `knot_soundhole.js`
 
-Companion: [`celtic-plait-soundhole.md`](celtic-plait-soundhole.md) (two ribbons,
+Companion: [`plait_soundhole.md`](plait_soundhole.md) (two ribbons,
 even crossings)
 
-Replaces `celtic-knot-soundhole.js`, which handled two leads only. Set `LEADS=2` and
-this produces that generator's output exactly — verified file by file, cut layer
-byte-identical and the same set of engrave subpaths.
+Replaces an earlier two-lead-only generator. Set `LEADS=2` and this reproduces its
+output exactly — verified file by file, cut layer byte-identical and the same set of
+engrave subpaths.
 
 Produces a cut-ready SVG rosette for an instrument sound hole, sized in the terms a
 knot-tyer already uses: **L leads by B bights**. The strand travels round `L` times
@@ -18,7 +18,7 @@ before it closes, and shows `B` scallops at the rim. Millimetre-true output,
 r(theta) = R_MID + AMP*cos(B*theta/L),   theta in [0, 2*pi*L)
 ```
 
-It generalises the two-lead generator this replaced: `BIGHTS` odd is exactly that
+It generalises the two-lead generator it replaced: `BIGHTS` odd is exactly that
 one's rule that `Q` must be odd, because odd `B` is what makes `gcd(2, B) = 1`.
 
 ## Leads and bights, and why they must be coprime
@@ -34,7 +34,7 @@ The companions are both the `L = 2` row of the same table:
 | generator | leads | bights | `gcd` | strands |
 |---|---|---|---|---|
 | the retired knot generator | 2 | `Q`, odd | 1 | 1 — a knot |
-| [plait](celtic-plait-soundhole.md) | 2 | `2N`, even | 2 | 2 — a plait |
+| [plait](plait_soundhole.md) | 2 | `2N`, even | 2 | 2 — a plait |
 | this one | any `L` | any `B` coprime to `L` | 1 | 1 |
 
 ## The structural constraint
@@ -49,12 +49,12 @@ That is correct; adding a full circle drops the rosette on the floor.
 ## Usage
 
 ```bash
-node celtic-knot-coprime-soundhole.js                          # report only, writes nothing
-LEADS=3 BIGHTS=5 OUT=turk-3x5-radius30mm.svg node celtic-knot-coprime-soundhole.js
-LEADS=3 BIGHTS=4 OUT=turk-3x4-radius30mm.svg node celtic-knot-coprime-soundhole.js
-LEADS=2 BIGHTS=3 node celtic-knot-coprime-soundhole.js         # the trefoil again
-SELFTEST=1 node celtic-knot-coprime-soundhole.js               # check the hash, exit
-DIAG=1 node celtic-knot-coprime-soundhole.js                   # per-region dump
+node knot_soundhole.js                          # report only, writes nothing
+LEADS=3 BIGHTS=5 OUT=3-lead_5-bight_knot_radius30mm.svg node knot_soundhole.js
+LEADS=3 BIGHTS=4 OUT=3-lead_4-bight_knot_radius30mm.svg node knot_soundhole.js
+LEADS=2 BIGHTS=3 node knot_soundhole.js         # the trefoil again
+SELFTEST=1 node knot_soundhole.js               # check the hash, exit
+DIAG=1 node knot_soundhole.js                   # per-region dump
 ```
 
 **The file that lands is not ready for the laser yet.** Its geometry is, but it
@@ -144,7 +144,7 @@ region counts on every run and prints whether they match.**
 ## The tested envelope, and where it stops
 
 Verified against every invariant at `(2,3) (2,5) (2,9) (3,2) (3,4) (3,5)` and
-`(4,3)`. `(2,3)` reproduced the retired `celtic-knot-soundhole.js` exactly — identical
+`(4,3)`. `(2,3)` reproduced the retired `knot_soundhole.js` exactly — identical
 validation block, areas and sliver count, only the report wording differs. That
 equivalence is the evidence the generalisation is faithful rather than plausible.
 
@@ -223,7 +223,7 @@ distances that are too large, which reads as phantom extra "cut" area and quietl
 changes the shape without any validation line firing.
 
 ```bash
-LEADS=3 BIGHTS=5 SELFTEST=1 node celtic-knot-coprime-soundhole.js
+LEADS=3 BIGHTS=5 SELFTEST=1 node knot_soundhole.js
 ```
 
 The code's pass gate is `< 1e-9`, but the error should be **exactly `0`**: both
@@ -259,18 +259,15 @@ bit-identical floats. Any nonzero value at all means the ring search missed a sa
 
 ## Generated files
 
-- `celtic-turk-3x4-soundhole-radius30mm.svg` — 3 leads × 4 bights
-- `celtic-turk-3x5-soundhole-radius30mm.svg` — 3 leads × 5 bights
+- `3-lead_4-bight_knot_radius30mm.svg` — 3 leads × 4 bights
+- `3-lead_5-bight_knot_radius30mm.svg` — 3 leads × 5 bights
 
-At two leads the shapes have folk names, and three of them ship — cut by the
-generator this one replaced, and byte-identical to what it produces now:
+- `2-lead_3-bight_knot_radius30mm.svg` — 2 leads × 3 bights
+- `2-lead_5-bight_knot_radius30mm.svg` — 2 leads × 5 bights
+- `2-lead_7-bight_knot_radius30mm.svg` — 2 leads × 7 bights
 
-| `LEADS` | `BIGHTS` | Knot | File |
-|---|---|---|---|
-| 2 | 3 | trefoil | `celtic-trefoil-soundhole-radius30mm.svg` |
-| 2 | 5 | cinquefoil | `celtic-cinquefoil-soundhole-radius30mm.svg` |
-| 2 | 7 | septafoil | `celtic-septafoil-soundhole-radius30mm.svg` |
-| 2 | 9 | nonafoil | not committed |
-
-The generator still uses those names in its report and in the SVG title when
-`LEADS=2`.
+Two-lead knots also carry folk names, which you will meet in knot literature even
+though the generator does not use them: **trefoil** at 3 bights, **cinquefoil** at
+5, **septafoil** at 7, **nonafoil** at 9. Everything here is named by leads and
+bights instead, in the report, in the SVG `<title>` and in the filename, so the
+three always agree.

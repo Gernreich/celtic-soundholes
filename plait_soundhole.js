@@ -1,10 +1,10 @@
 'use strict';
 //
-// Celtic knot sound hole -> cut-ready SVG
+// knot sound hole -> cut-ready SVG
 // =======================================
 //
 // WHAT IT MAKES
-//   A circular Celtic plait sized for an instrument sound hole. Two identical
+//   A circular plait sized for an instrument sound hole. Two identical
 //   sinusoidal ribbons (B is A rotated by pi/N) weave around a ring and cross
 //   2N times. Output is an SVG in millimetres, 1 user unit = 1 mm, so it
 //   prints and cuts at true size.
@@ -14,7 +14,7 @@
 //   so they can only meet where rA = rB; that difference is 2*AMP*sin(N*theta),
 //   which has exactly 2N zeros per turn. For an ODD number of crossings you
 //   need a single self-crossing strand instead -- see the companion generator
-//   celtic-knot-coprime-soundhole.js (trefoil, cinquefoil, septafoil, ...).
+//   knot_soundhole.js (trefoil, cinquefoil, septafoil, ...).
 //
 // THE CONSTRAINT THAT DRIVES THE DESIGN
 //   This is a CUT-OUT, so the removed material is the open area and the knot
@@ -37,11 +37,11 @@
 //   field(x,y) > 0 means "cut away (air)", < 0 means "material".
 //
 // USAGE   (all knobs are env vars; nothing is written unless OUT is set)
-//   node celtic-plait-soundhole.js                      report only, no file
-//   OUT=knot.svg node celtic-plait-soundhole.js         the 30mm default design
-//   R_HOLE=50 AMP=10.8 HW=3.3 BITE=2.5 OUT=k.svg node celtic-plait-soundhole.js
-//   N=4 OUT=k8.svg node celtic-plait-soundhole.js       8-crossing variant
-//   DIAG=1 node celtic-plait-soundhole.js               per-region dump
+//   node plait_soundhole.js                      report only, no file
+//   OUT=knot.svg node plait_soundhole.js         the 30mm default design
+//   R_HOLE=50 AMP=10.8 HW=3.3 BITE=2.5 OUT=k.svg node plait_soundhole.js
+//   N=4 OUT=k8.svg node plait_soundhole.js       8-crossing variant
+//   DIAG=1 node plait_soundhole.js               per-region dump
 //
 //   R_HOLE  sound hole radius mm      AMP   radial swing of the weave
 //   HW      ribbon half-width         N     lobes per ribbon -> 2N crossings
@@ -391,7 +391,7 @@ const R    = f2(R_HOLE);
 const rimCircle = `M${R} 0A${R} ${R} 0 1 0 -${R} 0A${R} ${R} 0 1 0 ${R} 0Z`;
 const svg = `<svg xmlns="http://www.w3.org/2000/svg"
      width="${SIZE}mm" height="${SIZE}mm" viewBox="${ORG} ${ORG} ${SIZE} ${SIZE}">
-  <title>Celtic plait sound hole - ${2 * N} crossings, ${R_HOLE} mm radius</title>
+  <title>${2 * N}-crossing plait sound hole - ${R_HOLE} mm radius</title>
   <!-- 1 user unit = 1 mm, so this prints/cuts at true size.
        Sound hole radius ${R_HOLE}mm (${2 * R_HOLE}mm diameter).
        Two interwoven ribbons ${2 * HW}mm wide, ${2 * N} crossings.

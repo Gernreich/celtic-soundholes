@@ -1,11 +1,11 @@
-# Celtic Plait Sound Hole — even crossings (two woven ribbons)
+# Plait Sound Hole — even crossings (two woven ribbons)
 
-Generator: `celtic-plait-soundhole.js`
+Generator: `plait_soundhole.js`
 
 Companion (odd crossings, and any coprime leads × bights):
-[`celtic-knot-coprime-soundhole.md`](celtic-knot-coprime-soundhole.md)
+[`knot_soundhole.md`](knot_soundhole.md)
 
-Produces a cut-ready SVG of a circular Celtic plait sized for an instrument
+Produces a cut-ready SVG of a circular plait sized for an instrument
 sound hole. Two identical sinusoidal ribbons weave around a ring; ribbon B is
 ribbon A rotated by `pi/N`.
 
@@ -47,11 +47,11 @@ even number. **For odd crossings use the companion generator.**
 ## Usage
 
 ```bash
-node celtic-plait-soundhole.js                                      # report only, writes nothing
-OUT=plait-10crossings-radius30mm.svg node celtic-plait-soundhole.js # N=5, the default
-N=4 OUT=plait-8crossings-radius30mm.svg node celtic-plait-soundhole.js
-R_HOLE=50 AMP=10.8 HW=3.3 BITE=2.5 OUT=plait-10crossings-radius50mm.svg node celtic-plait-soundhole.js
-DIAG=1 node celtic-plait-soundhole.js                               # per-region dump
+node plait_soundhole.js                                      # report only, writes nothing
+OUT=10-crossing_plait_radius30mm.svg node plait_soundhole.js # N=5, the default
+N=4 OUT=8-crossing_plait_radius30mm.svg node plait_soundhole.js
+R_HOLE=50 AMP=10.8 HW=3.3 BITE=2.5 OUT=10-crossing_plait_radius50mm.svg node plait_soundhole.js
+DIAG=1 node plait_soundhole.js                               # per-region dump
 ```
 
 | Var | Default | Meaning |
@@ -179,5 +179,5 @@ re-derive rather than trust it.
 
 ## Generated files
 
-- `celtic-plait-soundhole-10crossings-radius30mm.svg` — 10 crossings (N=5, default)
-- `celtic-plait-soundhole-8crossings-radius30mm.svg` — 8 crossings (N=4)
+- `10-crossing_plait_radius30mm.svg` — 10 crossings (N=5, default)
+- `8-crossing_plait_radius30mm.svg` — 8 crossings (N=4)

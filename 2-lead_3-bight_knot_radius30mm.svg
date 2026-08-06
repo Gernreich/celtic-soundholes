@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg"
      width="61mm" height="61mm" viewBox="-30.5 -30.5 61 61">
-  <title>Celtic trefoil sound hole - 30 mm radius</title>
+  <title>2-lead 3-bight knot sound hole - 30 mm radius</title>
   <!-- 1 user unit = 1 mm, so this prints/cuts at true size.
        Sound hole radius 30mm (60mm diameter).
-       trefoil: ONE self-crossing ribbon 4mm wide, 3 crossings.
+       2-lead 3-bight knot: ONE self-crossing ribbon 4mm wide, 3 crossings.
        Single strand r = 22.00 + 7.5*cos(3*theta/2), theta in [0,4pi),
        winding twice before it closes.
        The ribbon overruns the rim by 1.5mm at 3 points, fusing it
@@ -27,6 +27,6 @@
   <!-- ENGRAVE (optional): over/under interlace hints -->
   <g id="engrave" fill="none" stroke="#0000ff" stroke-width="0.1"
      stroke-linecap="round">
-    <path d="M6.983 -20.876L7.791 -20.003L8.538 -19.083L9.226 -18.111L9.86 -17.08M-21.573 4.4L-21.222 3.263L-20.799 2.156L-20.302 1.073L-19.727 0.009M14.592 16.484L13.432 16.748L12.262 16.935L11.076 17.045L9.867 17.079M12.116 -20.968L12.822 -19.915L13.472 -18.817L14.062 -17.68L14.593 -16.496M-24.214 -0.014L-23.655 -1.152L-23.029 -2.264L-22.339 -3.342L-21.58 -4.394M12.107 20.976L10.824 21.062L9.548 21.076L8.269 21.017L6.979 20.885"/>
+    <path d="M14.592 16.484L13.432 16.748L12.262 16.935L11.076 17.045L9.867 17.079M6.983 -20.876L7.791 -20.003L8.538 -19.083L9.226 -18.111L9.86 -17.08M-21.573 4.4L-21.222 3.263L-20.799 2.156L-20.302 1.073L-19.727 0.009M12.107 20.976L10.824 21.062L9.548 21.076L8.269 21.017L6.979 20.885M12.116 -20.968L12.822 -19.915L13.472 -18.817L14.062 -17.68L14.593 -16.496M-24.214 -0.014L-23.655 -1.152L-23.029 -2.264L-22.339 -3.342L-21.58 -4.394"/>
   </g>
 </svg>

@@ -1,17 +1,17 @@
-# Celtic Sound Holes
+# Knotwork Sound Holes
 
 Two Node generators that produce cut-ready SVG rosettes for an instrument sound hole.
 Output is millimetre-true — `1 user unit = 1 mm`, with a physical `width`/`height` — so it
 prints and cuts at real size.
 
-**[Read the writeups](https://gernreich.github.io/celtic-soundholes/)** · plait:
-[`celtic-plait-soundhole.md`](celtic-plait-soundhole.md) · knot:
-[`celtic-knot-coprime-soundhole.md`](celtic-knot-coprime-soundhole.md)
+**[Read the writeups](https://gernreich.github.io/-soundholes/)** · plait:
+[`plait_soundhole.md`](plait_soundhole.md) · knot:
+[`knot_soundhole.md`](knot_soundhole.md)
 
 ## Which generator?
 
 They differ in whether the ribbon is one strand or two, and neither can produce the
-other's shapes. Both are Turk's heads — `L` leads by `B` bights — and `gcd(L, B)` is
+other's shapes. Both are lead-and-bight knots — `L` leads by `B` bights — and `gcd(L, B)` is
 the number of separate pieces you end up with. An alternating over/under interlace has to close up when you return to
 your start, and that decides the curve.
 
@@ -20,7 +20,7 @@ your start, and that decides the curve.
 | Look | two-ribbon plait, braided | one continuous self-crossing strand |
 | Sized by | `N` lobes → `2N` crossings | `LEADS` × `BIGHTS`, coprime |
 | Named forms | 6, 8, **10**, 12 crossings | **trefoil**, cinquefoil, septafoil, any coprime pair |
-| Script | `celtic-plait-soundhole.js` | `celtic-knot-coprime-soundhole.js` |
+| Script | `plait_soundhole.js` | `knot_soundhole.js` |
 | Open area at radius 30mm | 52.4% (default `N = 5`) | 63.3% at 2 × 3, 48.2% at 3 × 5 |
 | Rim anchors | `2N` | `BIGHTS` |
 
@@ -32,9 +32,9 @@ is refused with an error.
 ## Quick start
 
 ```
-node celtic-plait-soundhole.js                          # report only, writes nothing
-OUT=plait-10crossings-radius30mm.svg node celtic-plait-soundhole.js  # 10-crossing plait, 60mm hole
-LEADS=2 BIGHTS=5 OUT=cinquefoil-radius30mm.svg node celtic-knot-coprime-soundhole.js
+node plait_soundhole.js                          # report only, writes nothing
+OUT=10-crossing_plait_radius30mm.svg node plait_soundhole.js  # 10-crossing plait, 60mm hole
+LEADS=2 BIGHTS=5 OUT=cinquefoil-radius30mm.svg node knot_soundhole.js
 ```
 
 **Nothing is written unless you set `OUT`.** A bare run prints the validation report and
@@ -59,9 +59,9 @@ Delete the `preview` layer before sending to a cutter. The designs are very open
 
 | | |
 |---|---|
-| `celtic-plait-soundhole.js` · `.md` | even-crossing plait generator and its writeup |
-| `celtic-knot-coprime-soundhole.js` · `.md` | single-strand knot generator, any coprime leads × bights |
-| `celtic-*-radius30mm.svg` | samples at `R_HOLE = 30`, a 60 mm hole |
+| `plait_soundhole.js` · `.md` | even-crossing plait generator and its writeup |
+| `knot_soundhole.js` · `.md` | single-strand knot generator, any coprime leads × bights |
+| `-*-radius30mm.svg` | samples at `R_HOLE = 30`, a 60 mm hole |
 | `index.md` · `*.html` | the published pages; the markdown is the source |
 
 Requires Node. No dependencies. Released under [CC0 1.0](LICENSE).

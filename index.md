@@ -1,4 +1,4 @@
-# Celtic Sound Holes
+# Knotwork Sound Holes
 
 Two generators that produce cut-ready SVG rosettes for an instrument sound hole,
 millimetre-true at `1 user unit = 1 mm`. Both emit a validation report on every run,
@@ -8,25 +8,25 @@ They differ in one thing, and it is not cosmetic: **whether the ribbon is one st
 or two.** An alternating over/under interlace has to close up when you return to your
 start, and that constraint decides which curve you need.
 
-| | [Two ribbons](celtic-plait-soundhole.md) | [One strand](celtic-knot-coprime-soundhole.md) |
+| | [Two ribbons](plait_soundhole.md) | [One strand](knot_soundhole.md) |
 |---|---|---|
 | Look | plait, braided | one continuous self-crossing strand |
 | Sized by | `N` lobes → `2N` crossings | `LEADS` × `BIGHTS` |
 | Named forms | 6, 8, **10**, 12 crossings | **trefoil**, cinquefoil, septafoil, and any coprime pair |
-| Generator | `celtic-plait-soundhole.js` | `celtic-knot-coprime-soundhole.js` |
+| Generator | `plait_soundhole.js` | `knot_soundhole.js` |
 | Open area at radius 30mm | 52.4% at the default `N = 5` | 63.3% at 2 × 3, 48.2% at 3 × 5 |
 | Rim anchors | `2N` | `BIGHTS` |
 
 ## Why there are two: leads, bights, and one rule
 
-Both are **Turk's heads**: `L` leads by `B` bights, where the strand travels round `L`
+Both are **lead-and-bight knots**: `L` leads by `B` bights, where the strand travels round `L`
 times and shows `B` scallops at the rim. Everything follows from one fact —
 `gcd(L, B)` is the number of separate closed pieces you end up with.
 
 | | leads | bights | `gcd` | strands | it is a… |
 |---|---|---|---|---|---|
-| [plait](celtic-plait-soundhole.md) | 2 | `2N`, even | 2 | 2 | **link** |
-| [one strand](celtic-knot-coprime-soundhole.md) | any `L` | any `B` coprime to `L` | 1 | 1 | **knot** |
+| [plait](plait_soundhole.md) | 2 | `2N`, even | 2 | 2 | **link** |
+| [one strand](knot_soundhole.md) | any `L` | any `B` coprime to `L` | 1 | 1 | **knot** |
 
 A knot is a *single* closed curve. Two woven ribbons are two curves, so the plait has
 never been a knot in the strict sense, whatever the decorative tradition calls it — and
@@ -44,9 +44,9 @@ part, and each writeup derives it independently.
 
 ## Which one do I want?
 
-- **"A woven rosette, braided look, 12 crossings"** → [the plait](celtic-plait-soundhole.md).
-- **"A trefoil sound hole"**, or one continuous ribbon you can trace with a finger → [the coprime generator](celtic-knot-coprime-soundhole.md) at `LEADS=2 BIGHTS=3`.
-- **"A 3-lead 5-bight Turk's head"**, or anything named in leads and bights → [the coprime generator](celtic-knot-coprime-soundhole.md).
+- **"A woven rosette, braided look, 12 crossings"** → [the plait](plait_soundhole.md).
+- **"A trefoil sound hole"**, or one continuous ribbon you can trace with a finger → [the coprime generator](knot_soundhole.md) at `LEADS=2 BIGHTS=3`.
+- **"A 3-lead 5-bight lead-and-bight knot"**, or anything named in leads and bights → [the coprime generator](knot_soundhole.md).
 - **"N crossings"** where you named the number → an even count is the plait; an odd one is the coprime generator at 2 leads.
 
 ## Before you cut
@@ -74,13 +74,13 @@ Each writeup has the full table.
 Output at `R_HOLE = 30` (a 60 mm hole), committed so you can look before you run anything.
 The geometry is cut-ready; the layers still need the two minutes described above.
 
-- [`celtic-plait-soundhole-10crossings-radius30mm.svg`](celtic-plait-soundhole-10crossings-radius30mm.svg) — 10 crossings, `N = 5`
-- [`celtic-plait-soundhole-8crossings-radius30mm.svg`](celtic-plait-soundhole-8crossings-radius30mm.svg) — 8 crossings, `N = 4`
-- [`celtic-trefoil-soundhole-radius30mm.svg`](celtic-trefoil-soundhole-radius30mm.svg) — `Q = 3`
-- [`celtic-cinquefoil-soundhole-radius30mm.svg`](celtic-cinquefoil-soundhole-radius30mm.svg) — `Q = 5`
-- [`celtic-septafoil-soundhole-radius30mm.svg`](celtic-septafoil-soundhole-radius30mm.svg) — `Q = 7`
-- [`celtic-turk-3x4-soundhole-radius30mm.svg`](celtic-turk-3x4-soundhole-radius30mm.svg) — 3 leads × 4 bights
-- [`celtic-turk-3x5-soundhole-radius30mm.svg`](celtic-turk-3x5-soundhole-radius30mm.svg) — 3 leads × 5 bights
+- [`10-crossing_plait_radius30mm.svg`](10-crossing_plait_radius30mm.svg) — 10 crossings, `N = 5`
+- [`8-crossing_plait_radius30mm.svg`](8-crossing_plait_radius30mm.svg) — 8 crossings, `N = 4`
+- [`2-lead_3-bight_knot_radius30mm.svg`](2-lead_3-bight_knot_radius30mm.svg) — `Q = 3`
+- [`2-lead_5-bight_knot_radius30mm.svg`](2-lead_5-bight_knot_radius30mm.svg) — `Q = 5`
+- [`2-lead_7-bight_knot_radius30mm.svg`](2-lead_7-bight_knot_radius30mm.svg) — `Q = 7`
+- [`3-lead_4-bight_knot_radius30mm.svg`](3-lead_4-bight_knot_radius30mm.svg) — 3 leads × 4 bights
+- [`3-lead_5-bight_knot_radius30mm.svg`](3-lead_5-bight_knot_radius30mm.svg) — 3 leads × 5 bights
 
 Requires Node. Neither generator writes anything unless you set `OUT`.
 

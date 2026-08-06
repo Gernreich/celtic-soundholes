@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg"
      width="61mm" height="61mm" viewBox="-30.5 -30.5 61 61">
-  <title>Celtic 3-lead x 4-bight Turk's head sound hole - 30 mm radius</title>
+  <title>3-lead 4-bight knot sound hole - 30 mm radius</title>
   <!-- 1 user unit = 1 mm, so this prints/cuts at true size.
        Sound hole radius 30mm (60mm diameter).
-       3-lead x 4-bight Turk's head: ONE self-crossing ribbon 4mm wide, 8 crossings.
+       3-lead 4-bight knot: ONE self-crossing ribbon 4mm wide, 8 crossings.
        Single strand r = 22.00 + 7.5*cos(4*theta/3), theta in [0,6pi),
        winding twice before it closes.
        The ribbon overruns the rim by 1.5mm at 4 points, fusing it
