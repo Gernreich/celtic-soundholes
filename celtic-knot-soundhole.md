@@ -1,6 +1,7 @@
 # Celtic Knot Sound Hole — odd crossings (single self-crossing strand)
 
 Generator: `celtic-knot-soundhole.js`
+
 Companion (even crossings): [`celtic-plait-soundhole.md`](celtic-plait-soundhole.md)
 
 Produces a cut-ready SVG of a trefoil / cinquefoil / septafoil rosette sized
