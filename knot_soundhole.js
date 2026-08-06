@@ -40,7 +40,7 @@
 // USAGE   (nothing is written unless OUT is set)
 //   node knot_soundhole.js                    report only
 //   LEADS=3 BIGHTS=5 OUT=3-lead_5-bight_knot_radius30mm.svg node knot_soundhole.js
-//   LEADS=2 BIGHTS=3 node knot_soundhole.js    the trefoil again
+//   LEADS=2 BIGHTS=3 node knot_soundhole.js    2 leads: the classic trefoil
 //   SELFTEST=1 node ...     check the spatial hash, exit
 //   DIAG=1 node ...         per-region dump
 //

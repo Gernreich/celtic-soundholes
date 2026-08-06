@@ -29,7 +29,7 @@ with. Ask for 3 leads and 6 bights and you get three loops lying alongside each
 other, with no single ribbon to trace and no interlace to alternate over. The
 generator refuses, and lists the coprime bight counts near the leads you asked for.
 
-The companions are both the `L = 2` row of the same table:
+The plait and the generator this replaced are both the `L = 2` row of one table:
 
 | generator | leads | bights | `gcd` | strands |
 |---|---|---|---|---|
@@ -52,7 +52,7 @@ That is correct; adding a full circle drops the rosette on the floor.
 node knot_soundhole.js                          # report only, writes nothing
 LEADS=3 BIGHTS=5 OUT=3-lead_5-bight_knot_radius30mm.svg node knot_soundhole.js
 LEADS=3 BIGHTS=4 OUT=3-lead_4-bight_knot_radius30mm.svg node knot_soundhole.js
-LEADS=2 BIGHTS=3 node knot_soundhole.js         # the trefoil again
+LEADS=2 BIGHTS=3 node knot_soundhole.js         # 2 leads: the classic trefoil
 SELFTEST=1 node knot_soundhole.js               # check the hash, exit
 DIAG=1 node knot_soundhole.js                   # per-region dump
 ```
@@ -144,7 +144,7 @@ region counts on every run and prints whether they match.**
 ## The tested envelope, and where it stops
 
 Verified against every invariant at `(2,3) (2,5) (2,9) (3,2) (3,4) (3,5)` and
-`(4,3)`. `(2,3)` reproduced the retired `knot_soundhole.js` exactly — identical
+`(4,3)`. `(2,3)` reproduced the retired two-lead generator exactly — identical
 validation block, areas and sliver count, only the report wording differs. That
 equivalence is the evidence the generalisation is faithful rather than plausible.
 
@@ -252,10 +252,19 @@ bit-identical floats. Any nonzero value at all means the ring search missed a sa
 
 - Polylines only — no arc/bezier fitting, no kerf compensation, no DXF.
 - `MIN_FEATURE` guards minimum **air** width, not material width.
-- The envelope above is a tested range, not a proof. Nothing here says `(4,7)` or
-  `(5,7)` fails, only that they have not been checked; run them and read the counts.
+- The envelope above is a tested range, not a proof. `(4,7)` has since been run and
+  passes every invariant — 29 regions, 21 crossings, 42 engrave lines, 7 anchors —
+  but see the warning below about what that does *not* tell you.
 - Nothing here has been validated against real cut stock, and the narrowest cut
-  falls fast as leads rise — 5.51mm at `2 × 3`, 0.66mm at `4 × 3`.
+  falls fast as leads rise — 5.51mm at `2 × 3`, 0.66mm at `4 × 3`, **0.56mm at
+  `4 × 7`**.
+
+**Passing the invariants is not the same as being cuttable.** `(4,7)` satisfies both
+counts and still comes out finer than `4 × 3`, which is flagged above as delicate.
+The region and crossing counts tell you the *topology* survived; they say nothing
+about whether a laser can make it. Read `tightest region inradius` from the report
+as well — double it for the narrowest cut, and compare that against your kerf before
+believing the OK lines.
 
 ## Generated files
 
