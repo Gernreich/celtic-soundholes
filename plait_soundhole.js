@@ -54,9 +54,8 @@
 //   refuses geometry that cannot close and suggests values.
 //
 // OUTPUT LAYERS
-//   preview   material fill, even-odd. DELETE before sending to a cutter.
 //   cut       every closed path is waste that drops out.
-//   engrave   optional; the over/under interlace hints.
+//   engrave   over/under interlace hints and rim continuations. NOT cuts.
 //
 // THE VALIDATION REPORT -- read it, it is the point
 //   closed contours vs flood regions   must match, else loops were lost
@@ -458,8 +457,6 @@ const PAD  = 0.5;                        // breathing room for the 0.1mm stroke
 const SIZE = f2(2 * (R_HOLE + PAD));
 const ORG  = f2(-(R_HOLE + PAD));
 const R    = f2(R_HOLE);
-// full rim circle, used only as the even-odd outer boundary of the preview
-const rimCircle = `M${R} 0A${R} ${R} 0 1 0 -${R} 0A${R} ${R} 0 1 0 ${R} 0Z`;
 const svg = `<svg xmlns="http://www.w3.org/2000/svg"
      width="${SIZE}mm" height="${SIZE}mm" viewBox="${ORG} ${ORG} ${SIZE} ${SIZE}">
   <title>${2 * N}-crossing plait sound hole - ${R_HOLE} mm radius</title>
@@ -473,11 +470,6 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg"
        ${(2 * Math.sqrt(openArea / Math.PI)).toFixed(1)}mm diameter).
        Narrowest cut region: ${(2 * Math.min(...inrad)).toFixed(2)}mm across. -->
 
-  <!-- PREVIEW ONLY - delete this group before sending to the cutter -->
-  <g id="preview">
-    <path fill="#d8c9a8" fill-rule="evenodd"
-          d="${rimCircle}${cutD}"/>
-  </g>
 
   <!-- CUT: every closed path here is waste that drops out -->
   <g id="cut" fill="none" stroke="#ff0000" stroke-width="0.1">

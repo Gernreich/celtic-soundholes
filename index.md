@@ -63,11 +63,10 @@ variants, 52% and 63% at the two defaults. Three anchors are enough to fix a tre
 plane, but that is a kinematic statement, not a stiffness one. Nothing here has been
 validated against real cut stock.
 
-**Two layers are not cuts.** Delete the `preview` layer before sending anything to a
-cutter, and give the blue `#0000ff` `engrave` lines a score or engrave operation rather
-than a cut — they run across the ribbon at every crossing, so cutting them takes the
-rosette apart. Only the red `#ff0000` `cut` layer is meant to go through the material.
-Each writeup has the full table.
+**One layer is not a cut.** Give the blue `#0000ff` `engrave` lines a score or engrave
+operation rather than a cut — they run across the ribbon at every crossing, so cutting
+them takes the rosette apart. Only the red `#ff0000` `cut` layer is meant to go through
+the material. Each writeup has the full table.
 
 ## Sample files
 

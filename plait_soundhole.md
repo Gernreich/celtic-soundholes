@@ -70,9 +70,9 @@ DIAG=1 node plait_soundhole.js                               # per-region dump
 | `DIAG` | unset | verbose per-region report |
 
 **The file that lands is not ready for the laser yet.** Its geometry is, but it
-carries three layers and only one of them is a cut. See
-[Output layers](#output-layers) before you send it: delete `preview`, and give the
-blue `engrave` lines anything other than a cut.
+carries two layers and only one of them is a cut. See
+[Output layers](#output-layers) before you send it: the blue `engrave` lines must be
+given anything other than a cut.
 
 `AMP` and `HW` do **not** auto-scale with `R_HOLE`. Roughly
 `AMP ≈ 0.217*R_HOLE` and `HW ≈ 0.067*R_HOLE` reproduces these proportions;
@@ -104,13 +104,12 @@ takes its share.
 
 ## Output layers
 
-Three groups, told apart by **stroke colour** as well as by `id`. Colour is the one that
+Two groups, told apart by **stroke colour** as well as by `id`. Colour is the one that
 survives the trip: many SVG importers flatten groups, and most laser software assigns
 operations by colour rather than by group name.
 
 | Group | Stroke | Purpose |
 |---|---|---|
-| `preview` | none — filled `#d8c9a8` | material fill, even-odd. **Delete before sending to a cutter.** |
 | `cut` | **red `#ff0000`** | every closed path is waste that drops out |
 | `engrave` | **blue `#0000ff`** | over/under interlace hints (`4N` lines — two per crossing) **and** rim continuations |
 

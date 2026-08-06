@@ -52,8 +52,10 @@ soundboard. **There is no continuous rim circle in the cut layer** — the outer
 is a series of arcs between anchors. That is correct; adding a full circle drops the
 rosette on the floor.
 
-Delete the `preview` layer before sending to a cutter. The designs are very open (52% to
-63% of the disc removed) and nothing here has been validated against real cut stock.
+The files carry two layers: red `#ff0000` cuts, blue `#0000ff` engraves. Give the blue
+lines a score or engrave operation — cutting them severs the ribbon. The designs are
+very open (52% to 63% of the disc removed) and nothing here has been validated against
+real cut stock.
 
 ## Files
 

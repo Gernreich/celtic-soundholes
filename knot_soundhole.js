@@ -74,7 +74,7 @@
 //   region count matches L*B+1 and whose crossing count matches B*(L-1).
 //   Both are printed and checked.
 //
-// OUTPUT LAYERS   preview (delete before cutting) / cut / engrave
+// OUTPUT LAYERS   cut / engrave
 //   Only the red #ff0000 cut layer goes through the material. The blue
 //   #0000ff engrave lines cross the ribbon; cutting them severs it.
 //
@@ -599,7 +599,6 @@ const PAD  = 0.5;
 const SIZE = f2(2 * (R_HOLE + PAD));
 const ORG  = f2(-(R_HOLE + PAD));
 const R    = f2(R_HOLE);
-const rimCircle = `M${R} 0A${R} ${R} 0 1 0 -${R} 0A${R} ${R} 0 1 0 ${R} 0Z`;
 const svg = `<svg xmlns="http://www.w3.org/2000/svg"
      width="${SIZE}mm" height="${SIZE}mm" viewBox="${ORG} ${ORG} ${SIZE} ${SIZE}">
   <title>${NAME} sound hole - ${R_HOLE} mm radius</title>
@@ -615,11 +614,6 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg"
        ${(2 * Math.sqrt(openArea / Math.PI)).toFixed(1)}mm diameter).
        Narrowest cut region: ${(2 * Math.min(...inrad)).toFixed(2)}mm across. -->
 
-  <!-- PREVIEW ONLY - delete this group before sending to the cutter -->
-  <g id="preview">
-    <path fill="#d8c9a8" fill-rule="evenodd"
-          d="${rimCircle}${cutD}"/>
-  </g>
 
   <!-- CUT: every closed path here is waste that drops out -->
   <g id="cut" fill="none" stroke="#ff0000" stroke-width="0.1">

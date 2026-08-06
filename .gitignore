@@ -1,2 +1,5 @@
 .DS_Store
 *.tmp
+
+# Inkscape "save a copy" / autosave artifacts
+*.[0-9][0-9][0-9][0-9]_[0-9][0-9]_[0-9][0-9]_*.svg
