@@ -453,7 +453,10 @@ const cutD = simp.map(dOf).join('');
 const engD = engrave.concat(rimLines).map(dOpen).join('');
 
 const OUT = process.env.OUT;
-const PAD  = 0.5;                        // breathing room for the 0.1mm stroke
+// The canvas has to hold the rim continuations, which follow the ribbon out to
+// R_HOLE + BITE -- past the rim, where the cut layer stops. Sizing this to the cut
+// alone clipped 1mm off every file. Half a millimetre on top covers the 0.1mm stroke.
+const PAD  = BITE + 0.5;
 const SIZE = f2(2 * (R_HOLE + PAD));
 const ORG  = f2(-(R_HOLE + PAD));
 const R    = f2(R_HOLE);
