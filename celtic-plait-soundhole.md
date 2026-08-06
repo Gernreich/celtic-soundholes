@@ -65,6 +65,11 @@ DIAG=1 node celtic-plait-soundhole.js                               # per-region
 | `OUT` | unset | output path — **nothing is written unless set** |
 | `DIAG` | unset | verbose per-region report |
 
+**The file that lands is not ready for the laser yet.** Its geometry is, but it
+carries three layers and only one of them is a cut. See
+[Output layers](#output-layers) before you send it: delete `preview`, and give the
+blue `engrave` lines anything other than a cut.
+
 `AMP` and `HW` do **not** auto-scale with `R_HOLE`. Roughly
 `AMP ≈ 0.217*R_HOLE` and `HW ≈ 0.067*R_HOLE` reproduces these proportions;
 a guard refuses geometry that cannot close and suggests values.

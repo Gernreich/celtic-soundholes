@@ -58,9 +58,10 @@ soundboard. **There is no continuous rim circle in the cut layer** — the outer
 is a series of arcs between anchors. That is correct. Do not "fix" it by adding a full
 circle, or the rosette falls on the floor.
 
-Both designs are very open — 52% to 63% of the disc removed. Three anchors are enough to
-fix a trefoil's plane, but that is a kinematic statement, not a stiffness one. Nothing
-here has been validated against real cut stock.
+Both designs are very open — 49% to 63% of the disc removed across the documented
+variants, 52% and 63% at the two defaults. Three anchors are enough to fix a trefoil's
+plane, but that is a kinematic statement, not a stiffness one. Nothing here has been
+validated against real cut stock.
 
 **Two layers are not cuts.** Delete the `preview` layer before sending anything to a
 cutter, and give the blue `#0000ff` `engrave` lines a score or engrave operation rather
@@ -70,8 +71,8 @@ Each writeup has the full table.
 
 ## Sample files
 
-Cut-ready output at `R_HOLE = 30` (a 60 mm hole), committed so you can look before you run
-anything:
+Output at `R_HOLE = 30` (a 60 mm hole), committed so you can look before you run anything.
+The geometry is cut-ready; the layers still need the two minutes described above.
 
 - [`celtic-plait-soundhole-10crossings-radius30mm.svg`](celtic-plait-soundhole-10crossings-radius30mm.svg) — 10 crossings, `N = 5`
 - [`celtic-plait-soundhole-8crossings-radius30mm.svg`](celtic-plait-soundhole-8crossings-radius30mm.svg) — 8 crossings, `N = 4`

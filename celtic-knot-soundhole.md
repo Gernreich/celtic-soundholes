@@ -74,6 +74,11 @@ DIAG=1 node celtic-knot-soundhole.js                            # per-region dum
 | `SELFTEST` | unset | verify spatial hash against brute force, then exit |
 | `DIAG` | unset | verbose per-region report |
 
+**The file that lands is not ready for the laser yet.** Its geometry is, but it
+carries three layers and only one of them is a cut. See
+[Output layers](#output-layers) before you send it: delete `preview`, and give the
+blue `engrave` lines anything other than a cut.
+
 `AMP` defaults to **7.5 here vs 6.5 in the companion** — deliberate, not
 drift. These knots are far sparser than a plait and want a wider radial swing
 to fill the ring. Neither `AMP` nor `HW` auto-scales with `R_HOLE`; roughly
@@ -88,7 +93,9 @@ R_CENTRE = R_HOLE + BITE - 2*(AMP + HW)
 The generator **exits 1** if that drops below 1mm. So shrinking `R_HOLE` while
 leaving `AMP`/`HW` at their defaults does not give you a tighter knot, it
 refuses to run — at defaults it aborts below `R_HOLE ≈ 18.5`. Scale both with
-the rules of thumb above and `R_CENTRE ≈ 0.37*R_HOLE` regardless of size.
+the rules of thumb above and `R_CENTRE ≈ 0.37*R_HOLE + BITE`. The `BITE` term
+does not scale, so the ratio is not constant: **0.42** at the 30mm default,
+0.40 at 50mm, 0.38 at 100mm, approaching 0.37 only well above that.
 
 ### Sampling and the error floor
 
