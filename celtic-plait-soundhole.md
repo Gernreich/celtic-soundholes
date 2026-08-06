@@ -78,7 +78,9 @@ a guard refuses geometry that cannot close and suggests values.
 | **5** | **10** | **21** | **52.4%** | **43.45mm** | **3.10mm** | **0** |
 | 6 | 12 | 25 | 48.9% | 41.96mm | 2.70mm | 0 |
 
-Regions are always `2N + 1` (one centre star + `N` lens + `N` rim openings).
+Regions are always `4N + 1` — one centre star, plus a lens and a rim opening for
+each of the `2N` crossings. (The count keys on crossings, not lobes: the
+companion's rule is `2Q + 1` for its `Q` crossings, which is the same rule.)
 Fewer crossings = bolder, more open weave. More crossings = finer and more
 lace-like, with less open area.
 
@@ -88,7 +90,7 @@ lace-like, with less open area.
 |---|---|
 | `preview` | material fill, even-odd. **Delete before sending to a cutter.** |
 | `cut` | every closed path is waste that drops out |
-| `engrave` | optional over/under interlace hints (`2N` polylines) |
+| `engrave` | optional over/under interlace hints (`4N` polylines — two per crossing) |
 
 ## How it works
 
