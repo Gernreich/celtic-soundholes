@@ -2,8 +2,12 @@
 
 Generator: `celtic-knot-coprime-soundhole.js`
 
-Companions: [`celtic-knot-soundhole.md`](celtic-knot-soundhole.md) (2 leads, odd
-bights) · [`celtic-plait-soundhole.md`](celtic-plait-soundhole.md) (two ribbons)
+Companion: [`celtic-plait-soundhole.md`](celtic-plait-soundhole.md) (two ribbons,
+even crossings)
+
+Replaces `celtic-knot-soundhole.js`, which handled two leads only. Set `LEADS=2` and
+this produces that generator's output exactly — verified file by file, cut layer
+byte-identical and the same set of engrave subpaths.
 
 Produces a cut-ready SVG rosette for an instrument sound hole, sized in the terms a
 knot-tyer already uses: **L leads by B bights**. The strand travels round `L` times
@@ -14,8 +18,8 @@ before it closes, and shows `B` scallops at the rim. Millimetre-true output,
 r(theta) = R_MID + AMP*cos(B*theta/L),   theta in [0, 2*pi*L)
 ```
 
-This generalises the companion. Set `LEADS=2` and it *is* the companion — same curve,
-same output, and `BIGHTS` odd is exactly the companion's rule that `Q` must be odd.
+It generalises the two-lead generator this replaced: `BIGHTS` odd is exactly that
+one's rule that `Q` must be odd, because odd `B` is what makes `gcd(2, B) = 1`.
 
 ## Leads and bights, and why they must be coprime
 
@@ -29,7 +33,7 @@ The companions are both the `L = 2` row of the same table:
 
 | generator | leads | bights | `gcd` | strands |
 |---|---|---|---|---|
-| [knot](celtic-knot-soundhole.md) | 2 | `Q`, odd | 1 | 1 — a knot |
+| the retired knot generator | 2 | `Q`, odd | 1 | 1 — a knot |
 | [plait](celtic-plait-soundhole.md) | 2 | `2N`, even | 2 | 2 — a plait |
 | this one | any `L` | any `B` coprime to `L` | 1 | 1 |
 
@@ -77,6 +81,37 @@ Neither `AMP` nor `HW` auto-scales with `R_HOLE`; roughly `AMP ≈ 0.25*R_HOLE` 
 to reduce both as `LEADS` goes up — though see the envelope below, because that is
 not enough to rescue the crowded cases.
 
+`Q` is not a setting. It was the bight count of the retired two-lead generator, and
+because ignoring it would quietly hand back the defaults instead — `Q=5` giving a
+3 × 5, not a cinquefoil — it is refused with the `LEADS=2 BIGHTS=5` form to type
+instead.
+
+### The centre opening is derived, and it can abort the run
+
+```
+R_CENTRE = R_HOLE + BITE - 2*(AMP + HW)
+```
+
+The generator **exits 1** if that drops below 1mm. So shrinking `R_HOLE` while
+leaving `AMP`/`HW` at their defaults does not give you a tighter knot, it refuses to
+run — at defaults it aborts below `R_HOLE ≈ 18.5`. Scale both with the rules of
+thumb above and `R_CENTRE ≈ 0.37*R_HOLE + BITE`. The `BITE` term does not scale, so
+the ratio is not constant: **0.42** at the 30mm default, 0.40 at 50mm, 0.38 at
+100mm, approaching 0.37 only well above that.
+
+This one depends on `AMP`, `HW`, `BITE` and `R_HOLE` alone — leads and bights do not
+enter it.
+
+### Sampling and the error floor
+
+The centreline is sampled at a fixed `M = 20000` points — not exposed as a variable
+— and distance is measured to those samples, so it **overestimates** by up to half
+the sample spacing. Those `M` points now cover `L` turns rather than two, so the
+spacing grows with leads as well as with bights and the `AMP*B/L` radial derivative.
+It stays an order of magnitude under the 0.25mm `MIN_FEATURE` floor across the
+tested range, but the margin narrows as either number rises — and long before
+sampling becomes the limit, `MIN_FEATURE` does. See the envelope below.
+
 ## Variants at R_HOLE=30 (60mm hole)
 
 | `L` × `B` | Regions | Crossings | Anchors | Engrave | Open area | Equiv. plain hole | Narrowest cut |
@@ -109,7 +144,7 @@ region counts on every run and prints whether they match.**
 ## The tested envelope, and where it stops
 
 Verified against every invariant at `(2,3) (2,5) (2,9) (3,2) (3,4) (3,5)` and
-`(4,3)`. `(2,3)` reproduces `celtic-knot-soundhole.js` exactly — identical
+`(4,3)`. `(2,3)` reproduced the retired `celtic-knot-soundhole.js` exactly — identical
 validation block, areas and sliver count, only the report wording differs. That
 equivalence is the evidence the generalisation is faithful rather than plausible.
 
@@ -167,8 +202,8 @@ saying so at any grid.
 
 ## How the over/under is decided
 
-The companion can use a closed form — "over if `m` is even" — because with two leads
-the single other pass sits exactly half the sample array away. With `L` leads a
+The retired two-lead generator could use a closed form — "over if `m` is even" —
+because with two leads the single other pass sits exactly half the sample array away. With `L` leads a
 point has `L-1` other passes, at offsets `k*M/L`, so that shortcut is gone.
 
 Instead the crossing events are found numerically, ordered along the strand and
@@ -178,9 +213,40 @@ the engrave layer is dropped and the report says so, rather than drawing a weave
 that lies about itself.
 
 Everything else — signed distance field, flood fill, sliver welding, marching
-squares, chaining, RDP, SVG emit — is carried over from the companion unchanged,
-including its spatial hash for distance. `SELFTEST=1` still checks that hash against
-brute force and must report exactly `0`.
+squares, chaining, RDP, SVG emit — is carried over unchanged, including the spatial
+hash for distance.
+
+## Run SELFTEST if you touch the distance code
+
+The expanding-ring stopping bound fails **silently** if wrong — it just returns
+distances that are too large, which reads as phantom extra "cut" area and quietly
+changes the shape without any validation line firing.
+
+```bash
+LEADS=3 BIGHTS=5 SELFTEST=1 node celtic-knot-coprime-soundhole.js
+```
+
+The code's pass gate is `< 1e-9`, but the error should be **exactly `0`**: both
+paths minimise the same expression over the same sample set, so they return
+bit-identical floats. Any nonzero value at all means the ring search missed a sample
+— do not read a small error as rounding. It is `0` at `(2,3)`, `(3,5)` and `(4,3)`.
+
+## Traps already sprung here
+
+- **The engrave seam, and why it is gone.** The retired two-lead generator had to
+  offset its engrave scan, because crossings sat at odd multiples of `M/(4Q)` and
+  starting exactly on one split its run, yielding `2Q+2` lines instead of `2Q`.
+  This generator starts its scan at the sample **furthest from any other pass**, so
+  no run can straddle the start. The hazard is designed out rather than offset
+  around.
+- **Chaining on rounded float coordinates.** Shared cell edges compute to slightly
+  different values from each neighbouring cell, so loops fragment. Contours are
+  keyed on integer grid-edge IDs instead.
+- **Plain RDP on a closed loop.** `pts[0] == pts[last]` makes the baseline
+  zero-length, every perpendicular distance zero, and the whole loop collapses to
+  two points. See `rdpClosed`.
+- The marching-squares table has a load-bearing invariant: segments are oriented
+  **inside-on-left**. Chaining depends on it, and so does the loose-island check.
 
 ## Caveats
 
@@ -195,3 +261,16 @@ brute force and must report exactly `0`.
 
 - `celtic-turk-3x4-soundhole-radius30mm.svg` — 3 leads × 4 bights
 - `celtic-turk-3x5-soundhole-radius30mm.svg` — 3 leads × 5 bights
+
+At two leads the shapes have folk names, and three of them ship — cut by the
+generator this one replaced, and byte-identical to what it produces now:
+
+| `LEADS` | `BIGHTS` | Knot | File |
+|---|---|---|---|
+| 2 | 3 | trefoil | `celtic-trefoil-soundhole-radius30mm.svg` |
+| 2 | 5 | cinquefoil | `celtic-cinquefoil-soundhole-radius30mm.svg` |
+| 2 | 7 | septafoil | `celtic-septafoil-soundhole-radius30mm.svg` |
+| 2 | 9 | nonafoil | not committed |
+
+The generator still uses those names in its report and in the SVG title when
+`LEADS=2`.

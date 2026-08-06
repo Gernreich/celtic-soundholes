@@ -1,70 +1,53 @@
 # Celtic Sound Holes
 
-Three generators that produce cut-ready SVG rosettes for an instrument sound hole,
-millimetre-true at `1 user unit = 1 mm`. Each emits a validation report on every run,
+Two generators that produce cut-ready SVG rosettes for an instrument sound hole,
+millimetre-true at `1 user unit = 1 mm`. Both emit a validation report on every run,
 and that report — not the picture — is the point of the tools.
 
-They differ in one thing, and it is not cosmetic: **how many times the ribbon crosses
-itself.** An alternating over/under interlace has to close up when you return to your
+They differ in one thing, and it is not cosmetic: **whether the ribbon is one strand
+or two.** An alternating over/under interlace has to close up when you return to your
 start, and that constraint decides which curve you need.
 
-| | [Even crossings](celtic-plait-soundhole.md) | [Odd crossings](celtic-knot-soundhole.md) |
+| | [Two ribbons](celtic-plait-soundhole.md) | [One strand](celtic-knot-coprime-soundhole.md) |
 |---|---|---|
-| Look | two-ribbon plait, braided | one continuous self-crossing strand |
-| Crossings | `2N` — always even, for any parameters | `Q` — any odd integer ≥ 3 |
-| Named forms | 6, 8, **10**, 12 crossings | **trefoil**, cinquefoil, septafoil, nonafoil |
-| Generator | `celtic-plait-soundhole.js` | `celtic-knot-soundhole.js` |
-| Open area at radius 30mm | 52.4% at the default `N = 5` | 63.3% at the default `Q = 3` |
-| Rim anchors | `2N` | `Q` |
+| Look | plait, braided | one continuous self-crossing strand |
+| Sized by | `N` lobes → `2N` crossings | `LEADS` × `BIGHTS` |
+| Named forms | 6, 8, **10**, 12 crossings | **trefoil**, cinquefoil, septafoil, and any coprime pair |
+| Generator | `celtic-plait-soundhole.js` | `celtic-knot-coprime-soundhole.js` |
+| Open area at radius 30mm | 52.4% at the default `N = 5` | 63.3% at 2 × 3, 48.2% at 3 × 5 |
+| Rim anchors | `2N` | `BIGHTS` |
 
-Neither generator can produce the other's crossing counts. In the plait each strand
-meets every crossing once, so the count is even by construction; a self-crossing strand
+## Why there are two: leads, bights, and one rule
+
+Both are **Turk's heads**: `L` leads by `B` bights, where the strand travels round `L`
+times and shows `B` scallops at the rim. Everything follows from one fact —
+`gcd(L, B)` is the number of separate closed pieces you end up with.
+
+| | leads | bights | `gcd` | strands | it is a… |
+|---|---|---|---|---|---|
+| [plait](celtic-plait-soundhole.md) | 2 | `2N`, even | 2 | 2 | **link** |
+| [one strand](celtic-knot-coprime-soundhole.md) | any `L` | any `B` coprime to `L` | 1 | 1 | **knot** |
+
+A knot is a *single* closed curve. Two woven ribbons are two curves, so the plait has
+never been a knot in the strict sense, whatever the decorative tradition calls it — and
+the coprime one is the design that earns the word.
+
+That is why neither can produce the other's shapes. In the plait each strand meets every
+crossing once, so its crossing count is even by construction; a self-crossing strand
 visits each crossing twice, which is why a 3-crossing trefoil is a valid alternating
-knot. Asking the knot generator for an even `Q` is refused with an error.
+knot. Ask the coprime generator for a non-coprime pair and it refuses, listing the
+bight counts that would work.
 
-## Why there are two, and why they are named that way
-
-Both generators trace the same family of curve — **two strands winding around a ring**
-with `n` crossings between them. What changes with `n` is how many separate pieces of
-ribbon you end up with, and that is `gcd(2, n)`:
-
-| `n` crossings | components | it is a… | generator |
-|---|---|---|---|
-| **even** | 2 — two closed ribbons woven together | **link** | plait |
-| **odd** | 1 — one strand crossing itself | **knot** | knot |
-
-### The same rule in a knot-tyer's terms
-
-All three are **Turk's heads**: `L` leads by `B` bights, where the strand goes round
-`L` times and shows `B` scallops at the rim. It closes into one piece iff
-`gcd(L, B) = 1` — which is the `gcd(2, n)` above, seen from further back.
-
-| generator | leads | bights | strands |
-|---|---|---|---|
-| [plait](celtic-plait-soundhole.md) | 2 | `2N`, even | 2 |
-| [knot](celtic-knot-soundhole.md) | 2 | `Q`, odd | 1 |
-| [coprime](celtic-knot-coprime-soundhole.md) | any `L` | any `B` coprime to `L` | 1 |
-
-The first two are the two-lead cases. The third opens up everything else —
-`3 × 4`, `3 × 5`, `4 × 3` — at the cost of a tighter, busier design, and it
-reproduces the knot exactly when you set its leads to 2.
-
-A knot is a *single* closed curve. Two woven ribbons are two curves, so the even design
-has never been a knot in the strict sense, whatever the decorative tradition calls it —
-it is a plait, and the odd design is the one that earns the word. That is the whole
-reason for the split, and it is why no parameter will make one produce the other's
-crossing counts.
-
-This naming is a reading of the mathematics against the writeups' own descriptions, not
+This reading is the mathematics set against the writeups' own descriptions, not
 something measured out of the emitted geometry. The `gcd` argument is the load-bearing
 part, and each writeup derives it independently.
 
 ## Which one do I want?
 
-- **"A woven rosette, braided look, 12 crossings"** → even. [Read the plait writeup](celtic-plait-soundhole.md).
-- **"A trefoil sound hole"**, or one continuous ribbon you can trace with a finger → odd. [Read the knot writeup](celtic-knot-soundhole.md).
-- **"N crossings"** where you named the number → odd count routes to the knot, even to the plait.
+- **"A woven rosette, braided look, 12 crossings"** → [the plait](celtic-plait-soundhole.md).
+- **"A trefoil sound hole"**, or one continuous ribbon you can trace with a finger → [the coprime generator](celtic-knot-coprime-soundhole.md) at `LEADS=2 BIGHTS=3`.
 - **"A 3-lead 5-bight Turk's head"**, or anything named in leads and bights → [the coprime generator](celtic-knot-coprime-soundhole.md).
+- **"N crossings"** where you named the number → an even count is the plait; an odd one is the coprime generator at 2 leads.
 
 ## Before you cut
 

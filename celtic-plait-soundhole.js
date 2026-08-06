@@ -14,7 +14,7 @@
 //   so they can only meet where rA = rB; that difference is 2*AMP*sin(N*theta),
 //   which has exactly 2N zeros per turn. For an ODD number of crossings you
 //   need a single self-crossing strand instead -- see the companion generator
-//   celtic-knot-soundhole.js (trefoil, cinquefoil, septafoil, ...).
+//   celtic-knot-coprime-soundhole.js (trefoil, cinquefoil, septafoil, ...).
 //
 // THE CONSTRAINT THAT DRIVES THE DESIGN
 //   This is a CUT-OUT, so the removed material is the open area and the knot

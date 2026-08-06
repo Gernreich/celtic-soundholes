@@ -3,7 +3,7 @@
 // Celtic coprime Turk's head sound hole -> cut-ready SVG
 // =====================================================================
 //
-// Generalises celtic-knot-soundhole.js from 2 leads to any number. A Turk's
+// Replaces celtic-knot-soundhole.js, generalising it from 2 leads to any. A Turk's
 // head is described as L leads by B bights: the strand travels L times around
 // before closing, and shows B scallops at the rim.
 //
@@ -54,8 +54,8 @@
 //   Verified against every invariant at (L,B) = (2,3) (2,5) (2,9) (3,2) (3,4)
 //   (3,5) and (4,3): regions, crossings, engrave lines and anchors all as
 //   predicted, weave alternating, no loose islands. (2,3) reproduces
-//   celtic-knot-soundhole.js exactly -- identical validation block, areas and
-//   sliver count -- which is the check that the generalisation is faithful.
+//   the retired celtic-knot-soundhole.js exactly -- identical validation block,
+//   areas and sliver count -- the check that the generalisation is faithful.
 //
 //   It degrades above that, and the limit is manufacturability rather than
 //   topology. As L rises the lens regions between passes shrink below
@@ -92,6 +92,18 @@ const NG     = num('NG', 1400);
 const MIN_FEATURE = num('MIN_FEATURE', 0.25);
 
 const gcd = (a, b) => b ? gcd(b, a % b) : a;
+
+// Q was the retired two-lead generator's bight count. Silently ignoring it would
+// hand back the defaults and call them the answer -- Q=5 would give 3x5, not the
+// cinquefoil asked for. Refuse and say what to type instead.
+if (process.env.Q !== undefined) {
+  console.error(
+    `Q is not a setting here (got Q=${process.env.Q}).\n` +
+    `  It was the bight count of celtic-knot-soundhole.js, which this generator\n` +
+    `  replaced. That one was always 2 leads, so the same shape is:\n` +
+    `    LEADS=2 BIGHTS=${process.env.Q} node celtic-knot-coprime-soundhole.js`);
+  process.exit(1);
+}
 
 if (!Number.isInteger(L) || L < 2) {
   console.error(`LEADS must be an integer >= 2 (got ${L}).`);
