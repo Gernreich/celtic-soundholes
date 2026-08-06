@@ -32,7 +32,7 @@ is refused with an error.
 
 ```
 node celtic-plait-soundhole.js                          # report only, writes nothing
-OUT=plait10-radius30mm.svg node celtic-plait-soundhole.js  # 10-crossing plait, 60mm hole
+OUT=plait-10crossings-radius30mm.svg node celtic-plait-soundhole.js  # 10-crossing plait, 60mm hole
 Q=5 OUT=cinquefoil-radius30mm.svg node celtic-knot-soundhole.js
 ```
 
