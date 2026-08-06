@@ -45,12 +45,12 @@
 //   topology-agnostic and is carried over unchanged.
 //
 // USAGE   (nothing is written unless OUT is set)
-//   node celtic-torus-knot-soundhole.js                  report only
-//   OUT=trefoil.svg node celtic-torus-knot-soundhole.js  Q=3 default
-//   Q=5 OUT=cinquefoil.svg node celtic-torus-knot-soundhole.js
-//   Q=7 OUT=septafoil.svg  node celtic-torus-knot-soundhole.js
-//   SELFTEST=1 node celtic-torus-knot-soundhole.js       check the hash, exit
-//   DIAG=1 node celtic-torus-knot-soundhole.js           per-region dump
+//   node celtic-torus-soundhole.js                  report only
+//   OUT=trefoil.svg node celtic-torus-soundhole.js  Q=3 default
+//   Q=5 OUT=cinquefoil.svg node celtic-torus-soundhole.js
+//   Q=7 OUT=septafoil.svg  node celtic-torus-soundhole.js
+//   SELFTEST=1 node celtic-torus-soundhole.js       check the hash, exit
+//   DIAG=1 node celtic-torus-soundhole.js           per-region dump
 //
 //   Q must be an odd integer >= 3. Even Q does not close into one strand.
 //   R_HOLE AMP HW BITE NG MIN_FEATURE OUT DIAG SELFTEST

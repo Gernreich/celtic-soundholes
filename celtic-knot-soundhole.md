@@ -1,7 +1,7 @@
 # Celtic Knot Sound Hole — even crossings (two-ribbon plait)
 
 Generator: `celtic-knot-soundhole.js`
-Companion (odd crossings): [`celtic-torus-knot-soundhole.md`](celtic-torus-knot-soundhole.md)
+Companion (odd crossings): [`celtic-torus-soundhole.md`](celtic-torus-soundhole.md)
 
 Produces a cut-ready SVG of a circular Celtic plait sized for an instrument
 sound hole. Two identical sinusoidal ribbons weave around a ring; ribbon B is

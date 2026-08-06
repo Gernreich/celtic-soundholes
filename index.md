@@ -8,12 +8,12 @@ They differ in one thing, and it is not cosmetic: **how many times the ribbon cr
 itself.** An alternating over/under interlace has to close up when you return to your
 start, and that constraint decides which curve you need.
 
-| | [Even crossings](celtic-knot-soundhole.md) | [Odd crossings](celtic-torus-knot-soundhole.md) |
+| | [Even crossings](celtic-knot-soundhole.md) | [Odd crossings](celtic-torus-soundhole.md) |
 |---|---|---|
 | Look | two-ribbon plait, braided | one continuous self-crossing strand |
 | Crossings | `2N` — always even, for any parameters | `Q` — any odd integer ≥ 3 |
 | Named forms | 6, 8, **10**, 12 crossings | **trefoil**, cinquefoil, septafoil, nonafoil |
-| Generator | `celtic-knot-soundhole.js` | `celtic-torus-knot-soundhole.js` |
+| Generator | `celtic-knot-soundhole.js` | `celtic-torus-soundhole.js` |
 | Open area at r30 | 52.4% at the default `N = 5` | 63.3% at the default `Q = 3` |
 | Rim anchors | `2N` | `Q` |
 
@@ -25,7 +25,7 @@ knot. Asking the odd generator for an even `Q` is refused with an error.
 ## Which one do I want?
 
 - **"A woven rosette, braided look, 12 crossings"** → even. [Read the plait writeup](celtic-knot-soundhole.md).
-- **"A trefoil sound hole"**, or one continuous ribbon you can trace with a finger → odd. [Read the torus-knot writeup](celtic-torus-knot-soundhole.md).
+- **"A trefoil sound hole"**, or one continuous ribbon you can trace with a finger → odd. [Read the torus-knot writeup](celtic-torus-soundhole.md).
 - **"N crossings"** where you named the number → odd count routes to the torus knot, even to the plait.
 
 ## Before you cut

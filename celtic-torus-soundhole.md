@@ -1,6 +1,6 @@
 # Celtic Torus-Knot Sound Hole — odd crossings (single self-crossing strand)
 
-Generator: `celtic-torus-knot-soundhole.js`
+Generator: `celtic-torus-soundhole.js`
 Companion (even crossings): [`celtic-knot-soundhole.md`](celtic-knot-soundhole.md)
 
 Produces a cut-ready SVG of a trefoil / cinquefoil / septafoil rosette sized
@@ -52,12 +52,12 @@ layer; the outer boundary is `Q` arcs. Correct, not a bug.
 ## Usage
 
 ```bash
-node celtic-torus-knot-soundhole.js                       # report only
-OUT=trefoil.svg node celtic-torus-knot-soundhole.js       # Q=3 default
-Q=5 OUT=cinquefoil.svg node celtic-torus-knot-soundhole.js
-Q=7 OUT=septafoil.svg  node celtic-torus-knot-soundhole.js
-SELFTEST=1 node celtic-torus-knot-soundhole.js            # check the hash, exit
-DIAG=1 node celtic-torus-knot-soundhole.js                # per-region dump
+node celtic-torus-soundhole.js                       # report only
+OUT=trefoil.svg node celtic-torus-soundhole.js       # Q=3 default
+Q=5 OUT=cinquefoil.svg node celtic-torus-soundhole.js
+Q=7 OUT=septafoil.svg  node celtic-torus-soundhole.js
+SELFTEST=1 node celtic-torus-soundhole.js            # check the hash, exit
+DIAG=1 node celtic-torus-soundhole.js                # per-region dump
 ```
 
 | Var | Default | Meaning |
@@ -171,7 +171,7 @@ returns distances that are too large, which reads as phantom extra "cut" area
 and quietly changes the shape without any validation line firing.
 
 ```bash
-Q=3 SELFTEST=1 node celtic-torus-knot-soundhole.js
+Q=3 SELFTEST=1 node celtic-torus-soundhole.js
 # SELFTEST spatial hash vs brute force: 4000 points, max error 0.000e+0mm OK
 ```
 

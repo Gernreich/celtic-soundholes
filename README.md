@@ -6,7 +6,7 @@ prints and cuts at real size.
 
 **[Read the writeups](https://gernreich.github.io/celtic-soundholes/)** · plait:
 [`celtic-knot-soundhole.md`](celtic-knot-soundhole.md) · torus knot:
-[`celtic-torus-knot-soundhole.md`](celtic-torus-knot-soundhole.md)
+[`celtic-torus-soundhole.md`](celtic-torus-soundhole.md)
 
 ## Which generator?
 
@@ -19,7 +19,7 @@ your start, and that decides the curve.
 | Look | two-ribbon plait, braided | one continuous self-crossing strand |
 | Crossings | `2N` — always even | `Q` — any odd integer ≥ 3 |
 | Named forms | 6, 8, **10**, 12 | **trefoil**, cinquefoil, septafoil, nonafoil |
-| Script | `celtic-knot-soundhole.js` | `celtic-torus-knot-soundhole.js` |
+| Script | `celtic-knot-soundhole.js` | `celtic-torus-soundhole.js` |
 | Open area at r30 | 52.4% (default `N = 5`) | 63.3% (default `Q = 3`) |
 | Rim anchors | `2N` | `Q` |
 
@@ -33,7 +33,7 @@ is refused with an error.
 ```
 node celtic-knot-soundhole.js                          # report only, writes nothing
 OUT=knot.svg node celtic-knot-soundhole.js             # 10-crossing plait, 60mm hole
-Q=5 OUT=cinquefoil.svg node celtic-torus-knot-soundhole.js
+Q=5 OUT=cinquefoil.svg node celtic-torus-soundhole.js
 ```
 
 **Nothing is written unless you set `OUT`.** A bare run prints the validation report and
@@ -59,7 +59,7 @@ Delete the `preview` layer before sending to a cutter. The designs are very open
 | | |
 |---|---|
 | `celtic-knot-soundhole.js` · `.md` | even-crossing plait generator and its writeup |
-| `celtic-torus-knot-soundhole.js` · `.md` | odd-crossing torus-knot generator and its writeup |
+| `celtic-torus-soundhole.js` · `.md` | odd-crossing torus-knot generator and its writeup |
 | `celtic-*-r30.svg` | cut-ready samples at `R_HOLE = 30`, a 60 mm hole |
 | `index.md` · `*.html` | the published pages; the markdown is the source |
 

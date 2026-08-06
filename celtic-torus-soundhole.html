@@ -72,7 +72,7 @@ pre,.tw{break-inside:avoid}h1{break-after:avoid}}
 <nav><b>Contents</b><a class="l1" href="#celtic-torus-knot-sound-hole--odd-crossings-single-self-crossing-strand">Celtic Torus-Knot Sound Hole — odd crossings (single self-crossing strand)</a><a class="l2" href="#why-odd-crossings-need-a-different-curve">Why odd crossings need a different curve</a><a class="l2" href="#the-structural-constraint">The structural constraint</a><a class="l2" href="#usage">Usage</a><a class="l2" href="#variants-at-rhole30-60mm-hole">Variants at R_HOLE=30 (60mm hole)</a><a class="l2" href="#invariants--cheap-to-check-and-they-pin-the-topology">Invariants — cheap to check, and they pin the topology</a><a class="l2" href="#output-layers">Output layers</a><a class="l2" href="#what-differs-from-the-companion-internally">What differs from the companion internally</a><a class="l2" href="#run-selftest-if-you-touch-the-distance-code">Run SELFTEST if you touch the distance code</a><a class="l2" href="#read-the-validation-report">Read the validation report</a><a class="l2" href="#traps-already-sprung-here">Traps already sprung here</a><a class="l2" href="#caveats">Caveats</a><a class="l2" href="#generated-files">Generated files</a></nav>
 <main>
 <h1 id="celtic-torus-knot-sound-hole--odd-crossings-single-self-crossing-strand">Celtic Torus-Knot Sound Hole — odd crossings (single self-crossing strand)</h1>
-<p>Generator: <code>celtic-torus-knot-soundhole.js</code> Companion (even crossings): <a href="celtic-knot-soundhole.html"><code>celtic-knot-soundhole.md</code></a></p>
+<p>Generator: <code>celtic-torus-soundhole.js</code> Companion (even crossings): <a href="celtic-knot-soundhole.html"><code>celtic-knot-soundhole.md</code></a></p>
 <p>Produces a cut-ready SVG of a trefoil / cinquefoil / septafoil rosette sized for an instrument sound hole. Unlike the two-ribbon plait, this is <strong>one continuous ribbon</strong> you can trace with a finger — it winds twice before closing.</p>
 <pre><code>r(theta) = R_MID + AMP*cos(Q*theta/2),   theta in [0, 4*pi)</code></pre>
 <p>Closes into a single strand iff <code>gcd(2,Q) = 1</code>, i.e. <strong>Q odd</strong>, and then has exactly <code>Q</code> self-crossings. Millimetre-true output, <code>1 user unit = 1 mm</code>.</p>
@@ -85,12 +85,12 @@ pre,.tw{break-inside:avoid}h1{break-after:avoid}}
 <h2 id="the-structural-constraint">The structural constraint</h2>
 <p>Same as the companion. This is a cut-out, so the ribbon peaks overrun the rim by <code>BITE</code> mm and fuse the rosette into the soundboard — here at an <strong>odd</strong> number of anchor points (<code>Q</code>). There is no continuous rim circle in the cut layer; the outer boundary is <code>Q</code> arcs. Correct, not a bug.</p>
 <h2 id="usage">Usage</h2>
-<pre><code>node celtic-torus-knot-soundhole.js                       # report only
-OUT=trefoil.svg node celtic-torus-knot-soundhole.js       # Q=3 default
-Q=5 OUT=cinquefoil.svg node celtic-torus-knot-soundhole.js
-Q=7 OUT=septafoil.svg  node celtic-torus-knot-soundhole.js
-SELFTEST=1 node celtic-torus-knot-soundhole.js            # check the hash, exit
-DIAG=1 node celtic-torus-knot-soundhole.js                # per-region dump</code></pre>
+<pre><code>node celtic-torus-soundhole.js                       # report only
+OUT=trefoil.svg node celtic-torus-soundhole.js       # Q=3 default
+Q=5 OUT=cinquefoil.svg node celtic-torus-soundhole.js
+Q=7 OUT=septafoil.svg  node celtic-torus-soundhole.js
+SELFTEST=1 node celtic-torus-soundhole.js            # check the hash, exit
+DIAG=1 node celtic-torus-soundhole.js                # per-region dump</code></pre>
 <div class='tw'><table><thead><tr><th>Var</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>R_HOLE</code></td><td><code>30</code></td><td>sound hole radius, mm</td></tr><tr><td><code>Q</code></td><td><code>3</code></td><td>crossings — <strong>odd integer ≥ 3</strong>; also the rim anchor count</td></tr><tr><td><code>AMP</code></td><td><code>7.5</code></td><td>radial swing of the weave</td></tr><tr><td><code>HW</code></td><td><code>2.0</code></td><td>ribbon half-width → ribbon is <code>2*HW</code> mm wide</td></tr><tr><td><code>BITE</code></td><td><code>1.5</code></td><td>rim overrun; this is what anchors the rosette</td></tr><tr><td><code>NG</code></td><td><code>1400</code></td><td>sampling grid resolution</td></tr><tr><td><code>MIN_FEATURE</code></td><td><code>0.25</code></td><td>gaps narrower than this are welded to solid material</td></tr><tr><td><code>OUT</code></td><td>unset</td><td>output path — <strong>nothing is written unless set</strong></td></tr><tr><td><code>SELFTEST</code></td><td>unset</td><td>verify spatial hash against brute force, then exit</td></tr><tr><td><code>DIAG</code></td><td>unset</td><td>verbose per-region report</td></tr></tbody></table></div>
 <p><code>AMP</code> defaults to <strong>7.5 here vs 6.5 in the companion</strong> — deliberate, not drift. These knots are far sparser than a plait and want a wider radial swing to fill the ring. Neither <code>AMP</code> nor <code>HW</code> auto-scales with <code>R_HOLE</code>; roughly <code>AMP ≈ 0.25*R_HOLE</code>, <code>HW ≈ 0.067*R_HOLE</code>.</p>
 <h3 id="the-centre-opening-is-derived-and-it-can-abort-the-run">The centre opening is derived, and it can abort the run</h3>
@@ -117,7 +117,7 @@ rim anchors   == Q          (odd — the whole point of this generator)</code></
 <p>Everything downstream (field → flood fill → marching squares → chain → RDP → SVG) is topology-agnostic and carried over unchanged.</p>
 <h2 id="run-selftest-if-you-touch-the-distance-code">Run SELFTEST if you touch the distance code</h2>
 <p>The expanding-ring stopping bound fails <strong>silently</strong> if wrong — it just returns distances that are too large, which reads as phantom extra "cut" area and quietly changes the shape without any validation line firing.</p>
-<pre><code>Q=3 SELFTEST=1 node celtic-torus-knot-soundhole.js
+<pre><code>Q=3 SELFTEST=1 node celtic-torus-soundhole.js
 # SELFTEST spatial hash vs brute force: 4000 points, max error 0.000e+0mm OK</code></pre>
 <p>The code's pass gate is <code>&lt; 1e-9</code>, but the error should be <strong>exactly <code>0</code></strong>: both paths minimise the same expression over the same sample set, so they return bit-identical floats. Any nonzero value at all means the ring search missed a sample — do not read a small error as rounding. It is <code>0</code> at Q = 3, 5, 7, 9.</p>
 <h2 id="read-the-validation-report">Read the validation report</h2>
