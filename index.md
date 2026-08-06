@@ -82,6 +82,13 @@ The geometry is cut-ready; the layers still need the two minutes described above
 - [`3-lead_4-bight_knot_radius30mm.svg`](3-lead_4-bight_knot_radius30mm.svg) — 3 leads × 4 bights
 - [`3-lead_5-bight_knot_radius30mm.svg`](3-lead_5-bight_knot_radius30mm.svg) — 3 leads × 5 bights
 
+And one that is **not** a sound hole, committed as a demonstration:
+
+- [`9-lead_11-bight_knot_radius300mm.svg`](9-lead_11-bight_knot_radius300mm.svg) — 9 leads ×
+  11 bights, a **600 mm** hole. Nothing has a sound hole that size; read it as a decorative
+  panel. It satisfies every invariant, but only at that scale and only away from the default
+  settings — [the writeup explains why](knot_soundhole.md#size-is-the-other-lever-and-it-works).
+
 Requires Node. Neither generator writes anything unless you set `OUT`.
 
 Released under CC0 1.0.

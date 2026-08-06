@@ -160,6 +160,33 @@ of them in one annulus, not because the ribbon is fat.
 **Judge by the region and crossing counts, not by the sliver count** — see
 [the validation report](#read-the-validation-report) for why.
 
+### Size is the other lever, and it works
+
+`(9,11)` satisfies every invariant — but only on a large enough panel, and that is
+worth understanding because it is the clearest evidence for the claim above.
+
+At the 30mm default it fails completely: 23 regions against 100, **zero** crossings
+found, 18.3% open. Nine passes of 4mm ribbon do not fit that annulus at all. A finer
+ribbon fixes the crossings — roughly `AMP ≈ 9 × HW`, giving nine passes room to
+separate — and from 30mm up the crossing count is a correct 88.
+
+The region count is what stays wrong, and it stays wrong by exactly **11**, which is
+`B`. The eleven rim gaps were forming below `MIN_FEATURE` and being welded shut. They
+scale with the panel, so at `R_HOLE = 300` they clear the floor and survive:
+
+| `R_HOLE` | `AMP` | `HW` | regions (want 100) | crossings (want 88) | open |
+|---|---|---|---|---|---|
+| 30 | 7.5 | 2.0 | 23 | 0 | 18.3% |
+| 30 | 7 | 0.3 | 78 | 88 | 79.1% |
+| 100 | 26 | 1.0 | 89 | 88 | 76.3% |
+| **300** | **78** | **5.0** | **100** | **88** | **61.1%** |
+
+So the ceiling on leads is not a property of the curve. It is the cutting floor
+meeting features that shrink as leads rise — and making the panel bigger moves those
+features back above it. Note also that the region count was the only line telling the
+truth at 100mm: crossings, engrave and anchors all read `OK` while eleven regions were
+quietly missing.
+
 ## Output layers
 
 Three groups, told apart by **stroke colour** as well as by `id`. Colour is the one
@@ -280,3 +307,26 @@ though the generator does not use them: **trefoil** at 3 bights, **cinquefoil** 
 5, **septafoil** at 7, **nonafoil** at 9. Everything here is named by leads and
 bights instead, in the report, in the SVG `<title>` and in the filename, so the
 three always agree.
+
+### One that is not a sound hole
+
+- `9-lead_11-bight_knot_radius300mm.svg` — 9 leads × 11 bights, `AMP=78 HW=5.0`
+
+**This is a 600 mm hole. Nothing has a sound hole that size** — it is a decorative
+panel, a screen, a table inlay, and it is committed as a demonstration rather than as
+something to fit an instrument. Read the caveats before cutting it:
+
+- **Every invariant passes** — 100 regions, 88 crossings, 176 engrave lines, 11
+  anchors, no loose islands — which is why it earns a place here. It is the only nine
+  lead result that does.
+- **It needs the size.** The same knot at `R_HOLE = 100` comes out eleven regions
+  short, and at the 30 mm default it does not resolve at all. See
+  [the envelope](#size-is-the-other-lever-and-it-works).
+- **It is not at default settings.** `AMP=78 HW=5.0`, roughly the `AMP ≈ 9 × HW`
+  ratio nine passes need. The shipped defaults produce nothing usable at nine leads.
+- **61% of the disc is removed**, held by eleven 10 mm-wide anchors, across 600 mm.
+  That is a large, open, fragile object and nothing here has been cut to find out how
+  it behaves. Treat the span as the risk, not the cut width — the narrowest cut is a
+  comfortable 2.90 mm.
+- **148 slivers were welded.** With the region count correct those are grazing
+  artifacts rather than lost structure, but fine detail has been rewritten in places.
