@@ -163,19 +163,37 @@ region counts on every run and prints whether they match.**
 
 ## The tested envelope, and where it stops
 
-Verified against every invariant at `(2,3) (2,5) (2,9) (3,2) (3,4) (3,5)` and
-`(4,3)`. `(2,3)` reproduced the retired two-lead generator exactly — identical
-validation block, areas and sliver count, only the report wording differs. That
-equivalence is the evidence the generalisation is faithful rather than plausible.
+Verified against every invariant at `(2,3) (2,5) (2,9) (3,2) (3,4) (3,5) (4,3)`
+and, on larger panels, `(5,4)` and `(9,11)`. `(2,3)` reproduced the retired two-lead
+generator exactly — identical validation block, areas and sliver count, only the
+report wording differs. That equivalence is the evidence the generalisation is
+faithful rather than plausible.
 
-It degrades above that, and **the limit is manufacturability, not topology**. As
-leads rise, the lens regions between passes shrink below `MIN_FEATURE` and are
-welded shut, so they never become separate cut regions. At `(4,5)` the region count
-falls short of `L*B + 1` by exactly the welded lenses; at `(5,2)` the crossing
-detector loses them too and reports 2 against a predicted 8.
+**The limit is manufacturability, not topology**, and it is worth being precise about
+what that means, because it is easy to mistake for a ceiling on leads. As leads rise,
+two things shrink: the lens regions between passes, and the rim gaps between anchors.
+Either falling under `MIN_FEATURE` gets it welded shut, and a welded region is one
+the count never sees.
 
-Reducing `AMP` and `HW` does not rescue it. The passes crowd because there are five
-of them in one annulus, not because the ribbon is fat.
+At a fixed 30mm panel that looks like a hard stop. `(5,2)` reports 2 crossings
+against 8; `(7,2)` reports zero at default tuning; `(5,4)` caps at 17 regions
+against 21. But the shortfall is almost always exactly `B` — the rim gaps — and
+those scale with the panel:
+
+- `(5,4)` is four regions short at 30mm and **exact at 60mm**.
+- `(9,11)` is eleven short at 100mm and **exact at 300mm**.
+
+So five leads and nine leads both work; they simply do not fit in a 30mm hole. What
+the tested envelope really describes is a relationship between lead count and panel
+size, not a maximum lead count.
+
+Two things still need attention as leads rise:
+
+- **The ribbon must thin**, roughly `AMP ≈ L × HW`, since `L` passes need room to
+  separate. The `AMP ≈ 0.25*R_HOLE` rule of thumb above is for two or three leads and
+  gets crowded beyond that.
+- **Some pairs resist anyway.** `(4,5)` loses lenses rather than rim gaps, and size
+  does not fix that as cleanly.
 
 **Judge by the region and crossing counts, not by the sliver count** — see
 [the validation report](#read-the-validation-report) for why.
@@ -320,6 +338,8 @@ believing the OK lines.
 - `3-lead_5-bight_knot_radius30mm.svg` — 3 leads × 5 bights
 - `4-lead_3-bight_knot_radius39mm.svg` — 4 leads × 3 bights at `R_HOLE = 39`,
   `AMP=9.75 HW=2.6` — the only sample not at 30mm, and not at default tuning
+- `5-lead_4-bight_knot_radius60mm.svg` — 5 leads × 4 bights at `R_HOLE = 60`,
+  `AMP=15 HW=2.4` — a 120mm hole, and the smallest panel on which five leads resolve
 
 - `2-lead_3-bight_knot_radius30mm.svg` — 2 leads × 3 bights
 - `2-lead_5-bight_knot_radius30mm.svg` — 2 leads × 5 bights

@@ -85,6 +85,8 @@ The geometry is cut-ready; the layers still need the two minutes described above
 - [`3-lead_5-bight_knot_radius30mm.svg`](3-lead_5-bight_knot_radius30mm.svg) — 3 leads × 5 bights
 - [`4-lead_3-bight_knot_radius39mm.svg`](4-lead_3-bight_knot_radius39mm.svg) — 4 leads × 3 bights
   at radius 39mm, the one sample not at 30mm and not at default tuning
+- [`5-lead_4-bight_knot_radius60mm.svg`](5-lead_4-bight_knot_radius60mm.svg) — 5 leads × 4 bights
+  at radius 60mm, a 120mm hole; five leads do not resolve on a smaller panel
 
 And one that is **not** a sound hole, committed as a demonstration:
 
