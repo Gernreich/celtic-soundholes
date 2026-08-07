@@ -20,6 +20,8 @@ lines on a transparency checkerboard. **[See all eleven](https://gernreich.githu
 Built for **[LaserMadeMusic](https://www.youtube.com/@LaserMadeMusic)**, where the cutting
 and assembly are shown.
 
+**[Download everything as a ZIP](https://github.com/Gernreich/knotwork-soundholes/archive/refs/heads/main.zip)** — both generators, both writeups, every cut file.
+
 ## Which generator?
 
 They differ in whether the ribbon is one strand or two, and neither can produce the
