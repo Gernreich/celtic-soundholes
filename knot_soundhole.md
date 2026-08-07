@@ -299,6 +299,7 @@ picture of a sound hole and no hole.
 | closed contours vs flood regions | equal, else loops were lost |
 | unclosed chains | `0`, else a contour leaked |
 | crossings vs `B*(L-1)` | equal — printed and checked on every run |
+| engrave polylines vs `2*B*(L-1)` | equal — the second half of the crossing check, and the one that separates a pair which merely *looks* right from one that is. `9 × 10` and `9 × 11` pass it; `9 × 4`, `9 × 7` and `9 × 8` get their regions and crossings right and fail here |
 | weave alternates | `OK`, else the engrave layer is suppressed |
 | slivers welded shut | informational only — not a pass/fail, and not normally `0` |
 | loose islands (CW) | `0` — else material falls out when cut |
