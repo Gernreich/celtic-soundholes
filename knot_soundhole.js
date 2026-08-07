@@ -85,14 +85,14 @@ const fs = require('fs');
 // read from it, so the two cannot drift apart. Add a parameter here and it is
 // documented by construction.
 const PARAMS = [
-  ['LEADS',       3,    'times round before the strand closes'],
-  ['BIGHTS',      5,    'scallops at the rim; must be coprime to LEADS'],
-  ['R_HOLE',      30,   'sound hole radius, mm'],
-  ['AMP',         7.5,  'radial swing of the weave'],
-  ['HW',          2.0,  'ribbon half-width -> ribbon is 2*HW mm wide'],
-  ['BITE',        1.5,  'rim overrun; this is what anchors the rosette'],
-  ['NG',          1400, 'sampling grid resolution'],
-  ['MIN_FEATURE', 0.25, 'gaps narrower than this are welded to solid material'],
+  ['LEADS',       '3',    'times round before the strand closes'],
+  ['BIGHTS',      '5',    'scallops at the rim; must be coprime to LEADS'],
+  ['R_HOLE',      '30',   'sound hole radius, mm'],
+  ['AMP',         '7.5',  'radial swing of the weave'],
+  ['HW',          '2.0',  'ribbon half-width -> ribbon is 2*HW mm wide'],
+  ['BITE',        '1.5',  'rim overrun; this is what anchors the rosette'],
+  ['NG',          '1400', 'sampling grid resolution'],
+  ['MIN_FEATURE', '0.25', 'gaps narrower than this are welded to solid material'],
 ];
 const FLAGS = [
   ['OUT',      'output path -- NOTHING IS WRITTEN unless this is set'],
@@ -101,8 +101,6 @@ const FLAGS = [
 ];
 
 if (process.argv.slice(2).some(a => a === '--help' || a === '-h')) {
-  const D = {};
-  PARAMS.forEach(p => { D[p[0]] = p[1]; });
   console.log(`
 knot_soundhole.js -- one continuous strand, any coprime leads x bights
 
@@ -130,7 +128,7 @@ knot_soundhole.js -- one continuous strand, any coprime leads x bights
 
 const num = (k, d) => process.env[k] ? Number(process.env[k]) : d;
 const DEF = {};
-PARAMS.forEach(p => { DEF[p[0]] = p[1]; });
+PARAMS.forEach(p => { DEF[p[0]] = Number(p[1]); });
 const R_HOLE = num('R_HOLE', DEF.R_HOLE);   // sound-hole radius (mm)
 const L      = num('LEADS', DEF.LEADS);     // leads: times round before closing
 const B      = num('BIGHTS', DEF.BIGHTS);   // bights: scallops at the rim

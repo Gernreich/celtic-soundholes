@@ -79,13 +79,13 @@ const fs = require('fs');
 // read from it, so the two cannot drift apart. NG and MIN_FEATURE are declared
 // further down, where the sampling and welding code needs them.
 const PARAMS = [
-  ['N',           5,    'lobes per ribbon -> 2N crossings and 2N rim anchors'],
-  ['R_HOLE',      30,   'sound hole radius, mm'],
-  ['AMP',         6.5,  'radial swing of the weave'],
-  ['HW',          2.0,  'ribbon half-width -> ribbon is 2*HW mm wide'],
-  ['BITE',        1.5,  'rim overrun; this is what anchors the rosette'],
-  ['NG',          1400, 'sampling grid resolution'],
-  ['MIN_FEATURE', 0.25, 'gaps narrower than this are welded to solid material'],
+  ['N',           '5',    'lobes per ribbon -> 2N crossings and 2N rim anchors'],
+  ['R_HOLE',      '30',   'sound hole radius, mm'],
+  ['AMP',         '6.5',  'radial swing of the weave'],
+  ['HW',          '2.0',  'ribbon half-width -> ribbon is 2*HW mm wide'],
+  ['BITE',        '1.5',  'rim overrun; this is what anchors the rosette'],
+  ['NG',          '1400', 'sampling grid resolution'],
+  ['MIN_FEATURE', '0.25', 'gaps narrower than this are welded to solid material'],
 ];
 const FLAGS = [
   ['OUT',  'output path -- NOTHING IS WRITTEN unless this is set'],
@@ -120,7 +120,7 @@ plait_soundhole.js -- two woven ribbons, always an even crossing count
 
 const num = (k, d) => process.env[k] ? Number(process.env[k]) : d;
 const DEF = {};
-PARAMS.forEach(p => { DEF[p[0]] = p[1]; });
+PARAMS.forEach(p => { DEF[p[0]] = Number(p[1]); });
 const R_HOLE = num('R_HOLE', DEF.R_HOLE);   // sound-hole radius (mm)
 const AMP    = num('AMP', DEF.AMP);         // radial swing of the weave
 const HW     = num('HW', DEF.HW);           // ribbon half-width -> 4 mm ribbon
