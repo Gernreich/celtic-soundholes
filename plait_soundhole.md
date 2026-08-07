@@ -58,6 +58,12 @@ DIAG=1 node plait_soundhole.js                               # per-region dump
 
 `--help` prints this same table, so you do not need the document to hand.
 
+**`OUT` overwrites without asking** — there is no force flag and no prompt. The two
+30mm `OUT=` lines above name shipped sample files, so running them in this directory
+rewrites those files; at these parameters the bytes come back identical, but change a
+number and reuse the same command line and you have replaced a sample with different
+geometry and nothing will have said so. Write somewhere else while experimenting.
+
 | Var | Default | Meaning |
 |---|---|---|
 | `R_HOLE` | `30` | sound hole radius, mm |
@@ -178,6 +184,15 @@ the design. The companion at 2 leads × 3 bights, geometry untouched, reports 8 
 `NG=700`, 6 at 1000, 4 at 1400 and 8 at 2000, while its contour count, open
 fraction and area hold steady throughout. It is not normally `0`, it does not
 converge, and chasing it to zero is chasing the grid.
+
+`trough curv. radius` is the other printed line the table does not cover, and it is
+informational too. It is the centreline's radius of curvature at the inner trough,
+shown against `HW` as a ratio, and the worry behind it is that a ribbon wider than its
+own trough curvature fills its notch. The ratio falls steadily as lobes are added —
+3.24 at `N = 3`, 1.56 at 4, **0.93 at the default 5**, 0.63 at 6, 0.15 at 12 — and
+crossing below 1 turns out to predict nothing: every one of those returns an exact
+`4N + 1`, and the sliver count does not track the ratio either (12 slivers at 1.56,
+none at 0.93). Read it as a description of the curve, not a gate.
 
 **The region count is the check that means something.** `4N + 1` above is stable
 across resolutions and tells you whether the shape you get is the shape the curve
