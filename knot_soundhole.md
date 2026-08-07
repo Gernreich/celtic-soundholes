@@ -395,7 +395,9 @@ believing the OK lines.
 - `4-lead_5-bight_knot_radius39mm.svg` — 4 leads × 5 bights at the same `R_HOLE = 39`
   and the same `AMP=9.75 HW=2.6`, so the two four-lead samples differ only in bights
 - `5-lead_4-bight_knot_radius60mm.svg` — 5 leads × 4 bights at `R_HOLE = 60`,
-  `AMP=15 HW=2.4` — a 120mm hole, and the smallest panel on which five leads resolve
+  `AMP=15 HW=2.4` — a 120mm hole. Five leads resolve from about `R_HOLE = 44` on these
+  proportions, not from 60; the panel is sized for the cut instead, which goes from
+  0.55mm at 44 to **1.29mm** here
 
 - `2-lead_3-bight_knot_radius30mm.svg` — 2 leads × 3 bights
 - `2-lead_5-bight_knot_radius30mm.svg` — 2 leads × 5 bights
@@ -421,8 +423,10 @@ panel, a screen, a table inlay, and it is committed as a demonstration rather th
 something to fit an instrument. Read the caveats before cutting it:
 
 - **Every invariant passes** — 100 regions, 88 crossings, 176 engrave lines, 11
-  anchors, no loose islands — which is why it earns a place here. It is the only nine
-  lead result that does.
+  anchors, no loose islands — which is why it earns a place here. Not the only nine-lead
+  pair that manages it: at this same size and tuning `9 × 10` passes everything too, and
+  `9 × 4`, `9 × 7` and `9 × 8` get their regions and crossings right but overshoot the
+  engrave count. `9 × 2` and `9 × 5` miss on regions.
 - **It needs the size.** The same knot at `R_HOLE = 100` comes out eleven regions
   short, and at the 30 mm default it does not resolve at all. See
   [the envelope](#size-is-the-other-lever-and-it-works).
