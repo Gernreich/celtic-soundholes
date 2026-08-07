@@ -5,12 +5,13 @@ Output is millimetre-true — `1 user unit = 1 mm`, with a physical `width`/`hei
 prints and cuts at real size.
 
 <p>
-<img src="preview-knot.svg" alt="A 2-lead 3-bight knot rosette: one continuous ribbon crossing itself three times, filling a 60 mm circle and fusing into the surrounding board at three points" width="46%">
-<img src="preview-plait.svg" alt="A 10-crossing plait rosette: two ribbons woven around a ring, crossing ten times, filling a 60 mm circle" width="46%">
+<img src="previews/2-lead_3-bight_knot_radius30mm.svg" alt="A 2-lead 3-bight knot rosette: one continuous ribbon crossing itself three times, filling a 60 mm circle and fusing into the surrounding board at three points" width="46%">
+<img src="previews/10-crossing_plait_radius30mm.svg" alt="A 10-crossing plait rosette: two ribbons woven around a ring, crossing ten times, filling a 60 mm circle" width="46%">
 </p>
 
 *Left: one strand, 2 leads × 3 bights. Right: two ribbons, 10 crossings. Both at a 60 mm
-hole. These two images are display renderings — the cut files themselves carry no fill.*
+hole. Display renderings — the cut files carry no fill, so a browser shows them as thin
+lines on a transparency checkerboard. **[See all eleven](https://gernreich.github.io/knotwork-soundholes/#every-sample-at-a-glance)**.*
 
 **[Read the writeups](https://gernreich.github.io/knotwork-soundholes/)** · plait:
 [`plait_soundhole.md`](plait_soundhole.md) · knot:
@@ -76,7 +77,7 @@ real cut stock.
 | `knot_soundhole.js` · `.md` | single-strand knot generator, any coprime leads × bights |
 | `*-bight_knot_radius*.svg` | cut-ready knot samples, named leads × bights × radius |
 | `*-crossing_plait_radius*.svg` | cut-ready plait samples |
-| `preview-*.svg` | display renderings for this page — **not** cut files |
+| `previews/` | display renderings of every sample — **not** cut files |
 | `index.md` · `*.html` | the published pages; the markdown is the source |
 
 Requires Node. No dependencies. Released under [CC0 1.0](LICENSE).

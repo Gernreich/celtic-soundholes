@@ -68,6 +68,26 @@ operation rather than a cut — they run across the ribbon at every crossing, so
 them takes the rosette apart. Only the red `#ff0000` `cut` layer is meant to go through
 the material. Each writeup has the full table.
 
+## Every sample, at a glance
+
+Click any of these to download the cut file. The pictures are display renderings —
+the cut files themselves carry no fill, so a browser shows them as thin lines on a
+transparency checkerboard.
+
+<p>
+<a href="2-lead_3-bight_knot_radius30mm.svg"><img src="previews/2-lead_3-bight_knot_radius30mm.svg" alt="A trefoil rosette, one ribbon crossing itself three times" width="150"></a><br><sub>2 × 3 &middot; trefoil</sub>
+<a href="2-lead_5-bight_knot_radius30mm.svg"><img src="previews/2-lead_5-bight_knot_radius30mm.svg" alt="A cinquefoil rosette, five self-crossings" width="150"></a><br><sub>2 × 5 &middot; cinquefoil</sub>
+<a href="2-lead_7-bight_knot_radius30mm.svg"><img src="previews/2-lead_7-bight_knot_radius30mm.svg" alt="A septafoil rosette, seven self-crossings" width="150"></a><br><sub>2 × 7 &middot; septafoil</sub>
+<a href="3-lead_2-bight_knot_radius30mm.svg"><img src="previews/3-lead_2-bight_knot_radius30mm.svg" alt="A three-lead two-bight knot, held on two anchors" width="150"></a><br><sub>3 × 2</sub>
+<a href="3-lead_4-bight_knot_radius30mm.svg"><img src="previews/3-lead_4-bight_knot_radius30mm.svg" alt="A three-lead four-bight knot" width="150"></a><br><sub>3 × 4</sub>
+<a href="3-lead_5-bight_knot_radius30mm.svg"><img src="previews/3-lead_5-bight_knot_radius30mm.svg" alt="A three-lead five-bight knot" width="150"></a><br><sub>3 × 5</sub>
+<a href="4-lead_3-bight_knot_radius39mm.svg"><img src="previews/4-lead_3-bight_knot_radius39mm.svg" alt="A four-lead three-bight knot at 39mm radius" width="150"></a><br><sub>4 × 3 &middot; 39mm</sub>
+<a href="5-lead_4-bight_knot_radius60mm.svg"><img src="previews/5-lead_4-bight_knot_radius60mm.svg" alt="A five-lead four-bight knot at 60mm radius" width="150"></a><br><sub>5 × 4 &middot; 60mm</sub>
+<a href="9-lead_11-bight_knot_radius300mm.svg"><img src="previews/9-lead_11-bight_knot_radius300mm.svg" alt="A nine-lead eleven-bight knot at 300mm radius" width="150"></a><br><sub>9 × 11 &middot; 300mm</sub>
+<a href="10-crossing_plait_radius30mm.svg"><img src="previews/10-crossing_plait_radius30mm.svg" alt="A ten-crossing plait, two ribbons woven around a ring" width="150"></a><br><sub>plait &middot; 10 crossings</sub>
+<a href="8-crossing_plait_radius30mm.svg"><img src="previews/8-crossing_plait_radius30mm.svg" alt="An eight-crossing plait" width="150"></a><br><sub>plait &middot; 8 crossings</sub>
+</p>
+
 ## Sample files
 
 Output at `R_HOLE = 30` (a 60 mm hole), committed so you can look before you run anything.
