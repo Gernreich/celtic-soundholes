@@ -282,6 +282,7 @@ picture of a sound hole and no hole.
 | slivers welded shut | informational only — not a pass/fail, and not normally `0` |
 | loose islands (CW) | `0` — else material falls out when cut |
 | contour area vs flood area | delta ≤ ~0.1% |
+| content vs canvas | `OK` — every emitted point inside the viewBox, with the margin shown |
 
 `slivers welded shut` counts whole air regions narrower than `MIN_FEATURE` that
 were filled back to material. **Its value is an artifact of where the sampling grid
@@ -321,6 +322,12 @@ The code's pass gate is `< 1e-9`, but the error should be **exactly `0`**: both
 paths minimise the same expression over the same sample set, so they return
 bit-identical floats. Any nonzero value at all means the ring search missed a sample
 — do not read a small error as rounding. It is `0` at `(2,3)`, `(3,5)` and `(4,3)`.
+
+`content vs canvas` is the newest line and the only one that looks at the **document**
+rather than the geometry. Every other check describes what the generator computed; none
+of them noticed when the rim continuations reached 1mm past a canvas sized for the cut
+layer alone, and files were shipped clipped while every invariant passed. It measures
+the emitted points against the viewBox and names the shortfall if there is one.
 
 ## Traps already sprung here
 

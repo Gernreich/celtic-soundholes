@@ -165,6 +165,7 @@ Printed on every run. This is the point of the tool, not decoration.
 | unclosed chains | `0`, else a contour leaked |
 | loose islands (CW) | `0` — a clockwise contour means material fully surrounded by air, which **falls out when cut** |
 | contour area vs flood area | delta ≤ ~0.1%; two independent measurements of the same shape |
+| content vs canvas | `OK` — every emitted point inside the viewBox, with the margin shown |
 
 `slivers welded shut` is informational, and its exact value means nothing. A
 sliver is a whole air region whose inradius falls under `MIN_FEATURE` — narrower
@@ -182,6 +183,12 @@ across resolutions and tells you whether the shape you get is the shape the curv
 describes. If it matches, the welding only removed grazing tangencies. If it falls
 short, real regions were under the cutting floor and are gone — and more grid will
 not bring them back.
+
+`content vs canvas` is the newest line and the only one that looks at the **document**
+rather than the geometry. Every other check describes what the generator computed; none
+of them noticed when the rim continuations reached 1mm past a canvas sized for the cut
+layer alone, and files were shipped clipped while every invariant passed. It measures
+the emitted points against the viewBox and names the shortfall if there is one.
 
 ## Traps already sprung here
 

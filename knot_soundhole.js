@@ -665,6 +665,27 @@ console.log('engrave polylines   :', engrave.length, ' expected 2*B*(L-1) =', 2 
 console.log('rim continuations   :', rimLines.length, ' (decorative; the ribbon crossing its anchors)');
 console.log('ribbon width (mm)   :', 2 * HW);
 console.log('rim anchors         :', B);
+// ------------------------------------------- does it all fit on the page?
+// Every other line in this report describes geometry the generator computed; none
+// of them look at the document it gets written into. On 2026-08-06 the rim
+// continuations reached 1mm past a canvas sized for the cut layer alone, and every
+// invariant kept passing while the files were clipped. Measured from the point
+// arrays rather than by re-parsing the emitted path strings, which is where the
+// arithmetic is actually known.
+const halfCanvas = R_HOLE + PAD;
+let maxAbs = 0;
+for (const group of [simp, engrave, rimLines]) {
+  for (const poly of group) {
+    for (const p of poly) {
+      const m = Math.max(Math.abs(p[0]), Math.abs(p[1]));
+      if (m > maxAbs) maxAbs = m;
+    }
+  }
+}
+const fits = maxAbs <= halfCanvas;
+console.log('content vs canvas   :', maxAbs.toFixed(2) + 'mm of', halfCanvas.toFixed(2) + 'mm half-extent',
+            fits ? `OK (${(halfCanvas - maxAbs).toFixed(2)}mm margin)`
+                 : `CLIPPED by ${(maxAbs - halfCanvas).toFixed(2)}mm -- raise PAD`);
 console.log('cut path bytes      :', cutD.length);
 
 if (process.env.DIAG) {
