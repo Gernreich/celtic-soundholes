@@ -2,7 +2,7 @@
 
 Generator: `plait_soundhole.js`
 
-Companion (odd crossings, and any coprime leads × bights):
+Companion (one strand, any coprime leads × bights):
 [`knot_soundhole.md`](knot_soundhole.md)
 
 Produces a cut-ready SVG of a circular plait sized for an instrument
@@ -42,7 +42,8 @@ difference is `2*AMP*sin(N*theta)` — exactly `2N` zeros per turn.
 
 No parameter changes this. There is also a topological reason: each strand
 meets every crossing once, and alternating over/under only closes up over an
-even number. **For odd crossings use the companion generator.**
+even number. **For an odd crossing count — or any coprime leads × bights, odd or
+even — use the companion generator.**
 
 ## Usage
 

@@ -19,7 +19,7 @@ start, and that constraint decides which curve you need.
 
 ## Why there are two: leads, bights, and one rule
 
-Both are **lead-and-bight knots**: `L` leads by `B` bights, where the strand travels round `L`
+Both are described the same way: **`L` leads by `B` bights**, where the strand travels round `L`
 times and shows `B` scallops at the rim. Everything follows from one fact —
 `gcd(L, B)` is the number of separate closed pieces you end up with.
 
@@ -46,7 +46,7 @@ part, and each writeup derives it independently.
 
 - **"A woven rosette, braided look, 12 crossings"** → [the plait](plait_soundhole.md).
 - **"A trefoil sound hole"**, or one continuous ribbon you can trace with a finger → [the coprime generator](knot_soundhole.md) at `LEADS=2 BIGHTS=3`.
-- **"A 3-lead 5-bight lead-and-bight knot"**, or anything named in leads and bights → [the coprime generator](knot_soundhole.md).
+- **"A 3-lead 5-bight knot"**, or anything named in leads and bights → [the coprime generator](knot_soundhole.md).
 - **"N crossings"** where you named the number → an even count is the plait; an odd one is the coprime generator at 2 leads.
 
 ## Get the files

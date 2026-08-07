@@ -25,11 +25,11 @@ and assembly are shown.
 ## Which generator?
 
 They differ in whether the ribbon is one strand or two, and neither can produce the
-other's shapes. Both are lead-and-bight knots — `L` leads by `B` bights — and `gcd(L, B)` is
-the number of separate pieces you end up with. An alternating over/under interlace has to close up when you return to
-your start, and that decides the curve.
+other's shapes. Both are described the same way — `L` leads by `B` bights — and
+`gcd(L, B)` is the number of separate pieces you end up with. An alternating over/under
+interlace has to close up when you return to your start, and that is what decides it.
 
-| | even crossings | odd crossings |
+| | two ribbons | one strand |
 |---|---|---|
 | Look | two-ribbon plait, braided | one continuous self-crossing strand |
 | Sized by | `N` lobes → `2N` crossings | `LEADS` × `BIGHTS`, coprime |
