@@ -126,6 +126,18 @@ so a browser shows them as thin lines on a transparency checkerboard.
 <td align="center"><sub>plait &middot; 8 crossings</sub></td>
 <td align="center"><sub>plait &middot; 10 crossings</sub></td>
 </tr>
+<tr>
+<td align="center"><a href="10-crossing_plait_radius50mm.svg"><img src="previews/10-crossing_plait_radius50mm.svg" alt="A ten-crossing plait at 50mm radius" width="150"></a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center"><sub>plait &middot; 10 crossings &middot; 50mm</sub></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </table>
 </div>
 

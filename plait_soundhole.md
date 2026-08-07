@@ -58,8 +58,8 @@ DIAG=1 node plait_soundhole.js                               # per-region dump
 
 `--help` prints this same table, so you do not need the document to hand.
 
-**`OUT` overwrites without asking** — there is no force flag and no prompt. The two
-30mm `OUT=` lines above name shipped sample files, so running them in this directory
+**`OUT` overwrites without asking** — there is no force flag and no prompt. All three
+`OUT=` lines above name shipped sample files, so running them in this directory
 rewrites those files; at these parameters the bytes come back identical, but change a
 number and reuse the same command line and you have replaced a sample with different
 geometry and nothing will have said so. Write somewhere else while experimenting.
@@ -235,5 +235,9 @@ re-derive rather than trust it.
 
 ## Generated files
 
-- `10-crossing_plait_radius30mm.svg` — 10 crossings (N=5, default)
 - `8-crossing_plait_radius30mm.svg` — 8 crossings (N=4)
+- `10-crossing_plait_radius30mm.svg` — 10 crossings (N=5, default)
+- `10-crossing_plait_radius50mm.svg` — the same 10 crossings at `R_HOLE = 50`, a 100mm
+  hole, on `AMP=10.8 HW=3.3 BITE=2.5` — the scaling worked in the Usage section above,
+  committed so the example names a file you have. Open area 52.9%, within half a point
+  of the 30mm original, which is what scaling all three together is supposed to preserve.

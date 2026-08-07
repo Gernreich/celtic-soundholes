@@ -509,7 +509,7 @@ console.log('trough curv. radius:', RHO_TROUGH.toFixed(3), 'mm  (HW =', HW, ') r
 console.log('tightest region inradius (mm):', Math.min(...inrad).toFixed(3));
 console.log('largest  region inradius (mm):', Math.max(...inrad).toFixed(3));
 console.log('open area (mm^2)    :', openArea.toFixed(2));
-console.log('plain 60mm disc     :', discArea.toFixed(2));
+console.log('plain hole area     :', discArea.toFixed(2));
 console.log('open fraction       :', (openArea / discArea * 100).toFixed(1) + '%');
 console.log('equiv. round hole dia (mm):', (2 * Math.sqrt(openArea / Math.PI)).toFixed(2));
 console.log('engrave polylines   :', engrave.length);
