@@ -82,11 +82,11 @@ the material. Each writeup has the full table.
 ## Every sample, at a glance
 
 Click any of these to download the cut file. The pictures are display renderings —
-**gold is the board that stays, white is what drops out.** The gold runs to the edge of
-the picture because the rosette is not a separate ring sitting in a hole: it is board
-material, continuous with the board around it, which is what keeps it from falling
-through. The cut files themselves carry no fill, so a browser shows them as thin lines
-on a transparency checkerboard.
+**deep gold is the rosette, pale gold the board it fuses into, cream is what drops out.**
+The ribbon crosses between the two golds without a break, because the rosette is not a
+separate ring sitting in a hole: it is board material, continuous with the board around
+it, which is what keeps it from falling through. The cut files themselves carry no fill,
+so a browser shows them as thin lines on a transparency checkerboard.
 
 <p>
 <a href="2-lead_3-bight_knot_radius30mm.svg"><img src="previews/2-lead_3-bight_knot_radius30mm.svg" alt="A trefoil rosette, one ribbon crossing itself three times" width="150"></a><br><sub>2 × 3 &middot; trefoil</sub>

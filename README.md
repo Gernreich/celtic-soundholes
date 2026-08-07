@@ -5,15 +5,16 @@ Output is millimetre-true — `1 user unit = 1 mm`, with a physical `width`/`hei
 prints and cuts at real size.
 
 <p>
-<img src="previews/2-lead_3-bight_knot_radius30mm.svg" alt="A 2-lead 3-bight knot rosette in gold: one continuous ribbon crossing itself three times across a 60 mm hole, fusing into the surrounding board at three points; the white shapes are the material that drops out" width="46%">
-<img src="previews/10-crossing_plait_radius30mm.svg" alt="A 10-crossing plait rosette in gold: two ribbons woven around a 60 mm hole, crossing ten times; the white shapes are the material that drops out" width="46%">
+<img src="previews/2-lead_3-bight_knot_radius30mm.svg" alt="A 2-lead 3-bight knot rosette in deep gold: one continuous ribbon crossing itself three times across a 60 mm hole and running on into the paler surrounding board at three anchors; the cream shapes are the material that drops out" width="46%">
+<img src="previews/10-crossing_plait_radius30mm.svg" alt="A 10-crossing plait rosette in deep gold: two ribbons woven around a 60 mm hole and running on into the paler surrounding board; the cream shapes are the material that drops out" width="46%">
 </p>
 
 *Left: one strand, 2 leads × 3 bights. Right: two ribbons, 10 crossings. Both at a 60 mm
-hole. Display renderings — **gold is the board that stays, white is what drops out**, and
-the gold reaches the edge because the rosette is board material continuous with the board
-around it. The cut files carry no fill, so a browser shows them as thin lines on a
-transparency checkerboard. **[See all eleven](https://gernreich.github.io/knotwork-soundholes/#every-sample-at-a-glance)**.*
+hole. Display renderings — **deep gold is the rosette, pale gold the board it fuses into,
+cream is what drops out.** The ribbon crosses between the two golds without a break,
+because the rosette is not a ring sitting in a hole: it is board material, and that is what
+stops it falling through. The cut files carry no fill, so a browser shows them as thin
+lines on a transparency checkerboard. **[See all eleven](https://gernreich.github.io/knotwork-soundholes/#every-sample-at-a-glance)**.*
 
 **[Read the writeups](https://gernreich.github.io/knotwork-soundholes/)** · plait:
 [`plait_soundhole.md`](plait_soundhole.md) · knot:
