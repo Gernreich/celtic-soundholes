@@ -1,7 +1,7 @@
 # Knotwork Sound Holes
 
 Two Node generators that produce cut-ready SVG rosettes for an instrument sound hole.
-Output is millimetre-true — `1 user unit = 1 mm`, with a physical `width`/`height` — so it
+Output is millimetre-true — `1 user unit = 1mm`, with a physical `width`/`height` — so it
 prints and cuts at real size.
 
 <p>

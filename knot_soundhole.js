@@ -604,8 +604,8 @@ const ORG  = f2(-(R_HOLE + PAD));
 const R    = f2(R_HOLE);
 const svg = `<svg xmlns="http://www.w3.org/2000/svg"
      width="${SIZE}mm" height="${SIZE}mm" viewBox="${ORG} ${ORG} ${SIZE} ${SIZE}">
-  <title>${NAME} sound hole - ${R_HOLE} mm radius</title>
-  <!-- 1 user unit = 1 mm, so this prints/cuts at true size.
+  <title>${NAME} sound hole - ${R_HOLE}mm radius</title>
+  <!-- 1 user unit = 1mm, so this prints/cuts at true size.
        Sound hole radius ${R_HOLE}mm (${2 * R_HOLE}mm diameter).
        ${NAME}: ONE self-crossing ribbon ${2 * HW}mm wide, ${B * (L - 1)} crossings.
        Single strand r = ${R_MID.toFixed(2)} + ${AMP}*cos(${B}*theta/${L}), theta in [0,${2 * L}pi),

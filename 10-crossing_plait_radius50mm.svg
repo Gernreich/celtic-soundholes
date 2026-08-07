@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg"
      width="106mm" height="106mm" viewBox="-53 -53 106 106">
-  <title>10-crossing plait sound hole - 50 mm radius</title>
-  <!-- 1 user unit = 1 mm, so this prints/cuts at true size.
+  <title>10-crossing plait sound hole - 50mm radius</title>
+  <!-- 1 user unit = 1mm, so this prints/cuts at true size.
        Sound hole radius 50mm (100mm diameter).
        Two interwoven ribbons 6.6mm wide, 10 crossings.
        The ribbon overruns the rim by 2.5mm at 10 points, fusing it

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg"
      width="82mm" height="82mm" viewBox="-41 -41 82 82">
-  <title>4-lead 3-bight knot sound hole - 39 mm radius</title>
-  <!-- 1 user unit = 1 mm, so this prints/cuts at true size.
+  <title>4-lead 3-bight knot sound hole - 39mm radius</title>
+  <!-- 1 user unit = 1mm, so this prints/cuts at true size.
        Sound hole radius 39mm (78mm diameter).
        4-lead 3-bight knot: ONE self-crossing ribbon 5.2mm wide, 9 crossings.
        Single strand r = 28.15 + 9.75*cos(3*theta/4), theta in [0,8pi),

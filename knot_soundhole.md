@@ -12,7 +12,7 @@ engrave subpaths.
 Produces a cut-ready SVG rosette for an instrument sound hole, sized in the terms a
 knot-tyer already uses: **L leads by B bights**. The strand travels round `L` times
 before it closes, and shows `B` scallops at the rim. Millimetre-true output,
-`1 user unit = 1 mm`.
+`1 user unit = 1mm`.
 
 ```
 r(theta) = R_MID + AMP*cos(B*theta/L),   theta in [0, 2*pi*L)

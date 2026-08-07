@@ -6,7 +6,7 @@
 // WHAT IT MAKES
 //   A circular plait sized for an instrument sound hole. Two identical
 //   sinusoidal ribbons (B is A rotated by pi/N) weave around a ring and cross
-//   2N times. Output is an SVG in millimetres, 1 user unit = 1 mm, so it
+//   2N times. Output is an SVG in millimetres, 1 user unit = 1mm, so it
 //   prints and cuts at true size.
 //
 //   CROSSING COUNT IS ALWAYS EVEN HERE, and no parameter changes that. Both
@@ -123,7 +123,7 @@ const DEF = {};
 PARAMS.forEach(p => { DEF[p[0]] = Number(p[1]); });
 const R_HOLE = num('R_HOLE', DEF.R_HOLE);   // sound-hole radius (mm)
 const AMP    = num('AMP', DEF.AMP);         // radial swing of the weave
-const HW     = num('HW', DEF.HW);           // ribbon half-width -> 4 mm ribbon
+const HW     = num('HW', DEF.HW);           // ribbon half-width -> 4mm ribbon
 const N      = num('N', DEF.N);             // lobes per ribbon -> 2N crossings
 const BITE   = num('BITE', DEF.BITE);    // how far ribbon peak overruns the rim
 // anchor the ribbon INTO the soundboard: peak outer edge = R_HOLE + BITE
@@ -462,8 +462,8 @@ const ORG  = f2(-(R_HOLE + PAD));
 const R    = f2(R_HOLE);
 const svg = `<svg xmlns="http://www.w3.org/2000/svg"
      width="${SIZE}mm" height="${SIZE}mm" viewBox="${ORG} ${ORG} ${SIZE} ${SIZE}">
-  <title>${2 * N}-crossing plait sound hole - ${R_HOLE} mm radius</title>
-  <!-- 1 user unit = 1 mm, so this prints/cuts at true size.
+  <title>${2 * N}-crossing plait sound hole - ${R_HOLE}mm radius</title>
+  <!-- 1 user unit = 1mm, so this prints/cuts at true size.
        Sound hole radius ${R_HOLE}mm (${2 * R_HOLE}mm diameter).
        Two interwoven ribbons ${2 * HW}mm wide, ${2 * N} crossings.
        The ribbon overruns the rim by ${BITE}mm at ${2 * N} points, fusing it

@@ -9,7 +9,7 @@ Produces a cut-ready SVG of a circular plait sized for an instrument
 sound hole. Two identical sinusoidal ribbons weave around a ring; ribbon B is
 ribbon A rotated by `pi/N`.
 
-Output is millimetre-true: `1 user unit = 1 mm`, with a physical `width`/
+Output is millimetre-true: `1 user unit = 1mm`, with a physical `width`/
 `height` in mm, so it prints and cuts at real size.
 
 ## The constraint that shapes the design

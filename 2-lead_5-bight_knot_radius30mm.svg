@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg"
      width="64mm" height="64mm" viewBox="-32 -32 64 64">
-  <title>2-lead 5-bight knot sound hole - 30 mm radius</title>
-  <!-- 1 user unit = 1 mm, so this prints/cuts at true size.
+  <title>2-lead 5-bight knot sound hole - 30mm radius</title>
+  <!-- 1 user unit = 1mm, so this prints/cuts at true size.
        Sound hole radius 30mm (60mm diameter).
        2-lead 5-bight knot: ONE self-crossing ribbon 4mm wide, 5 crossings.
        Single strand r = 22.00 + 7.5*cos(5*theta/2), theta in [0,4pi),

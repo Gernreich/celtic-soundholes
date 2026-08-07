@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg"
      width="604mm" height="604mm" viewBox="-302 -302 604 604">
-  <title>9-lead 11-bight knot sound hole - 300 mm radius</title>
-  <!-- 1 user unit = 1 mm, so this prints/cuts at true size.
+  <title>9-lead 11-bight knot sound hole - 300mm radius</title>
+  <!-- 1 user unit = 1mm, so this prints/cuts at true size.
        Sound hole radius 300mm (600mm diameter).
        9-lead 11-bight knot: ONE self-crossing ribbon 10mm wide, 88 crossings.
        Single strand r = 218.50 + 78*cos(11*theta/9), theta in [0,18pi),

@@ -81,7 +81,7 @@ pre,.tw{break-inside:avoid}h1{break-after:avoid}}
 <p>Generator: <code>knot_soundhole.js</code></p>
 <p>Companion: <a href="plait_soundhole.html"><code>plait_soundhole.md</code></a> (two ribbons, even crossings)</p>
 <p>Replaces an earlier two-lead-only generator. Set <code>LEADS=2</code> and this reproduces its output exactly — verified file by file, cut layer byte-identical and the same set of engrave subpaths.</p>
-<p>Produces a cut-ready SVG rosette for an instrument sound hole, sized in the terms a knot-tyer already uses: <strong>L leads by B bights</strong>. The strand travels round <code>L</code> times before it closes, and shows <code>B</code> scallops at the rim. Millimetre-true output, <code>1 user unit = 1 mm</code>.</p>
+<p>Produces a cut-ready SVG rosette for an instrument sound hole, sized in the terms a knot-tyer already uses: <strong>L leads by B bights</strong>. The strand travels round <code>L</code> times before it closes, and shows <code>B</code> scallops at the rim. Millimetre-true output, <code>1 user unit = 1mm</code>.</p>
 <pre><code>r(theta) = R_MID + AMP*cos(B*theta/L),   theta in [0, 2*pi*L)</code></pre>
 <p>It generalises the two-lead generator it replaced. That one had a single parameter, <code>Q</code>, for its bight count, and required it to be odd — which is exactly <code>gcd(2, B) = 1</code>, this rule at two leads.</p>
 <h2 id="leads-and-bights-and-why-they-must-be-coprime">Leads and bights, and why they must be coprime</h2>
