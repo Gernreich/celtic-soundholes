@@ -99,31 +99,22 @@ transparency checkerboard.
 <a href="8-crossing_plait_radius30mm.svg"><img src="previews/8-crossing_plait_radius30mm.svg" alt="An eight-crossing plait" width="150"></a><br><sub>plait &middot; 8 crossings</sub>
 </p>
 
-## Sample files
+## Four worth a note
 
-Output at `R_HOLE = 30` (a 60 mm hole), committed so you can look before you run anything.
-The geometry is cut-ready; the layers still need the two minutes described above.
+Most of the samples above need no explanation: pick the crossing count you like. Four
+carry a caveat.
 
-- [`10-crossing_plait_radius30mm.svg`](10-crossing_plait_radius30mm.svg) — 10 crossings, `N = 5`
-- [`8-crossing_plait_radius30mm.svg`](8-crossing_plait_radius30mm.svg) — 8 crossings, `N = 4`
-- [`2-lead_3-bight_knot_radius30mm.svg`](2-lead_3-bight_knot_radius30mm.svg) — 2 leads × 3 bights
-- [`2-lead_5-bight_knot_radius30mm.svg`](2-lead_5-bight_knot_radius30mm.svg) — 2 leads × 5 bights
-- [`2-lead_7-bight_knot_radius30mm.svg`](2-lead_7-bight_knot_radius30mm.svg) — 2 leads × 7 bights
-- [`3-lead_2-bight_knot_radius30mm.svg`](3-lead_2-bight_knot_radius30mm.svg) — 3 leads × 2 bights,
-  held on only two rim anchors
-- [`3-lead_4-bight_knot_radius30mm.svg`](3-lead_4-bight_knot_radius30mm.svg) — 3 leads × 4 bights
-- [`3-lead_5-bight_knot_radius30mm.svg`](3-lead_5-bight_knot_radius30mm.svg) — 3 leads × 5 bights
-- [`4-lead_3-bight_knot_radius39mm.svg`](4-lead_3-bight_knot_radius39mm.svg) — 4 leads × 3 bights
-  at radius 39mm, the one sample not at 30mm and not at default tuning
-- [`5-lead_4-bight_knot_radius60mm.svg`](5-lead_4-bight_knot_radius60mm.svg) — 5 leads × 4 bights
-  at radius 60mm, a 120mm hole; five leads do not resolve on a smaller panel
+- **`3-lead_2-bight`** is held on **two rim anchors**, the fewest these designs can have.
+  It removes half the disc and holds the result on two 4mm tabs.
+- **`4-lead_3-bight_radius39mm`** is the one sample not at 30mm and not at default tuning.
+  A bigger panel alone does not fix its narrow cuts — the ribbon has to scale with it, and
+  [the writeup shows the numbers](knot_soundhole.md#variants-at-rhole30-60mm-hole).
+- **`5-lead_4-bight_radius60mm`** is a 120mm hole because five leads do not resolve on a
+  smaller panel; below that its rim gaps weld shut.
+- **`9-lead_11-bight_radius300mm`** is a **600 mm** hole and **not a sound hole at all** —
+  read it as a decorative panel. It satisfies every invariant, but only at that scale and
+  only away from the defaults;
+  [the writeup explains why](knot_soundhole.md#size-is-the-other-lever-and-it-works).
 
-And one that is **not** a sound hole, committed as a demonstration:
-
-- [`9-lead_11-bight_knot_radius300mm.svg`](9-lead_11-bight_knot_radius300mm.svg) — 9 leads ×
-  11 bights, a **600 mm** hole. Nothing has a sound hole that size; read it as a decorative
-  panel. It satisfies every invariant, but only at that scale and only away from the default
-  settings — [the writeup explains why](knot_soundhole.md#size-is-the-other-lever-and-it-works).
-
-Requires Node. Neither generator writes anything unless you set `OUT`.
-
+Every sample is cut-ready geometry; the layers still need the moment described above.
+Requires Node, and neither generator writes anything unless you set `OUT`.
