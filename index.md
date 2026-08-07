@@ -90,6 +90,11 @@ separate ring sitting in a hole: it is board material, continuous with the board
 it, which is what keeps it from falling through. The cut files themselves carry no fill,
 so a browser shows them as thin lines on a transparency checkerboard.
 
+**Every sample is a 30mm radius — a 60mm hole — unless its label says otherwise.** Five
+do: `4 × 3` and `4 × 5` at 39mm, `5 × 4` at 60mm, `9 × 11` at 300mm, and the plait at
+50mm last. The pictures are all scaled to the same width here, so a 300mm rosette and a
+30mm one look the same size on the page; only the label tells you which is which.
+
 <div class="tw">
 <table>
 <tr>
