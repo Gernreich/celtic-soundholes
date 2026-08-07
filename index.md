@@ -69,10 +69,12 @@ soundboard. **There is no continuous rim circle in the cut layer** — the outer
 is a series of arcs between anchors. That is correct. Do not "fix" it by adding a full
 circle, or the rosette falls on the floor.
 
-Both designs are very open — 49% to 63% of the disc removed across the documented
-variants, 52% and 63% at the two defaults. Three anchors are enough to fix a trefoil's
-plane, but that is a kinematic statement, not a stiffness one. Nothing here has been
-validated against real cut stock.
+Both designs are very open — **38% to 63%** of the disc removed across the documented
+variants, and 48% (the knot at its `3 × 5` default) and 52% (the plait at `N = 5`) if you
+run either generator without arguments. More leads means less open area, so the sparser
+end of that range is where the knots get busy, not where they get tame. Three anchors are
+enough to fix a trefoil's plane, but that is a kinematic statement, not a stiffness one.
+Nothing here has been validated against real cut stock.
 
 **One layer is not a cut.** Give the blue `#0000ff` `engrave` lines a score or engrave
 operation rather than a cut — they run across the ribbon at every crossing, so cutting

@@ -71,8 +71,8 @@ rosette on the floor.
 
 The files carry two layers: red `#ff0000` cuts, blue `#0000ff` engraves. Give the blue
 lines a score or engrave operation — cutting them severs the ribbon. The designs are
-very open (52% to 63% of the disc removed) and nothing here has been validated against
-real cut stock.
+very open (38% to 63% of the disc removed across the documented variants) and nothing
+here has been validated against real cut stock.
 
 ## Files
 
