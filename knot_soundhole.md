@@ -66,6 +66,14 @@ given anything other than a cut.
 
 `--help` prints this same table, so you do not need the document to hand.
 
+**`OUT` overwrites without asking** — there is no force flag and no prompt. The two
+`OUT=` lines above name shipped sample files, so running them in this directory
+rewrites those files; at these parameters the bytes come back identical, but change a
+number and reuse the same command line and you have replaced a sample with different
+geometry and nothing will have said so. Write somewhere else while experimenting. The
+companion CLI in the living-hinge repository refuses by default, so the habits do not
+transfer.
+
 | Var | Default | Meaning |
 |---|---|---|
 | `LEADS` | `3` | times round before the strand closes |
@@ -199,11 +207,17 @@ size, not a maximum lead count.
 
 Two things still need attention as leads rise:
 
-- **The ribbon must thin**, roughly `AMP ≈ L × HW`, since `L` passes need room to
-  separate. The `AMP ≈ 0.25*R_HOLE` rule of thumb above is for two or three leads and
-  gets crowded beyond that.
-- **Some pairs resist anyway.** `(4,5)` loses lenses rather than rim gaps, and size
-  does not fix that as cleanly.
+- **The ribbon must thin.** `L` passes need room to separate, so the `AMP/HW` ratio has
+  to grow with `L`: the three shipped off-default files sit at **3.8** at four leads,
+  **6.3** at five and **15.6** at nine. Setting `AMP = L × HW` is not enough on its
+  own — at nine leads that is `AMP = 45` against a working 78, and it returns 80
+  regions against 100. The `AMP ≈ 0.25*R_HOLE` rule of thumb above is for two or three
+  leads and gets crowded beyond that.
+- **The shortfall is not always `B`.** It is exactly `B` at five leads — `(5,3)` short
+  by 3, `(5,4)` by 4, `(5,7)` by 7 — which is the rim-gap account above. At seven it is
+  larger: `(7,3)` is 9 short and `(7,4)` is 12, so lenses are going as well as rim
+  gaps. Size still recovers them, `(7,3)` being exact at `R_HOLE = 100`, but rim gaps
+  stop being the whole story above five leads.
 
 **Judge by the region and crossing counts, not by the sliver count** — see
 [the validation report](#read-the-validation-report) for why.
@@ -215,8 +229,8 @@ worth understanding because it is the clearest evidence for the claim above.
 
 At the 30mm default it fails completely: 23 regions against 100, **zero** crossings
 found, 18.3% open. Nine passes of 4mm ribbon do not fit that annulus at all. A finer
-ribbon fixes the crossings — roughly `AMP ≈ 9 × HW`, giving nine passes room to
-separate — and from 30mm up the crossing count is a correct 88.
+ribbon fixes the crossings — every working row below runs `AMP/HW` between 15 and 26,
+far above the `L × HW` figure — and from 30mm up the crossing count is a correct 88.
 
 The region count is what stays wrong, and it stays wrong by exactly **11**, which is
 `B`. The eleven rim gaps were forming below `MIN_FEATURE` and being welded shut. They
@@ -299,6 +313,12 @@ steady. The **region count** is the number that means something — it is stable
 across resolutions, and when welding does eat a real lens it says so and keeps
 saying so at any grid.
 
+`content vs canvas` is the newest line and the only one that looks at the **document**
+rather than the geometry. Every other check describes what the generator computed; none
+of them noticed when the rim continuations reached 1mm past a canvas sized for the cut
+layer alone, and files were shipped clipped while every invariant passed. It measures
+the emitted points against the viewBox and names the shortfall if there is one.
+
 ## How the over/under is decided
 
 The retired two-lead generator could use a closed form — "over if `m` is even" —
@@ -329,12 +349,6 @@ The code's pass gate is `< 1e-9`, but the error should be **exactly `0`**: both
 paths minimise the same expression over the same sample set, so they return
 bit-identical floats. Any nonzero value at all means the ring search missed a sample
 — do not read a small error as rounding. It is `0` at `(2,3)`, `(3,5)` and `(4,3)`.
-
-`content vs canvas` is the newest line and the only one that looks at the **document**
-rather than the geometry. Every other check describes what the generator computed; none
-of them noticed when the rim continuations reached 1mm past a canvas sized for the cut
-layer alone, and files were shipped clipped while every invariant passed. It measures
-the emitted points against the viewBox and names the shortfall if there is one.
 
 ## Traps already sprung here
 
@@ -412,8 +426,9 @@ something to fit an instrument. Read the caveats before cutting it:
 - **It needs the size.** The same knot at `R_HOLE = 100` comes out eleven regions
   short, and at the 30 mm default it does not resolve at all. See
   [the envelope](#size-is-the-other-lever-and-it-works).
-- **It is not at default settings.** `AMP=78 HW=5.0`, roughly the `AMP ≈ 9 × HW`
-  ratio nine passes need. The shipped defaults produce nothing usable at nine leads.
+- **It is not at default settings.** `AMP=78 HW=5.0` — a ratio of 15.6, not the `L`
+  that the `AMP = L × HW` rule of thumb would suggest. `AMP = 45` at this `HW` returns
+  80 regions against 100. The shipped defaults produce nothing usable at nine leads.
 - **61% of the disc is removed**, held by eleven 10 mm-wide anchors, across 600 mm.
   That is a large, open, fragile object and nothing here has been cut to find out how
   it behaves. Treat the span as the risk, not the cut width — the narrowest cut is a

@@ -118,8 +118,10 @@ knot_soundhole.js -- one continuous strand, any coprime leads x bights
   so anything but 1 gives several loops rather than one knot.
 
   AMP and HW do not scale with R_HOLE. Roughly AMP ~ 0.25*R_HOLE and
-  HW ~ 0.067*R_HOLE at two or three leads; above that the ribbon must thin,
-  roughly AMP ~ LEADS*HW, and the panel has to grow or the rim gaps weld shut.
+  HW ~ 0.067*R_HOLE at two or three leads; above that the ribbon must thin and
+  AMP/HW has to grow with LEADS -- about 4 at four leads, 6 at five, 16 at nine.
+  AMP = LEADS*HW is not enough on its own. The panel has to grow too, or the
+  rim gaps weld shut.
 
   Full documentation: knot_soundhole.md
 `);
