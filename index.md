@@ -49,6 +49,17 @@ part, and each writeup derives it independently.
 - **"A 3-lead 5-bight lead-and-bight knot"**, or anything named in leads and bights → [the coprime generator](knot_soundhole.md).
 - **"N crossings"** where you named the number → an even count is the plait; an odd one is the coprime generator at 2 leads.
 
+## Get the files
+
+- **[Every design as a ZIP](https://github.com/Gernreich/knotwork-soundholes/archive/refs/heads/main.zip)**
+  — both generators, both writeups, every cut file.
+- **[Repository](https://github.com/Gernreich/knotwork-soundholes)** — the code, if you want
+  to change a parameter or read how it works.
+- Or click any picture above to download that one cut file.
+
+Released under CC0 1.0 — do what you like with them, no attribution needed. Built for
+**[LaserMadeMusic](https://www.youtube.com/@LaserMadeMusic)**.
+
 ## Before you cut
 
 These are **cut-outs**: the removed material is the open area and the ribbon is what
@@ -116,4 +127,3 @@ And one that is **not** a sound hole, committed as a demonstration:
 
 Requires Node. Neither generator writes anything unless you set `OUT`.
 
-Released under CC0 1.0.
