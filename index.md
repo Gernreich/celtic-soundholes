@@ -158,7 +158,7 @@ carry a caveat.
   44mm — the rim gaps weld shut and the region count drops from 21 to 17 — but the size
   shipped is chosen for the *cut*, not for that floor: the narrowest cut is 0.55mm at
   44mm and 1.29mm at 60mm.
-- **`9-lead_11-bight_radius300mm`** is a **600 mm** hole and **not a sound hole at all** —
+- **`9-lead_11-bight_radius300mm`** is a **600mm** hole and **not a sound hole at all** —
   read it as a decorative panel. It satisfies every invariant, but only at that scale and
   only away from the defaults;
   [the writeup explains why](knot_soundhole.md#size-is-the-other-lever-and-it-works).

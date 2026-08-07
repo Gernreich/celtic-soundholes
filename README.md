@@ -5,11 +5,11 @@ Output is millimetre-true — `1 user unit = 1 mm`, with a physical `width`/`hei
 prints and cuts at real size.
 
 <p>
-<img src="previews/2-lead_3-bight_knot_radius30mm.svg" alt="A 2-lead 3-bight knot rosette in deep gold: one continuous ribbon crossing itself three times across a 60 mm hole and running on into the paler surrounding board at three anchors; the cream shapes are the material that drops out" width="46%">
-<img src="previews/10-crossing_plait_radius30mm.svg" alt="A 10-crossing plait rosette in deep gold: two ribbons woven around a 60 mm hole and running on into the paler surrounding board; the cream shapes are the material that drops out" width="46%">
+<img src="previews/2-lead_3-bight_knot_radius30mm.svg" alt="A 2-lead 3-bight knot rosette in deep gold: one continuous ribbon crossing itself three times across a 60mm hole and running on into the paler surrounding board at three anchors; the cream shapes are the material that drops out" width="46%">
+<img src="previews/10-crossing_plait_radius30mm.svg" alt="A 10-crossing plait rosette in deep gold: two ribbons woven around a 60mm hole and running on into the paler surrounding board; the cream shapes are the material that drops out" width="46%">
 </p>
 
-*Left: one strand, 2 leads × 3 bights. Right: two ribbons, 10 crossings. Both at a 60 mm
+*Left: one strand, 2 leads × 3 bights. Right: two ribbons, 10 crossings. Both at a 60mm
 hole. Display renderings — **deep gold is the rosette, pale gold the board it fuses into,
 cream is what drops out.** The ribbon crosses between the two golds without a break,
 because the rosette is not a ring sitting in a hole: it is board material, and that is what

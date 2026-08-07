@@ -418,7 +418,7 @@ three always agree.
 
 - `9-lead_11-bight_knot_radius300mm.svg` — 9 leads × 11 bights, `AMP=78 HW=5.0`
 
-**This is a 600 mm hole. Nothing has a sound hole that size** — it is a decorative
+**This is a 600mm hole. Nothing has a sound hole that size** — it is a decorative
 panel, a screen, a table inlay, and it is committed as a demonstration rather than as
 something to fit an instrument. Read the caveats before cutting it:
 
@@ -428,14 +428,14 @@ something to fit an instrument. Read the caveats before cutting it:
   `9 × 4`, `9 × 7` and `9 × 8` get their regions and crossings right but overshoot the
   engrave count. `9 × 2` and `9 × 5` miss on regions.
 - **It needs the size.** The same knot at `R_HOLE = 100` comes out eleven regions
-  short, and at the 30 mm default it does not resolve at all. See
+  short, and at the 30mm default it does not resolve at all. See
   [the envelope](#size-is-the-other-lever-and-it-works).
 - **It is not at default settings.** `AMP=78 HW=5.0` — a ratio of 15.6, not the `L`
   that the `AMP = L × HW` rule of thumb would suggest. `AMP = 45` at this `HW` returns
   80 regions against 100. The shipped defaults produce nothing usable at nine leads.
-- **61% of the disc is removed**, held by eleven 10 mm-wide anchors, across 600 mm.
+- **61% of the disc is removed**, held by eleven 10mm-wide anchors, across 600mm.
   That is a large, open, fragile object and nothing here has been cut to find out how
   it behaves. Treat the span as the risk, not the cut width — the narrowest cut is a
-  comfortable 2.90 mm.
+  comfortable 2.90mm.
 - **148 slivers were welded.** With the region count correct those are grazing
   artifacts rather than lost structure, but fine detail has been rewritten in places.
