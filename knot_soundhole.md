@@ -125,10 +125,12 @@ sampling becomes the limit, `MIN_FEATURE` does. See the envelope below.
 | **3 × 4** | **13** | **8** | **4** | **16** | **49.2%** | **42.10mm** | **2.07mm** |
 | **3 × 5** | **16** | **10** | **5** | **20** | **48.2%** | **41.64mm** | **2.01mm** |
 | 4 × 3 | 13 | 9 | 3 | 18 | 39.4% | 37.66mm | **0.66mm** |
+| 4 × 5 | 21 | 15 | 5 | 30 | 38.2% | 37.07mm | **0.61mm** |
 
 `2 × 3` is the trefoil, reproduced here to show the generalisation is faithful.
-`4 × 3` is included as a warning as much as an option: it satisfies every invariant,
-but a 0.66mm narrowest cut is delicate against a kerf of 0.1–0.2mm.
+`4 × 3` and `4 × 5` are included as warnings as much as options: both satisfy every
+invariant, but a 0.66mm — or 0.61mm — narrowest cut is delicate against a kerf of
+0.1–0.2mm. Neither ships at this size; both ship at 39mm for the reason below.
 
 **A bigger panel alone does not fix that** — and this is the trap the rules of thumb
 exist to prevent. The same `4 × 3` at `R_HOLE = 39` with default tuning gives 0.67mm,
@@ -147,6 +149,11 @@ same size gives **1.27mm**, near enough double. That is what the shipped
 All four satisfy every invariant. The last is the most open and cuts widest, on a
 3.6mm ribbon — thinner material spanning more air. The shipped file takes the middle,
 as the sturdiest of them.
+
+`4 × 5` is shipped at the same 39mm on the same `AMP=9.75 HW=2.6`, and lands at
+**1.25mm** — within 0.02mm of what `4 × 3` gets from that tuning, despite carrying six
+more crossings. Adding bights at fixed leads costs the narrowest cut very little here;
+it is the *lead* count that drives it down.
 
 More leads means less open area, because more ribbon is packed into the same ring.
 
@@ -354,8 +361,8 @@ the emitted points against the viewBox and names the shortfall if there is one.
   passes every invariant — 29 regions, 21 crossings, 42 engrave lines, 7 anchors —
   but see the warning below about what that does *not* tell you.
 - Nothing here has been validated against real cut stock, and the narrowest cut
-  falls fast as leads rise — 5.51mm at `2 × 3`, 0.66mm at `4 × 3`, **0.56mm at
-  `4 × 7`**.
+  falls fast as leads rise — 5.51mm at `2 × 3`, 0.66mm at `4 × 3`, 0.61mm at
+  `4 × 5`, **0.56mm at `4 × 7`**.
 
 **Passing the invariants is not the same as being cuttable.** `(4,7)` satisfies both
 counts and still comes out finer than `4 × 3`, which is flagged above as delicate.
@@ -370,7 +377,9 @@ believing the OK lines.
 - `3-lead_4-bight_knot_radius30mm.svg` — 3 leads × 4 bights
 - `3-lead_5-bight_knot_radius30mm.svg` — 3 leads × 5 bights
 - `4-lead_3-bight_knot_radius39mm.svg` — 4 leads × 3 bights at `R_HOLE = 39`,
-  `AMP=9.75 HW=2.6` — the only sample not at 30mm, and not at default tuning
+  `AMP=9.75 HW=2.6` — off default tuning, for the reason set out above
+- `4-lead_5-bight_knot_radius39mm.svg` — 4 leads × 5 bights at the same `R_HOLE = 39`
+  and the same `AMP=9.75 HW=2.6`, so the two four-lead samples differ only in bights
 - `5-lead_4-bight_knot_radius60mm.svg` — 5 leads × 4 bights at `R_HOLE = 60`,
   `AMP=15 HW=2.4` — a 120mm hole, and the smallest panel on which five leads resolve
 

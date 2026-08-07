@@ -14,7 +14,7 @@ hole. Display renderings — **deep gold is the rosette, pale gold the board it 
 cream is what drops out.** The ribbon crosses between the two golds without a break,
 because the rosette is not a ring sitting in a hole: it is board material, and that is what
 stops it falling through. The cut files carry no fill, so a browser shows them as thin
-lines on a transparency checkerboard. **[See all eleven](https://gernreich.github.io/knotwork-soundholes/#every-sample-at-a-glance)**.*
+lines on a transparency checkerboard. **[See all twelve](https://gernreich.github.io/knotwork-soundholes/#every-sample-at-a-glance)**.*
 
 **[Read the writeups](https://gernreich.github.io/knotwork-soundholes/)** · plait:
 [`plait_soundhole.md`](plait_soundhole.md) · knot:

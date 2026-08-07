@@ -106,25 +106,25 @@ so a browser shows them as thin lines on a transparency checkerboard.
 <td align="center"><a href="3-lead_4-bight_knot_radius30mm.svg"><img src="previews/3-lead_4-bight_knot_radius30mm.svg" alt="A three-lead four-bight knot" width="150"></a></td>
 <td align="center"><a href="3-lead_5-bight_knot_radius30mm.svg"><img src="previews/3-lead_5-bight_knot_radius30mm.svg" alt="A three-lead five-bight knot" width="150"></a></td>
 <td align="center"><a href="4-lead_3-bight_knot_radius39mm.svg"><img src="previews/4-lead_3-bight_knot_radius39mm.svg" alt="A four-lead three-bight knot at 39mm radius" width="150"></a></td>
-<td align="center"><a href="5-lead_4-bight_knot_radius60mm.svg"><img src="previews/5-lead_4-bight_knot_radius60mm.svg" alt="A five-lead four-bight knot at 60mm radius" width="150"></a></td>
+<td align="center"><a href="4-lead_5-bight_knot_radius39mm.svg"><img src="previews/4-lead_5-bight_knot_radius39mm.svg" alt="A four-lead five-bight knot at 39mm radius" width="150"></a></td>
 </tr>
 <tr>
 <td align="center"><sub>3 × 4</sub></td>
 <td align="center"><sub>3 × 5</sub></td>
 <td align="center"><sub>4 × 3 &middot; 39mm</sub></td>
-<td align="center"><sub>5 × 4 &middot; 60mm</sub></td>
+<td align="center"><sub>4 × 5 &middot; 39mm</sub></td>
 </tr>
 <tr>
+<td align="center"><a href="5-lead_4-bight_knot_radius60mm.svg"><img src="previews/5-lead_4-bight_knot_radius60mm.svg" alt="A five-lead four-bight knot at 60mm radius" width="150"></a></td>
 <td align="center"><a href="9-lead_11-bight_knot_radius300mm.svg"><img src="previews/9-lead_11-bight_knot_radius300mm.svg" alt="A nine-lead eleven-bight knot at 300mm radius" width="150"></a></td>
 <td align="center"><a href="8-crossing_plait_radius30mm.svg"><img src="previews/8-crossing_plait_radius30mm.svg" alt="An eight-crossing plait" width="150"></a></td>
 <td align="center"><a href="10-crossing_plait_radius30mm.svg"><img src="previews/10-crossing_plait_radius30mm.svg" alt="A ten-crossing plait, two ribbons woven around a ring" width="150"></a></td>
-<td></td>
 </tr>
 <tr>
+<td align="center"><sub>5 × 4 &middot; 60mm</sub></td>
 <td align="center"><sub>9 × 11 &middot; 300mm</sub></td>
 <td align="center"><sub>plait &middot; 8 crossings</sub></td>
 <td align="center"><sub>plait &middot; 10 crossings</sub></td>
-<td></td>
 </tr>
 </table>
 </div>
