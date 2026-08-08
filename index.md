@@ -74,7 +74,9 @@ variants, and 48% (the knot at its `3 × 5` default) and 52% (the plait at `N = 
 run either generator without arguments. More leads means less open area, so the sparser
 end of that range is where the knots get busy, not where they get tame. Three anchors are
 enough to fix a trefoil's plane, but that is a kinematic statement, not a stiffness one.
-Nothing here has been validated against real cut stock.
+These are cut in **3mm Baltic birch plywood** — its void-free core matters here, because a
+void landing in a 2mm-wide ribbon is a break waiting to happen. Compare the narrowest-cut
+figures against your kerf before choosing a design.
 
 **One layer is not a cut.** Give the blue `#0000ff` `engrave` lines a score or engrave
 operation rather than a cut — they run across the ribbon at every crossing, so cutting

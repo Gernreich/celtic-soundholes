@@ -231,7 +231,8 @@ re-derive rather than trust it.
   nothing verifies a thin material neck.
 - Open area is large (≈52% at defaults). For a real soundboard consider what
   that removes structurally.
-- Ribbon width has not been validated against actual cut stock.
+- Cut in 3mm Baltic birch plywood. Ribbon width has not been swept against other stock,
+  so treat the narrowest-cut column as the number to check against your kerf.
 
 ## Generated files
 

@@ -375,9 +375,9 @@ bit-identical floats. Any nonzero value at all means the ring search missed a sa
 - The envelope above is a tested range, not a proof. `(4,7)` has since been run and
   passes every invariant — 29 regions, 21 crossings, 42 engrave lines, 7 anchors —
   but see the warning below about what that does *not* tell you.
-- Nothing here has been validated against real cut stock, and the narrowest cut
-  falls fast as leads rise — 5.51mm at `2 × 3`, 0.66mm at `4 × 3`, 0.61mm at
-  `4 × 5`, **0.56mm at `4 × 7`**.
+- Cut in 3mm Baltic birch plywood, whose void-free core matters as the ribbon narrows.
+  The narrowest cut falls fast as leads rise — 5.51mm at `2 × 3`, 0.66mm at `4 × 3`,
+  0.61mm at `4 × 5`, **0.56mm at `4 × 7`**.
 
 **Passing the invariants is not the same as being cuttable.** `(4,7)` satisfies both
 counts and still comes out finer than `4 × 3`, which is flagged above as delicate.
