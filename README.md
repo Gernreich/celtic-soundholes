@@ -16,7 +16,7 @@ because the rosette is not a ring sitting in a hole: it is board material, and t
 stops it falling through. The cut files carry no fill, so a browser shows them as thin
 lines on a transparency checkerboard. **[See all thirteen](https://gernreich.github.io/knotwork-soundholes/#every-sample-at-a-glance)**.*
 
-**[Read the writeups](https://gernreich.github.io/knotwork-soundholes/)** · plait:
+**[Read the writeup](https://gernreich.github.io/knotwork-soundholes/)** · plait:
 [`plait_soundhole.md`](plait_soundhole.md) · knot:
 [`knot_soundhole.md`](knot_soundhole.md)
 
